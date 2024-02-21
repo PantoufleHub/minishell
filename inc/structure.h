@@ -3,14 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   structure.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aperron <aperron@student.42.fr>            +#+  +:+       +#+        */
+/*   By: jbidaux <jeremie.bidaux@gmail.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/21 12:12:18 by aperron           #+#    #+#             */
-/*   Updated: 2024/02/21 12:12:37 by aperron          ###   ########.fr       */
+/*   Updated: 2024/02/21 14:53:39 by jbidaux          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef STRUCTURE_H
 # define STRUCTURE_H
+
 
 #endif

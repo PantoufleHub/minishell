@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aperron <aperron@student.42.fr>            +#+  +:+       +#+        */
+/*   By: jbidaux <jeremie.bidaux@gmail.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/21 12:11:30 by aperron           #+#    #+#             */
-/*   Updated: 2024/02/21 12:17:17 by aperron          ###   ########.fr       */
+/*   Updated: 2024/02/21 14:53:32 by jbidaux          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@
 # include <readline/readline.h>
 # include <readline/history.h>
 # include <signal.h>
+# include <unistd.h>
 
 # include "structure.h"
 

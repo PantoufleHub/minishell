@@ -1,36 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   command.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aperron <aperron@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/02/21 12:11:40 by aperron           #+#    #+#             */
-/*   Updated: 2024/02/21 14:52:18 by aperron          ###   ########.fr       */
+/*   Created: 2024/02/21 14:40:06 by aperron           #+#    #+#             */
+/*   Updated: 2024/02/21 14:47:24 by aperron          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/minishell.h"
 
-int	main(void)
+void	interpret_command(char *command)
 {
-	char	*prompt;
-	char	*line;
-	int		is_running;
-
-	set_signals();
-	is_running = 1;
-	while (is_running)
-	{
-		prompt = get_prompt();
-		line = readline(prompt);
-		if (!line)
-			is_running = 0;
-		else
-			interpret_command(line);
-		add_history(line);
-		free(prompt);
-		free(line);
-	}
-	return (0);
+	command = NULL;
+	ft_printf("interpret_command unimplemented\n");
 }

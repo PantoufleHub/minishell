@@ -1,5 +1,15 @@
 #ifndef STRUCTURE_H
 # define STRUCTURE_H
 
+typedef struct s_cmd {
+	char	*cmd;
+	char	**arg;
+}	t_cmd;
 
-#endif
+typedef struct s_data {
+	char	**path;
+	int		n_cmd;
+	t_cmd	*cmd;
+}	t_data;
+
+#endif //STRUCTURE_H

@@ -6,7 +6,7 @@
 #    By: aperron <aperron@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/02/21 12:11:13 by aperron           #+#    #+#              #
-#    Updated: 2024/02/21 12:18:38 by aperron          ###   ########.fr        #
+#    Updated: 2024/02/21 14:40:25 by aperron          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,7 +16,7 @@ NAME		= minishell
 
 SRC_FOLDER	= ./src/
 
-SRCS_BLANK	= main
+SRCS_BLANK	= main prompt signal command
 
 SRCS		= $(addsuffix .c, $(addprefix $(SRC_FOLDER), $(SRCS_BLANK)))
 

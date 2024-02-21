@@ -1,36 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   signal.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aperron <aperron@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/02/21 12:11:40 by aperron           #+#    #+#             */
-/*   Updated: 2024/02/21 14:52:18 by aperron          ###   ########.fr       */
+/*   Created: 2024/02/21 14:19:16 by aperron           #+#    #+#             */
+/*   Updated: 2024/02/21 14:47:52 by aperron          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/minishell.h"
 
-int	main(void)
+void	signal_handler(int signum)
 {
-	char	*prompt;
-	char	*line;
-	int		is_running;
+	printf("\nRecieved signal: %d\n", signum);
+	if (signum == 2)
+		ft_printf("\n");
+	if (signum == 3)
+		abort();
+}
 
-	set_signals();
-	is_running = 1;
-	while (is_running)
+void	set_signals(void)
+{
+	if (signal(SIGINT, signal_handler) == SIG_ERR)
 	{
-		prompt = get_prompt();
-		line = readline(prompt);
-		if (!line)
-			is_running = 0;
-		else
-			interpret_command(line);
-		add_history(line);
-		free(prompt);
-		free(line);
+		perror("Error registering signal handler");
+		exit(EXIT_FAILURE);
 	}
-	return (0);
+	if (signal(SIGQUIT, signal_handler) == SIG_ERR)
+	{
+		perror("Error registering signal handler");
+		exit(EXIT_FAILURE);
+	}
 }

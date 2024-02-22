@@ -2,7 +2,6 @@
 
 int	main(void)
 {
-	char	*prompt;
 	char	*line;
 	int		is_running;
 
@@ -10,14 +9,13 @@ int	main(void)
 	is_running = 1;
 	while (is_running)
 	{
-		prompt = get_prompt();
-		line = readline(prompt);
+		display_prompt();
+		line = readline("");
 		if (!line)
 			is_running = 0;
 		else
 			interpret_command(line);
 		add_history(line);
-		free(prompt);
 		free(line);
 	}
 	return (0);

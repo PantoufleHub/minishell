@@ -2,23 +2,30 @@
 
 void	signal_handler(int signum)
 {
-	printf("\nRecieved signal: %d\n", signum);
+	// printf("\nRecieved signal: %d\n", signum);
 	if (signum == 2)
+	{
 		ft_printf("\n");
-	if (signum == 3)
-		abort();
+		display_prompt();
+	}
+	else if (signum == 3)
+	{
+		// NEED TO IMPLEMENT
+		ft_printf("\n");
+		exit(0);
+	}
 }
 
 void	set_signals(void)
 {
 	if (signal(SIGINT, signal_handler) == SIG_ERR)
 	{
-		perror("Error registering signal handler");
+		perror("Error registering CTRL+C signal handler");
 		exit(EXIT_FAILURE);
 	}
 	if (signal(SIGQUIT, signal_handler) == SIG_ERR)
 	{
-		perror("Error registering signal handler");
+		perror("Error registering CTRL+\\ signal handler");
 		exit(EXIT_FAILURE);
 	}
 }

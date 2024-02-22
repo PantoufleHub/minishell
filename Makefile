@@ -7,7 +7,7 @@ SRCS_BLANK	= main  prompt signal command
 
 SRCS		= $(addsuffix .c, $(addprefix $(SRC_FOLDER), $(SRCS_BLANK)))
 
-FLAGS		= -g -Wall -Wextra -Werror
+FLAGS		= -g -Wall -Wextra -Werror -fsanitize=address
 
 CC			= gcc
 

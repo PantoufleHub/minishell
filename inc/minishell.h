@@ -11,12 +11,13 @@
 
 # include "../libft/libft.h"
 # include "structure.h"
+# include "constants.h"
 
 void					signal_handler(int signum);
 
 void					set_signals(void);
 
-char					*get_prompt(void);
+void					display_prompt(void);
 
 void					interpret_command(char *command);
 

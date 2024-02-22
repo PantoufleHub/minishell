@@ -12,4 +12,4 @@ typedef struct s_data {
 	t_cmd	*cmd;
 }	t_data;
 
-#endif //STRUCTURE_H
+#endif //STRUCTURE_H 

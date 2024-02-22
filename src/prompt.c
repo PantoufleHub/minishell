@@ -1,15 +1,13 @@
 #include "../inc/minishell.h"
 
-char	*get_prompt(void)
+void	display_prompt(void)
 {
-	char	*prompt;
-	char	*name;
+	char	*user;
 	char	*pwd;
 	char	*home;
 
-	name = getenv("USER");
+	user = getenv("USER");
 	pwd = getenv("PWD");
 	home = getenv("HOME");
-	prompt = ft_strjoin(name, ": ");
-	return (prompt);
+	ft_printf(CYN "%s: " YEL "%s$ " NRM, pwd, user);
 }

@@ -7,6 +7,7 @@ void	signal_handler(int signum)
 	{
 		ft_printf("\n");
 		display_prompt();
+		// rl_on_new_line();
 	}
 	else if (signum == 3)
 	{

@@ -3,7 +3,7 @@ NAME		= minishell
 
 SRC_FOLDER	= ./src/
 
-SRCS_BLANK	= main  prompt signal command
+SRCS_BLANK	= main  prompt signal command path utils
 
 SRCS		= $(addsuffix .c, $(addprefix $(SRC_FOLDER), $(SRCS_BLANK)))
 
@@ -21,7 +21,7 @@ TO_CLEAN	= *.dSYM *.o
 all: $(NAME) run
 
 $(NAME): $(SRCS)
-	$(CC) $(FLAGS) $(SRCS) -L./libft -lft -lreadline -o $@
+	$(CC) $(FLAGS) $(SRCS) -L./libft -lft -lreadline -ledit -o $@
 
 run:
 	@./$(NAME)

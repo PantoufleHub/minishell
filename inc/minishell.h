@@ -3,6 +3,7 @@
 
 # include <stdio.h>
 # include <stdlib.h>
+# include <histedit.h>
 # include <readline/readline.h>
 # include <readline/history.h>
 # include <signal.h>
@@ -13,12 +14,18 @@
 # include "structure.h"
 # include "constants.h"
 
-void					signal_handler(int signum);
+void					display_prompt(void);
+
+void					exit_with_error(char *message);
+
+void					error_message(char *message);
+
+char					**get_paths(char *envp[]);
+
+void					interpret_line(char *line, char *envp[]);
 
 void					set_signals(void);
 
-void					display_prompt(void);
-
-void					interpret_command(char *command);
+void					signal_handler(int signum);
 
 #endif

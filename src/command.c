@@ -26,6 +26,8 @@ void	interpret_line(char *line, char *envp[])
 	char *cmd;
 
 	ft_printf("Recieved command: |%s|\n", line);
+	if (!line)
+		return ;
 	cmd = get_cmd(get_paths(envp), line);
 	if (!cmd)
 		error_message("Failed to get command");

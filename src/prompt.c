@@ -11,3 +11,8 @@ void	display_prompt(void)
 	home = getenv("HOME");
 	ft_printf(CYN "%s: " YEL "%s$ " NRM, pwd, user);
 }
+
+char	*get_prompt(void)
+{
+	return (CYN"PLACEHOLDER PROMPT: "NRM);
+}

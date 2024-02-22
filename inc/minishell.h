@@ -22,9 +22,13 @@ void					error_message(char *message);
 
 char					**get_paths(char *envp[]);
 
+char 					*get_prompt();
+
 void					interpret_line(char *line, char *envp[]);
 
 void					set_signals(void);
+
+void					set_signals_child(void);
 
 void					signal_handler(int signum);
 

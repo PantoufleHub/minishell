@@ -3,7 +3,7 @@ NAME		= minishell
 
 SRC_FOLDER	= ./src/
 
-SRCS_BLANK	= main  prompt signal command path utils
+SRCS_BLANK	= main  prompt signal command path utils split split_utils
 
 SRCS		= $(addsuffix .c, $(addprefix $(SRC_FOLDER), $(SRCS_BLANK)))
 

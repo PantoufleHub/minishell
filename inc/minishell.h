@@ -36,4 +36,6 @@ void					signal_handler(int signum);
 
 char					*strjoin(char **arr);
 
+size_t					word_count(const char *s, const char c);
+
 #endif

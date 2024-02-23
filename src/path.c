@@ -10,6 +10,7 @@ char	*find_paths(char *envp[])
 	return (envp[index] + 5);
 }
 
+// this function returns a tab of string that is equivalent to data->path of the function int path(t_data *data)
 char	**get_paths(char *envp[])
 {
 	char	**paths;
@@ -34,10 +35,11 @@ int	path(t_data *data)
 	while (data->path[i])
 	{
 		j = 0;
-		while (j < data->n_cmd)
+		while (j < data->n_cmd) //I need to find a way to count the number of commands read in read_line
 		{
 			tmp = ft_strjoin(data->path[i], "/");
-			full_path = ft_strjoin(tmp, data->cmd[j].cmd);
+			full_path = ft_strjoin(tmp, data->cmd[j].cmd); //I need to feed data->cmd[j].cmd
+											//of commands somewhere in the line read by read_line
 			free(tmp);
 			if (access(full_path, X_OK) == 0)
 			{

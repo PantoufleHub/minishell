@@ -73,10 +73,10 @@ char	**ft_split_p(const char *s, const char c)
 	int		d_quote = 0;
 
 	helper_split_2(&i, &j, &s_quote, &index);
-	split = calloc((word_count(s, c) + 1), sizeof(char *));
+	split = ft_calloc((word_count(s, c) + 1), sizeof(char *));
 	if (helper2_split_2(s, split) == 0)
 		return (0);
-	while (i <= strlen(s))
+	while (i <= ft_strlen(s))
 	{
 		if (s[i] == 39 && !d_quote)
 			s_quote = !s_quote;
@@ -84,7 +84,7 @@ char	**ft_split_p(const char *s, const char c)
 			d_quote = !d_quote;
 		if (s[i] != c && index < 0)
 			index = i;
-		else if ((s[i] == c || i == strlen(s)) && index >= 0 && !s_quote && !d_quote)
+		else if ((s[i] == c || i == ft_strlen(s)) && index >= 0 && !s_quote && !d_quote)
 		{
 			split[j++] = ft_buff(s, index, i);
 			index = -1;

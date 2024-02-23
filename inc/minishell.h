@@ -18,6 +18,8 @@ void					display_prompt(void);
 
 void					exit_with_error(char *message);
 
+void					entry_display(void);
+
 void					error_message(char *message);
 
 char					**get_paths(char *envp[]);

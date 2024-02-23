@@ -14,5 +14,5 @@ void	display_prompt(void)
 
 char	*get_prompt(void)
 {
-	return (CYN"PLACEHOLDER PROMPT: "NRM);
+	return (CYN"STILL A FUCKING PLACEHOLDER: "NRM);
 }

@@ -34,4 +34,6 @@ void					set_signals_child(void);
 
 void					signal_handler(int signum);
 
+size_t			word_count(const char *s, const char c);
+
 #endif

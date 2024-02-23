@@ -1,36 +1,5 @@
 #include "../inc/minishell.h"
 
-static size_t	word_count(const char *s, const char c)
-{
-	size_t	i;
-	size_t	j;
-	size_t	index;
-	int	d_quote;
-	int	s_quote;
-
-	i = 0;
-	j = 0;
-	index = 0;
-	d_quote = 0;
-	s_quote = 0;
-	while (s[i])
-	{
-		if (s[i] == 39 && !s_quote)
-			d_quote = !d_quote;
-		if (s[i] == 34 && !d_quote)
-			s_quote = !s_quote;
-		if (s[i] != c && index == 0)
-		{
-			index = 1;
-			j++;
-		}
-		else if (s[i] == c && !d_quote && !s_quote)
-			index = 0;
-		i++;
-	}
-	return (j);
-}
-
 static char	*ft_buff(const char *str, size_t start, size_t end)
 {
 	char	*buff;
@@ -46,16 +15,17 @@ static char	*ft_buff(const char *str, size_t start, size_t end)
 	return (buff);
 }
 
-void	helper_split_2(size_t *i, size_t *j, int *s_quote, int *index)
+void	helper_split_2(int *s_quote, int *index)
 {
-	*i = 0;
-	*j = 0;
 	*s_quote = 0;
 	*index = -1;
 }
 
-int	helper2_split_2(const char *s, char **split)
+int	helper2_split_2(const char *s, char **split, int *d_quote, t_dim *dim)
 {
+	*d_quote = 0;
+	dim->x = 0;
+	dim->y = 0;
 	if (!s)
 		return (0);
 	if (!split)
@@ -63,33 +33,38 @@ int	helper2_split_2(const char *s, char **split)
 	return (1);
 }
 
+void	quote_helper(const char *s, size_t x, int *s_quote, int *d_quote)
+{
+	if (s[x] == 39 && !*d_quote)
+		*s_quote = !*s_quote;
+	if (s[x] == 34 && !*s_quote)
+		*d_quote = !*d_quote;
+}
+
 char	**ft_split_p(const char *s, const char c)
 {
-	size_t	i;
-	size_t	j;
+	t_dim	dim;
 	int		index;
 	char	**split;
 	int		s_quote;
-	int		d_quote = 0;
+	int		d_quote;
 
-	helper_split_2(&i, &j, &s_quote, &index);
+	helper_split_2(&s_quote, &index);
 	split = ft_calloc((word_count(s, c) + 1), sizeof(char *));
-	if (helper2_split_2(s, split) == 0)
+	if (helper2_split_2(s, split, &d_quote, &dim) == 0)
 		return (0);
-	while (i <= ft_strlen(s))
+	while (dim.x <= ft_strlen(s))
 	{
-		if (s[i] == 39 && !d_quote)
-			s_quote = !s_quote;
-		if (s[i] == 34 && !s_quote)
-			d_quote = !d_quote;
-		if (s[i] != c && index < 0)
-			index = i;
-		else if ((s[i] == c || i == ft_strlen(s)) && index >= 0 && !s_quote && !d_quote)
+		quote_helper(s, dim.x, &s_quote, &d_quote);
+		if (s[dim.x] != c && index < 0)
+			index = dim.x;
+		else if ((s[dim.x] == c || dim.x == ft_strlen(s))
+			&& index >= 0 && !s_quote && !d_quote)
 		{
-			split[j++] = ft_buff(s, index, i);
+			split[dim.y++] = ft_buff(s, index, dim.x);
 			index = -1;
 		}
-		i++;
+		dim.x++;
 	}
 	return (split);
 }

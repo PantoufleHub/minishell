@@ -14,5 +14,9 @@ void	display_prompt(void)
 
 char	*get_prompt(void)
 {
-	return (CYN"STILL A FUCKING PLACEHOLDER: "NRM);
+	char	*prompt;
+
+	prompt = strjoin((char *[]){GRN"@swagminishell "CYN,
+			getenv("USER"), "$: ", NRM, NULL});
+	return (prompt);
 }

@@ -34,4 +34,6 @@ void					set_signals_child(void);
 
 void					signal_handler(int signum);
 
+char					*strjoin(char **arr);
+
 #endif

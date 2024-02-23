@@ -32,3 +32,27 @@ void	exit_with_error(char *message)
 	error_message(message);
 	exit(1);
 }
+
+char	*strjoin(char **arr)
+{
+	char	*str;
+	int		len;
+	int		index_word;
+	int		index_letter;
+
+	len = 0;
+	index_word = 0;
+	while (arr[index_word])
+		len += ft_strlen(arr[index_word++]);
+	str = malloc(sizeof(char) * (len + 1));
+	index_word = 0;
+	index_letter = 0;
+	while (arr[index_word])
+	{
+		ft_strlcpy(str + index_letter, arr[index_word],
+			len);
+		index_letter += ft_strlen(arr[index_word]);
+		index_word++;
+	}
+	return (str);
+}

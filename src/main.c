@@ -20,7 +20,7 @@ int	main(int argc, char *argv[], char *envp[])
 				kill(0, SIGTERM);
 			interpret_line(line, envp);
 			add_history(line);
-			// free(prompt);
+			free(prompt);
 			free(line);
 			exit(0);
 		}

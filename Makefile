@@ -1,13 +1,15 @@
+########################## VARIABLES ###############################
 
 NAME		= minishell
 
 SRC_FOLDER	= ./src/
 
-SRCS_BLANK	= main  prompt signal command path utils split split_utils
+SRCS_BLANK	= main prompt signal command path utils split split_utils
 
 SRCS		= $(addsuffix .c, $(addprefix $(SRC_FOLDER), $(SRCS_BLANK)))
 
 FLAGS		= -g -Wall -Wextra -Werror -fsanitize=address
+LIBFLAGS	= -L./libft -lft -lreadline -ledit
 
 CC			= gcc
 
@@ -21,10 +23,19 @@ TO_CLEAN	= *.dSYM *.o
 all: $(NAME) run
 
 $(NAME): $(SRCS)
-	$(CC) $(FLAGS) $(SRCS) -L./libft -lft -lreadline -ledit -o $@
+	$(CC) $(FLAGS) $(SRCS) $(LIBFLAGS) -o $@
+
+test:
+	@echo "Running test..."
+	$(CC) -g -Wextra -Wall $(SRCS) $(LIBFLAGS) -o $@
+	@./$@
 
 run:
 	@./$(NAME)
+
+%.o: %.c
+	@echo compiling file $<...
+	$(CC) $(FLAGS) $< -o $@
 
 clean:
 	@$(RM_ALL) $(TO_CLEAN)

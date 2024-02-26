@@ -33,6 +33,11 @@ void	set_signals(void)
 		perror("Error registering SIGINT signal handler");
 		exit(EXIT_FAILURE);
 	}
+	if (signal(SIGTERM, signal_handler_child) == SIG_ERR)
+	{
+		perror("Error registering SIGTERM signal handler");
+		exit(EXIT_FAILURE);
+	}
 }
 
 void	set_signals_child(void)
@@ -45,6 +50,11 @@ void	set_signals_child(void)
 	if (signal(SIGINT, signal_handler_child) == SIG_ERR)
 	{
 		perror("Error registering SIGINT signal handler");
+		exit(EXIT_FAILURE);
+	}
+	if (signal(SIGTERM, signal_handler_child) == SIG_ERR)
+	{
+		perror("Error registering SIGTERM signal handler");
 		exit(EXIT_FAILURE);
 	}
 }

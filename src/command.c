@@ -25,7 +25,7 @@ void	interpret_line(char *line, char *envp[])
 	// char *testargv[] = {"-e", "test.txt", NULL};
 	char *cmd;
 
-	ft_printf("Recieved command: |%s|\n", line);
+	ft_printf("Received command: |%s|\n", line);
 	if (!line)
 		return ;
 	cmd = get_cmd(get_paths(envp), line);

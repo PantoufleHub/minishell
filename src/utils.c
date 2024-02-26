@@ -54,5 +54,6 @@ char	*strjoin(char **arr)
 		index_letter += ft_strlen(arr[index_word]);
 		index_word++;
 	}
+	str[index_letter] = 0;
 	return (str);
 }

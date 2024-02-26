@@ -21,9 +21,8 @@ char	**get_paths(char *envp[])
 	return (paths);
 }
 
-int	path(t_data *data)
+int	append_cmd(t_data *data)
 {
-	const char	*path = getenv("PATH");
 	char		*full_path;
 	char		*tmp;
 	int			i;
@@ -31,20 +30,18 @@ int	path(t_data *data)
 
 	i = 0;
 	full_path = ft_strdup("");
-	data->path = ft_split(path, ':');
 	while (data->path[i])
 	{
 		j = 0;
-		while (j < data->n_cmd) //I need to find a way to count the number of commands read in read_line
+		while (j < 1) //I need to find a way to count the number of commands read in read_line
 		{
 			tmp = ft_strjoin(data->path[i], "/");
-			full_path = ft_strjoin(tmp, data->cmd[j].cmd); //I need to feed data->cmd[j].cmd
-											//of commands somewhere in the line read by read_line
+			full_path = ft_strjoin(tmp, data->cmd[j].split[0]); //I need to feed data->cmd[j].cmd of commands somewhere in the line read by read_line
 			free(tmp);
 			if (access(full_path, X_OK) == 0)
 			{
-				free(data->cmd[j].cmd);
-				data->cmd[j].cmd = full_path;
+				free(data->cmd[j].split[0]);
+				data->cmd[j].split[0] = full_path;
 			}
 			else
 				free(full_path);

@@ -7,6 +7,7 @@ typedef struct s_dim {
 }	t_dim;
 
 typedef struct s_cmd {
+	char	**split;
 	char	*cmd;
 	char	**arg;
 }	t_cmd;

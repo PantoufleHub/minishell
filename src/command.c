@@ -24,6 +24,7 @@ void	interpret_line(char *line, char *envp[])
 {
 	// char *testargv[] = {"-e", "test.txt", NULL};
 	char *cmd;
+	t_data	data;
 
 	ft_printf("Received command: |%s|\n", line);
 	if (!line)
@@ -33,5 +34,8 @@ void	interpret_line(char *line, char *envp[])
 		error_message("Failed to get command");
 	else
 		ft_printf("Got command: %s\n", cmd);
-	// execve("/bin/cat/", testargv, envp);
+	data = parsing(line);
+	data.path =	get_paths(envp);
+	append_cmd(&data);
+	execve(data.cmd[0].split[0], data.cmd[0].split, envp);
 }

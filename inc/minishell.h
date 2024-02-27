@@ -38,4 +38,10 @@ char					*strjoin(char **arr);
 
 size_t					word_count(const char *s, const char c);
 
+char					**ft_split_p(const char *s, const char c);
+
+t_data					parsing(char *line);
+
+int						append_cmd(t_data *data);
+
 #endif

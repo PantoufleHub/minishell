@@ -28,3 +28,32 @@ size_t	word_count(const char *s, const char c)
 	}
 	return (j);
 }
+
+char	*trim_sp(char	**split)
+{
+	char	*line;
+	char	*tmp;
+	char	*sp;
+	int		i;
+	int		count;
+
+	i = 0;
+	count = 0;
+	sp = ft_strdup("");
+	while (split[i++])
+		count++;
+	i = 0;
+	while (i < count)
+	{
+		tmp = line;
+		if (i > 0)
+			sp = ft_strjoin(line, " ");
+		tmp = ft_strjoin(sp, split[i]);
+		if (i > 0)
+			free (sp);
+		line = tmp;
+		free (tmp);
+		i++;
+	}
+	return (line);
+}

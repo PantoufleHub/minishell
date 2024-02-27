@@ -8,8 +8,10 @@ SRCS_BLANK	= main  prompt signal command path utils split split_utils parsing
 
 SRCS		= $(addsuffix .c, $(addprefix $(SRC_FOLDER), $(SRCS_BLANK)))
 
-FLAGS		= -g -Wall -Wextra -Werror -fsanitize=address
-LIBFLAGS	= -L./libft -lft -lreadline -ledit
+LIBFLAGS	= -L./libft -lft -L$(HOME)/.brew/opt/readline/lib -lreadline -ledit
+BREWFLAGS	= -I$(HOME)/.brew/opt/readline/include
+FLAGS		= -g -Wall -Wextra -Werror -fsanitize=address $(LIBFLAGS) $(BREWFLAGS)
+ALLFLAGS	= $(FLAGS) $(LIBFLAGS) $(BREWFLAGS)
 
 CC			= gcc
 
@@ -23,11 +25,11 @@ TO_CLEAN	= *.dSYM *.o *test
 all: $(NAME) run
 
 $(NAME): $(SRCS)
-	$(CC) $(FLAGS) $(SRCS) $(LIBFLAGS) -o $@
+	$(CC) $(ALLFLAGS) $(SRCS) -o $@
 
 test:
 	@echo "Running test..."
-	$(CC) -g -Wextra -Wall $(SRCS) $(LIBFLAGS) -o $@
+	$(CC) -g -Wextra -Wall $(SRCS) -o $@
 	@./$@
 
 run:

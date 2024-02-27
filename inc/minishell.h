@@ -4,11 +4,11 @@
 # include <stdio.h>
 # include <stdlib.h>
 # include <histedit.h>
-# include <readline/readline.h>
-# include <readline/history.h>
 # include <signal.h>
 # include <unistd.h>
 # include <string.h>
+# include <readline/readline.h>
+# include <readline/history.h>
 
 # include "../libft/libft.h"
 # include "structure.h"

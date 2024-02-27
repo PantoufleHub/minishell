@@ -12,7 +12,7 @@ char	*get_cmd(char **paths, char *cmd)
 		tmp_path = ft_strjoin(paths[index], "/");
 		tmp_cmd = ft_strjoin(tmp_path, cmd);
 		free(tmp_path);
-		if (access(tmp_cmd, 0) == 0)
+		if (access(tmp_cmd, F_OK) == 0)
 			return (tmp_cmd);
 		free(tmp_cmd);
 		index++;

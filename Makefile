@@ -16,7 +16,7 @@ CC			= gcc
 RM			= rm -f
 RM_ALL		= rm -drf
 
-TO_CLEAN	= *.dSYM *.o
+TO_CLEAN	= *.dSYM *.o *test
 
 ########################## TARGETS ###############################
 

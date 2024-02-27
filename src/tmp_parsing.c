@@ -171,7 +171,10 @@ void	parse(t_tokens **tokens, char *line)
 					else
 					{
 						if (token)
+						{
 							add_token(tokens, get_string(token));
+							free_string(token);
+						}
 						token = NULL;
 						add_char(&token, line[index]);
 						add_token(tokens, get_string(token));

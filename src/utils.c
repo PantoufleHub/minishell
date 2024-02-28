@@ -2,23 +2,25 @@
 
 void	entry_display(void)
 {
-	ft_printf(CYN"~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n");
-	ft_printf(CYN"|"
-		NRM"                    MINISHELL                        "CYN"|\n");
-	ft_printf(CYN"|"
-		MAG"                                                     "CYN"|\n");
-	ft_printf(CYN"|"
-		MAG"     Welcome to the best minishell project ever!     "CYN"|\n");
-	ft_printf(CYN"|"
-		MAG"  This project is brought to you by jbido and apéro  "CYN"|\n");
-	ft_printf(CYN"|"
-		MAG"                                                     "CYN"|\n");
-	ft_printf(CYN"|"
-		MAG"                                                     "CYN"|\n");
-	ft_printf(CYN"|"
-		YEL"     Please be nice and don't try to break it "RED"<3     "
-		CYN"|\n");
-	ft_printf(CYN"~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n");
+	ft_printf(CYN"\n\n  ██████   ██████  ███              ███          █████   "
+		"            ████  ████ \n");
+	ft_printf(" ░░██████ ██████  ░░░              ░░░          ░░███           "
+		"    ░░███ ░░███ \n");
+	ft_printf("  ░███░█████░███  ████  ████████   ████   █████  ░███████    ███"
+		"███  ░███  ░███ \n");
+	ft_printf("  ░███░░███ ░███ ░░███ ░░███░░███ ░░███  ███░░   ░███░░███  ███░"
+		"░███ ░███  ░███ \n");
+	ft_printf("  ░███ ░░░  ░███  ░███  ░███ ░███  ░███ ░░█████  ░███ ░███ ░████"
+		"███  ░███  ░███ \n");
+	ft_printf("  ░███      ░███  ░███  ░███ ░███  ░███  ░░░░███ ░███ ░███ ░███░"
+		"░░   ░███  ░███ \n");
+	ft_printf("  █████     █████ █████ ████ █████ █████ ██████  ████ █████░░███"
+		"███  █████ █████\n");
+	ft_printf("  ░░░░░     ░░░░░ ░░░░░ ░░░░ ░░░░░ ░░░░░ ░░░░░░  ░░░░ ░░░░░  ░░░"
+		"░░░  ░░░░░ ░░░░░\n"NRM);
+	ft_printf(NRM"  v0.3.2 Now with token parsing!!\n\n"NRM);
+	ft_printf(MAG"                This project is brought to you by jbido and a"
+		"péro\n\n"NRM);
 }
 
 void	error_message(char *message)

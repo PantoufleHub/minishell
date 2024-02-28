@@ -4,7 +4,7 @@ void	signal_handler_child(int signum)
 {
 	if (signum == SIGINT)
 	{
-		printf("\n");
+		ft_printf("\n");
 		exit(0);
 	}
 	else if (signum == SIGQUIT)
@@ -15,7 +15,14 @@ void	signal_handler_child(int signum)
 
 void	signal_handler(int signum)
 {
-	if (signum == SIGQUIT)
+	if (signum == SIGINT)
+	{
+		ft_printf("\n");
+		rl_on_new_line();
+		rl_replace_line("", 0);
+		rl_redisplay();
+	}
+	else if (signum == SIGQUIT)
 		exit(0);
 	else if (signum == SIGTERM)
 		exit(0);

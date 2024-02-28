@@ -2,6 +2,7 @@
 
 void	entry_display(void)
 {
+	printf("\033[2J\033[H\n");
 	ft_printf(CYN"\n\n  ██████   ██████  ███              ███          █████   "
 		"            ████  ████ \n");
 	ft_printf(" ░░██████ ██████  ░░░              ░░░          ░░███           "
@@ -20,7 +21,7 @@ void	entry_display(void)
 		"░░░  ░░░░░ ░░░░░\n"NRM);
 	ft_printf(NRM"  v0.3.2 Now with token parsing!!\n\n"NRM);
 	ft_printf(MAG"                This project is brought to you by jbido and a"
-		"péro\n\n"NRM);
+		"péro\n\n\n"NRM);
 }
 
 void	error_message(char *message)

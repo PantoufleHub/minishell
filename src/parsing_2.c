@@ -21,8 +21,8 @@ void	free_tokens(t_tokens *tokens)
 	{
 		free(tokens->token);
 		tmp = tokens;
-		free(tokens);
-		tokens = tmp->next;
+		tokens = tokens->next;
+		free(tmp);
 	}
 }
 
@@ -41,34 +41,34 @@ void	end_of_line(int in_quote, t_string *token, t_tokens **tokens)
 	token = NULL;
 }
 
-void	acco_tokenizor(t_string *token, t_tokens **tokens,
-	char *line, int *index)
+void	acco_tokenizor(t_string **token, t_tokens **tokens, char *line,
+	t_parse *p)
 {
-	if (token)
+	if (*token)
 	{
-		add_token(tokens, get_string(token));
-		free_string(token);
+		add_token(tokens, get_string(*token));
+		free_string(*token);
 	}
-	token = NULL;
-	add_char(&token, line[*index]);
-	add_char(&token, line[*index + 1]);
-	add_token(tokens, get_string(token));
-	free_string(token);
-	token = NULL;
-	(*index)++;
+	*token = NULL;
+	add_char(token, line[p->index]);
+	add_char(token, line[p->index + 1]);
+	add_token(tokens, get_string(*token));
+	free_string(*token);
+	*token = NULL;
+	p->index++;
 }
 
-void	pipo_tokenizor(t_string *token, t_tokens **tokens,
-	char *line, int index)
+void	pipo_tokenizor(t_string **token, t_tokens **tokens, char *line,
+	t_parse *p)
 {
-	if (token)
+	if (*token)
 	{
-		add_token(tokens, get_string(token));
-		free_string(token);
+		add_token(tokens, get_string(*token));
+		free_string(*token);
 	}
-	token = NULL;
-	add_char(&token, line[index]);
-	add_token(tokens, get_string(token));
-	free_string(token);
-	token = NULL;
+	*token = NULL;
+	add_char(token, line[p->index]);
+	add_token(tokens, get_string(*token));
+	free_string(*token);
+	*token = NULL;
 }

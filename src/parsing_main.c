@@ -13,26 +13,26 @@ void	parse(t_tokens **tokens, char *line)
 
 	init_parse(&p);
 	token = NULL;
-	while (line[p.index] != 0)
+	while (line[(&p)->index] != 0)
 	{
-		if (!p.in_quote)
+		if (!((&p)->in_quote))
 		{
-			if (line[p.index] != ' ')
+			if (line[(&p)->index] != ' ')
 			{
-				if (line[p.index] == '|' || line[p.index] == '<'
-					|| line[p.index] == '>')
-					accopipo(token, tokens, line, p.index);
+				if (line[(&p)->index] == '|' || line[(&p)->index] == '<'
+					|| line[(&p)->index] == '>')
+					accopipo(&token, tokens, line, &p);
 				else
-					quotenizor(&token, line, &p.index, &p.in_quote);
+					quotenizor(&token, line, &p);
 			}
 			else if (token)
 				tokenizor(tokens, &token);
 		}
-		else if (p.in_quote)
-			in_quotenizor(&token, line, &p.in_quote, p.index);
-		p.index++;
+		else if ((&p)->in_quote)
+			in_quotenizor(&token, line, &p);
+		(&p)->index++;
 	}
-	end_of_line(p.in_quote, token, tokens);
+	end_of_line((&p)->in_quote, token, tokens);
 }
 
 // t_tokens	*get_tokens(char *line)

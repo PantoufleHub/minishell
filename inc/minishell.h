@@ -65,22 +65,20 @@ void					free_tokens(t_tokens *tokens);
 void					end_of_line(int in_quote, t_string *token,
 							t_tokens **tokens);
 
-void					acco_tokenizor(t_string *token, t_tokens **tokens,
-							char *line, int *index);
+void					acco_tokenizor(t_string **token, t_tokens **tokens,
+							char *line, t_parse *p);
 
-void					pipo_tokenizor(t_string *token, t_tokens **tokens,
-							char *line, int index);
+void					pipo_tokenizor(t_string **token, t_tokens **tokens,
+							char *line, t_parse *p);
 
-void					quotenizor(t_string **token, char *line,
-							int *index, int *in_quote);
+void					quotenizor(t_string **token, char *line, t_parse *p);
 
 void					tokenizor(t_tokens **tokens, t_string **token);
 
-void					in_quotenizor(t_string **token, char *line,
-							int *in_quote, int index);
+void					in_quotenizor(t_string **token, char *line, t_parse *p);
 
-void					accopipo(t_string *token, t_tokens **tokens,
-							char *line, int index);
+void					accopipo(t_string **token, t_tokens **tokens,
+							char *line, t_parse *p);
 
 void					init_parse(t_parse *p);
 

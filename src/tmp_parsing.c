@@ -121,6 +121,75 @@ void	free_tokens(t_tokens *tokens)
 	}
 }
 
+void	end_of_line(int in_quote, t_string *token, t_tokens **tokens)
+{
+	if (in_quote)
+	{
+		printf("Unfinished quotes!\n");
+		exit(0);
+	}
+	if(token)
+	{
+		add_token(tokens, get_string(token));
+		free_string(token);
+	}
+	token = NULL;
+}
+
+void	acco_tokenizor(t_string *token, t_tokens **tokens, char *line, int *index)
+{
+	if (token)
+	{
+		add_token(tokens, get_string(token));
+		free_string(token);
+	}
+	token = NULL;
+	add_char(&token, line[*index]);
+	add_char(&token, line[*index + 1]);
+	add_token(tokens, get_string(token));
+	free_string(token);
+	token = NULL;
+	(*index)++;
+}
+
+void	pipo_tokenizor(t_string *token, t_tokens **tokens, char *line, int index)
+{
+	if (token)
+	{
+		add_token(tokens, get_string(token));
+		free_string(token);
+	}
+	token = NULL;
+	add_char(&token, line[index]);
+	add_token(tokens, get_string(token));
+	free_string(token);
+	token = NULL;
+}
+
+void	quotenizor(t_string **token, char *line, int *index, int *in_quote)
+{
+	if (line[*index] == '\'')
+		*in_quote = 1;
+	if (line[*index] == '"')
+		*in_quote = 2;
+	add_char(token, line[*index]);
+}
+
+void	 tokenizor(t_tokens **tokens, t_string **token)
+{
+	add_token(tokens, get_string(*token));
+	free_string(*token);
+	*token = NULL;
+}
+
+void	in_quotenizor(t_string **token, char *line, int *in_quote, int index)
+{
+	if ((*in_quote == 1 && line[index] == '\'')
+		|| (*in_quote == 2 && line[index] == '"'))
+		*in_quote = 0;
+	add_char(token, line[index]);
+}
+
 void	parse(t_tokens **tokens, char *line)
 {
 	t_string	*token;
@@ -133,17 +202,7 @@ void	parse(t_tokens **tokens, char *line)
 	{
 		if (line[index] == 0)
 		{
-			if (in_quote)
-			{
-				printf("Unfinished quotes!\n");
-				exit(0);
-			}
-			if(token)
-			{
-				add_token(tokens, get_string(token));
-				free_string(token);
-			}
-			token = NULL;
+			end_of_line(in_quote, token, tokens);
 			break ;
 		}
 		else if (!in_quote)
@@ -155,55 +214,19 @@ void	parse(t_tokens **tokens, char *line)
 					if ((line[index] == '<' && line[index + 1] == '<') ||
 						(line[index] == '>' && line[index + 1] == '>'))
 					{
-						if (token)
-						{
-							add_token(tokens, get_string(token));
-							free_string(token);
-						}
-						token = NULL;
-						add_char(&token, line[index]);
-						add_char(&token, line[index + 1]);
-						add_token(tokens, get_string(token));
-						free_string(token);
-						token = NULL;
-						index++;
+						acco_tokenizor(token, tokens, line, &index);
 					}
 					else
-					{
-						if (token)
-						{
-							add_token(tokens, get_string(token));
-							free_string(token);
-						}
-						token = NULL;
-						add_char(&token, line[index]);
-						add_token(tokens, get_string(token));
-						free_string(token);
-						token = NULL;
-					}
+						pipo_tokenizor(token, tokens, line, index);
 				}
 				else
-				{
-					if (line[index] == '\'')
-						in_quote = 1;
-					if (line[index] == '"')
-						in_quote = 2;
-					add_char(&token, line[index]);
-				}
+					quotenizor(&token, line, &index, &in_quote);
 			}
 			else if (token)
-			{
-				add_token(tokens, get_string(token));
-				free_string(token);
-				token = NULL;
-			}
+				tokenizor(tokens, &token);
 		}
 		else if (in_quote)
-		{
-			if ((in_quote == 1 && line[index] == '\'') || (in_quote == 2 && line[index] == '"'))
-				in_quote = 0;
-			add_char(&token, line[index]);
-		}
+			in_quotenizor(&token, line, &in_quote, index);
 		index++;
 	}
 }

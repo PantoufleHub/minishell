@@ -12,6 +12,7 @@ void	parse(t_tokens **tokens, char *line)
 	t_parse		p;
 
 	init_parse(&p);
+	token = NULL;
 	while (line[p.index] != 0)
 	{
 		if (!p.in_quote)

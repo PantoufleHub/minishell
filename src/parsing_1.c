@@ -46,6 +46,8 @@ char	*get_string(t_string *string)
 	char	*str;
 	int		index;
 
+	if (!string)
+		return (NULL);
 	str = malloc(sizeof(char) * (string_len(string) + 1));
 	index = 0;
 	while (string)

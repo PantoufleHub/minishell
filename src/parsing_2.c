@@ -4,13 +4,11 @@ void	free_string(t_string *string)
 {
 	t_string	*tmp;
 
-	tmp = string;
 	while (string)
 	{
-		// free(string->c);
 		tmp = string;
-		free(string);
-		string = tmp->next;
+		string = string->next;
+		free(tmp);
 	}
 }
 
@@ -32,7 +30,7 @@ void	end_of_line(int in_quote, t_string *token, t_tokens **tokens)
 {
 	if (in_quote)
 	{
-		printf("Unfinished quotes!\n");
+		ft_printf("Unfinished quotes!\n");
 		exit(0);
 	}
 	if (token)

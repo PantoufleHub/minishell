@@ -33,9 +33,10 @@ char	*get_cmd(char **paths, char *cmd)
 void	interpret_line(char *line, char *envp[])
 {
 	// char *testargv[] = {"-e", "test.txt", NULL};
-	char *cmd;
-	// t_data	data;
+	char 		*cmd;
+	t_tokens	*tokens;
 
+	tokens = NULL;
 	ft_printf("Received command: |%s|\n", line);
 	if (!line)
 		return ;
@@ -44,6 +45,9 @@ void	interpret_line(char *line, char *envp[])
 		error_message("Failed to get command");
 	else
 		ft_printf("Got command: %s\n", cmd);
+	parse(&tokens, line);
+	ft_printf("Got tokens:\n");
+	print_tokens(tokens);
 	// data = parsing(line);
 	// data.path =	get_paths(envp);
 	// append_cmd(&data);

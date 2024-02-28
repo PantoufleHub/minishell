@@ -33,7 +33,7 @@ void	exit_with_error(char *message)
 	exit(1);
 }
 
-char	*strjoin(char **arr)
+char	*strings_join(char **arr)
 {
 	char	*str;
 	int		len;

@@ -44,8 +44,46 @@ t_data					parsing(char *line);
 
 int						append_cmd(t_data *data);
 
-t_data					mod_line(char *line, char *envp[]);
+void					mod_line(char *line, char *envp[]);
 
 char					*trim_sp(char	**split);
+
+void					print_tokens(t_tokens *l_tokens);
+
+void					add_token(t_tokens **l_tokens, char *token);
+
+int						string_len(t_string *string);
+
+char					*get_string(t_string *string);
+
+void					add_char(t_string **string, char c);
+
+void					free_string(t_string *string);
+
+void					free_tokens(t_tokens *tokens);
+
+void					end_of_line(int in_quote, t_string *token,
+	t_tokens **tokens);
+
+void					acco_tokenizor(t_string *token, t_tokens **tokens,
+	char *line, int *index);
+
+void					pipo_tokenizor(t_string *token, t_tokens **tokens,
+	char *line, int index);
+
+void					quotenizor(t_string **token, char *line,
+	int *index, int *in_quote);
+
+void					tokenizor(t_tokens **tokens, t_string **token);
+
+void					in_quotenizor(t_string **token, char *line,
+	int *in_quote, int index);
+
+void					accopipo(t_string *token, t_tokens **tokens,
+	char *line, int index);
+
+void					init_parse(t_parse *p);
+
+void					parse(t_tokens **tokens, char *line);
 
 #endif

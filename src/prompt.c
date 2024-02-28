@@ -4,7 +4,7 @@ char	*get_prompt(void)
 {
 	char	*prompt;
 
-	prompt = strjoin((char *[]){GRN"@swagminishell "CYN,
+	prompt = strings_join((char *[]){GRN"@swagminishell "CYN,
 			getenv("USER"), "$: ", NRM, NULL});
 	return (prompt);
 }

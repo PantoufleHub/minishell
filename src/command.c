@@ -34,7 +34,7 @@ void	interpret_line(char *line, char *envp[])
 {
 	// char *testargv[] = {"-e", "test.txt", NULL};
 	char *cmd;
-	t_data	data;
+	// t_data	data;
 
 	ft_printf("Received command: |%s|\n", line);
 	if (!line)

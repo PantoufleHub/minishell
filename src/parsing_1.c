@@ -43,7 +43,6 @@ int	string_len(t_string *string)
 
 char	*get_string(t_string *string)
 {
-	int		len;
 	char	*str;
 	int		index;
 

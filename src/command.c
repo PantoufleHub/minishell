@@ -41,18 +41,23 @@ void	interpret_line(char *line, char *envp[])
 	t_tokens	*tokens;
 
 	tokens = NULL;
-	ft_printf("Received command: |%s|\n", line);
+	printf("\n"MAG SEP NRM);
+	ft_printf(YEL"Received line:\n"NRM"|%s|\n", line);
 	if (!line)
 		return ;
 	cmd = get_cmd(get_paths(envp), line);
 	if (!cmd)
-		error_message("Failed to get command");
+		error_message(RED"Failed to get command"NRM);
 	else
-		ft_printf("Got command: %s\n", cmd);
+		ft_printf(GRN"Got command: "NRM"%s\n", cmd);
+	printf("\n");
 	parse(&tokens, line);
-	ft_printf("Got tokens:\n");
+	ft_printf(YEL"Got tokens:\n"NRM);
 	print_tokens(tokens);
 	syntax_check(tokens);
+	printf("\n");
+	printf(YEL"Line with environment variables: "NRM"\n%s\n", parse_env_var(line));
+	printf(MAG SEP"\n"NRM);
 	// data = parsing(line);
 	// data.path =	get_paths(envp);
 	// append_cmd(&data);

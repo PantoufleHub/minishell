@@ -44,6 +44,8 @@ char					**ft_split_p(const char *s, const char c);
 
 t_data					parsing(char *line);
 
+char					*parse_env_var(char *line);
+
 int						append_cmd(t_data *data);
 
 void					mod_line(char *line, char *envp[]);

@@ -10,4 +10,6 @@
 # define CYN  "\x1B[36m"
 # define WHT  "\x1B[37m"
 
+# define SEP "~~~~~~~~~~~~~~~~~~~~~~~~~\n"
+
 #endif

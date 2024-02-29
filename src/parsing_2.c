@@ -1,17 +1,5 @@
 #include "../inc/minishell.h"
 
-void	free_string(t_string *string)
-{
-	t_string	*tmp;
-
-	while (string)
-	{
-		tmp = string;
-		string = string->next;
-		free(tmp);
-	}
-}
-
 void	free_tokens(t_tokens *tokens)
 {
 	t_tokens	*tmp;

@@ -71,7 +71,7 @@ int	dub_dub_chev(t_tokens *token)
 		return (EXIT_SUCCESS);
 	while (token->next)
 	{
-		if (ft_strncmp(token->token, "<<", 1) == 0)
+		if (ft_strncmp(token->token, "<<", 2) == 0)
 			here_doc++;
 		token = token->next;
 	}

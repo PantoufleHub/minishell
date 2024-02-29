@@ -19,7 +19,7 @@ void	entry_display(void)
 		"███  █████ █████\n");
 	ft_printf("  ░░░░░     ░░░░░ ░░░░░ ░░░░ ░░░░░ ░░░░░ ░░░░░░  ░░░░ ░░░░░  ░░░"
 		"░░░  ░░░░░ ░░░░░\n"NRM);
-	ft_printf(NRM"  v0.3.6 Now with broken pipes!! *wink wink*"
+	ft_printf(NRM"  v0.3.69 chevron ou charron ? That is the question."
 		"\n\n"NRM);
 	ft_printf(MAG"                This project is brought to you by jbido and a"
 		"péro\n\n\n"NRM);

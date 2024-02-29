@@ -88,8 +88,12 @@ void					parse(t_tokens **tokens, char *line);
 
 int						last_chevron(t_tokens *token);
 
+int						chevron_meta(t_tokens *token);
+
 int						pipo_syntax(t_tokens *token);
 
 int						syntax_check(t_tokens *token);
+
+int						dub_dub_chev(t_tokens *token);
 
 #endif

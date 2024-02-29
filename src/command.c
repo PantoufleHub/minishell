@@ -53,7 +53,6 @@ void	interpret_line(char *line, char *envp[])
 	ft_printf("Got tokens:\n");
 	print_tokens(tokens);
 	syntax_check(tokens);
-	pipo_syntax(tokens);
 	// data = parsing(line);
 	// data.path =	get_paths(envp);
 	// append_cmd(&data);

@@ -84,8 +84,10 @@ void					init_parse(t_parse *p);
 
 void					parse(t_tokens **tokens, char *line);
 
-int						syntax_check(t_tokens *token);
+int						last_chevron(t_tokens *token);
 
 int						pipo_syntax(t_tokens *token);
+
+int						syntax_check(t_tokens *token);
 
 #endif

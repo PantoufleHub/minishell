@@ -24,7 +24,7 @@ void					error_message(char *message);
 
 char					**get_paths(char *envp[]);
 
-char 					*get_prompt(void);
+char					*get_prompt(void);
 
 void					interpret_line(char *line, char *envp[]);
 

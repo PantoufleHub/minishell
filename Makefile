@@ -17,9 +17,9 @@ ALLFLAGS	= $(FLAGS) $(LIBFLAGS) $(BREWFLAGS)
 CC			= gcc
 
 RM			= rm -f
-RM_ALL		= rm -drf
+RM_ALL		= rm -rf
 
-TO_CLEAN	= *.dSYM *.o *test
+TO_CLEAN	= *.dSYM *.o *test .vscode
 
 ########################## TARGETS ###############################
 

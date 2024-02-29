@@ -37,4 +37,4 @@ typedef struct s_parse
 	int			in_quote;
 }	t_parse;
 
-#endif //STRUCTURE_H
+#endif

@@ -14,6 +14,8 @@
 # include "structure.h"
 # include "constants.h"
 
+void					broken_pipe(void);
+
 void					display_prompt(void);
 
 void					exit_with_error(char *message);

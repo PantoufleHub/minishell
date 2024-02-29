@@ -24,7 +24,8 @@ int	pipo_syntax(t_tokens *token)
 		return (EXIT_SUCCESS);
 	if (ft_strncmp(token->token, "|", 1) == 0)
 	{
-		printf("parse error\n");
+		// printf("parse error\n");
+		broken_pipe();
 		return (EXIT_FAILURE);
 	}
 	while (token->next)
@@ -32,7 +33,8 @@ int	pipo_syntax(t_tokens *token)
 	if ((ft_strncmp(token->token, "|", 1) == 0)
 		&& !token->next)
 	{
-		printf("parse error\n");
+		// printf("parse error\n");
+		broken_pipe();
 		return (EXIT_FAILURE);
 	}
 	return (EXIT_SUCCESS);

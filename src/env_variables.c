@@ -6,14 +6,14 @@ void	quotexor(int *in_quote, char c)
 	{
 		if (*in_quote == 1)
 			*in_quote = 0;
-		if (*in_quote == 0)
+		else if (*in_quote == 0)
 			*in_quote = 1;
 	}
 	if (c == '"')
 	{
 		if (*in_quote == 2)
 			*in_quote = 0;
-		if (*in_quote == 0)
+		else if (*in_quote == 0)
 			*in_quote = 2;
 	}
 }

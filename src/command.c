@@ -27,7 +27,7 @@ char	*get_cmd(char **paths, char *cmd)
 void	interpret_line(char *line, char *envp[])
 {
 	// char *testargv[] = {"-e", "test.txt", NULL};
-	char 		*cmd;
+	char		*cmd;
 	t_tokens	*tokens;
 
 	tokens = NULL;

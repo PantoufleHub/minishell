@@ -94,8 +94,11 @@ int						dub_dub_chev(t_tokens *token);
 
 int						token_count(t_tokens *token);
 
-void					add_cmd(t_cmds **cmds, t_cmd *st_cmd);
+void					add_cmd_node(t_cmds **cmds, t_cmd *st_cmd);
 
-void					add_cmd_type(t_cmd *st_cmd, char *cmd);
+void					add_cmd_and_type(t_tokens *token,
+	t_cmd *st_cmd, char **path);
+
+char					*get_cmd(char **paths, char *cmd);
 
 #endif

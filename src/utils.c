@@ -19,7 +19,7 @@ void	entry_display(void)
 		"███  █████ █████\n");
 	ft_printf("  ░░░░░     ░░░░░ ░░░░░ ░░░░ ░░░░░ ░░░░░ ░░░░░░  ░░░░ ░░░░░  ░░░"
 		"░░░  ░░░░░ ░░░░░\n"NRM);
-	ft_printf(NRM"  v0.4.1 Do you even care about the ENVIRONMENT? (variables)"
+	ft_printf(BLU"  v0.4.2 Is that you Bilbo ? I wish baggin was that easy"
 		"\n\n"NRM);
 	ft_printf(MAG"                This project is brought to you by jbido and a"
 		"péro\n\n\n"NRM);

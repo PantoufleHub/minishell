@@ -42,15 +42,9 @@ size_t					word_count(const char *s, const char c);
 
 char					**ft_split_p(const char *s, const char c);
 
-t_data					parsing(char *line);
-
 char					*parse_env_var(char *line);
 
-int						append_cmd(t_data *data);
-
-void					mod_line(char *line, char *envp[]);
-
-char					*trim_sp(char	**split);
+char					*trim_sp(char **split);
 
 void					print_tokens(t_tokens *l_tokens);
 
@@ -97,5 +91,7 @@ int						pipo_syntax(t_tokens *token);
 int						syntax_check(t_tokens *token);
 
 int						dub_dub_chev(t_tokens *token);
+
+int						token_count(t_tokens *token);
 
 #endif

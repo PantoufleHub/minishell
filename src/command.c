@@ -24,16 +24,6 @@ char	*get_cmd(char **paths, char *cmd)
 	return (NULL);
 }
 
-// void	mod_line(char *line, char *envp[])
-// {
-// 	t_data	data;
-
-// 	data = parsing(line);
-// 	data.path =	get_paths(envp);
-// 	append_cmd(&data);
-// 	execve(data.cmd[0].split[0], data.cmd[0].split, envp);
-// }
-
 void	interpret_line(char *line, char *envp[])
 {
 	// char *testargv[] = {"-e", "test.txt", NULL};
@@ -58,8 +48,5 @@ void	interpret_line(char *line, char *envp[])
 	printf("\n");
 	printf(YEL"Line with environment variables: "NRM"\n%s\n", parse_env_var(line));
 	printf(MAG SEP"\n"NRM);
-	// data = parsing(line);
-	// data.path =	get_paths(envp);
-	// append_cmd(&data);
-	// execve(data.cmd[0].split[0], data.cmd[0].split, envp);
+	printf("%d", token_count(tokens));
 }

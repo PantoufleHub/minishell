@@ -20,7 +20,7 @@ char	**get_paths(char *envp[])
 		error_message("Unable to find paths");
 	return (paths);
 }
-
+/*
 int	append_cmd(t_data *data)
 {
 	char		*full_path;
@@ -57,4 +57,4 @@ int	append_cmd(t_data *data)
 	}
 	free (data->path);
 	return (0);
-}
+} */

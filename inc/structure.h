@@ -50,8 +50,8 @@ typedef struct s_cmd
 
 typedef struct s_cmds
 {
-	t_cmd				*cmd;
-	struct s_cmd_node	*next;
+	t_cmd			*cmd;
+	struct s_cmds	*next;
 }	t_cmds;
 
 #endif

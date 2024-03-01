@@ -48,5 +48,5 @@ void	interpret_line(char *line, char *envp[])
 	printf("\n");
 	printf(YEL"Line with environment variables: "NRM"\n%s\n", parse_env_var(line));
 	printf(MAG SEP"\n"NRM);
-	printf("%d", token_count(tokens));
+	// printf("%d", token_count(tokens));
 }

@@ -35,7 +35,7 @@ typedef enum e_cmd_type
 
 //append mode is to differenciate between overwriting a file >
 // and appending to a file >> in output redirections.
-//I propose: 0 false > overwrite     |    1 true >> append
+//I propose: 0 false > overwrite (0_TRUNC)     |    1 true >> append (0_APPEND)
 typedef struct s_cmd
 {
 	t_cmd_type	cmd_type;

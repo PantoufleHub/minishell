@@ -48,10 +48,10 @@ typedef struct s_cmd
 	int			fd_out;
 }	t_cmd;
 
-typedef struct s_cmd_node
+typedef struct s_cmd_nodes
 {
 	t_cmd				*cmd;
 	struct s_cmd_node	*next;
-}	t_cmd_node;
+}	t_cmd_nodes;
 
 #endif

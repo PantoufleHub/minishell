@@ -6,14 +6,11 @@ int	token_count(t_tokens *token)
 	int	count;
 
 	count = 0;
-	if (!token)
-		return (EXIT_SUCCESS);
-	while (token->next)
+	while (token)
 	{
 		count++;
 		token = token->next;
 	}
-	count++;
 	return (count);
 }
 
@@ -49,7 +46,6 @@ void	add_cmd_and_type(t_tokens *token, t_cmd *st_cmd, char **path)
 	len = ft_strlen(token->token);
 	st_cmd->cmd_type = CMD_EXTERNAL;
 	st_cmd->cmd = get_cmd(path, token->token);
-	//censé set la commande dans la structure avec le chemin si la commande existe
 	while (builtins[i])
 	{
 		if (ft_strncmp(token->token, builtins[i], len) == 0
@@ -57,38 +53,51 @@ void	add_cmd_and_type(t_tokens *token, t_cmd *st_cmd, char **path)
 		{
 			st_cmd->cmd_type = CMD_BUILTIN;
 			st_cmd->cmd = ft_strdup(token->token);
-			//censé set la commande dans la structure comme tel car on doit la creer nous meme
 		}
 		i++;
 	}
 }
 
-void	read_tokens(t_cmd **cmd_st, t_tokens **token, char **path)
+void	store_chevron(t_cmd **cmd_st, t_tokens **token)
 {
-	// if (!token)
-	// 	return (NULL);
+	if (ft_strncmp((*token)->token, "<", 1) == 0)
+	{
+		*token = (*token)->next;
+		(*cmd_st)->infile = (*token)->token;
+	}
+	else if (ft_strncmp((*token)->token, ">>", 2) == 0)
+	{
+		(*cmd_st)->append = 1;
+		*token = (*token)->next;
+		(*cmd_st)->outfile = (*token)->token;
+	}
+	else if (ft_strncmp((*token)->token, ">", 1) == 0)
+	{
+		*token = (*token)->next;
+		(*cmd_st)->outfile = (*token)->token;
+	}
+}
+
+void	read_tokens(t_cmd *cmd_st, t_tokens **token, char **path)
+{
+
+	cmd_st->append = 0;
+	cmd_st->infile = NULL;
+	cmd_st->outfile = NULL;
+	cmd_st->cmd = NULL;
 	while (*token)
 	{
 		if (ft_strncmp((*token)->token, "|", 1) == 0)
 			break ;
-		*cmd_st = malloc(sizeof(t_cmd));
-		// if (ft_strncmp(token->token, "<", 1) == 0)
-		// 	do smth
-		// if (ft_strncmp(token->token, "<<", 2) == 0)
-		// 	do smth
-		// if (ft_strncmp(token->token, ">", 1) == 0)
-		// 	do smth
-		// if (ft_strncmp(token->token, ">>", 2) == 0)
-		// 	do smth
-		// if (ft_strncmp(token->token, "input_file", 69) == 0)
-		// 	cmd_st->infile = ft_strdup(token->token);
-		// if (ft_strncmp(token->token, "output_file", 69) == 0)
-		// 	cmd_st->outfile = ft_strdup (token->token);
-		// if (ft_strncmp(token->token, "cmd", 1) == 0)
-		// 	do smth
+		store_chevron(&cmd_st, token);
+		// if (ft_strncmp((*token)->token, "<<", 2) == 0)
+		// {
+		// 	HERE_DOC to do;
+		// }
 		// if (ft_strncmp(token->token, "args", 1) == 0)
 		// 	do smth
-		add_cmd_and_type(*token, *cmd_st, path);
+		if (cmd_st->cmd == NULL || cmd_st->cmd[0] == '\0')
+			add_cmd_and_type(*token, cmd_st, path);
 		*token = (*token)->next;
 	}
 }
@@ -102,25 +111,33 @@ t_tokens	*get_tokens(char *line)
 	return (l_tokens);
 }
 
-// int	main(int argc, char *argv[], char **env)
-// {
-// 	t_tokens	*l_tokens = NULL;
-// 	char	**path = get_paths(env);
-// 	t_cmd	*st_cmd = NULL;
+void	init_cmd_struct(t_cmd *cmd)
+{
+	cmd->append = 0;
+}
 
-// 	if (argc != 2)
-// 	{
-// 		printf("Need 1 argument!\n");
-// 		exit(0);
-// 	}
-// 	l_tokens = get_tokens(argv[1]);
-// 	printf("~~~~~\nString to parse: |%s|\n\nFound tokens:\n", argv[1]);
-// 	print_tokens(l_tokens);
-// 	printf("~~~~~\n");
+int	main(int argc, char *argv[], char **env)
+{
+	t_tokens	*l_tokens = NULL;
+	char	**path = get_paths(env);
+	t_cmd	st_cmd;
 
-// 	read_tokens(&st_cmd, &l_tokens, path);
-// 	printf("%d\n",st_cmd->cmd_type);
-// 	printf("%s\n",st_cmd->cmd);
-// 	free_tokens(l_tokens);
-// 	return (0);
-// }
+	if (argc != 2)
+	{
+		printf("Need 1 argument!\n");
+		exit(0);
+	}
+	l_tokens = get_tokens(argv[1]);
+	printf("~~~~~\nString to parse: |%s|\n\nFound tokens:\n", argv[1]);
+	print_tokens(l_tokens);
+	printf("~~~~~\n");
+
+	read_tokens(&st_cmd, &l_tokens, path);
+	printf("Command type : %d\n", st_cmd.cmd_type);
+	printf("Command : %s\n", st_cmd.cmd);
+	printf("Append mode: %d\n", st_cmd.append);
+	printf("infile name: %s\n",st_cmd.infile);
+	printf("outfile name: %s\n",st_cmd.outfile);
+	free_tokens(l_tokens);
+	return (0);
+}

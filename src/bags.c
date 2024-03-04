@@ -35,7 +35,7 @@ void	add_cmd_node(t_list_cmd **cmds, t_cmd *st_cmd)
 }
 
 //doesn't work yet but is supposed to fill the cmd and cmd type to the structure cmd (st_cmd)
-void	add_cmd_and_type(t_tokens *token, t_cmd *st_cmd, char **path)
+int	add_cmd_and_type(t_tokens *token, t_cmd *st_cmd, char **path)
 {
 	const char	*builtins[8] = {"echo", "cd", "pwd"
 		,"export", "unset", "env", "exit", NULL};
@@ -56,6 +56,9 @@ void	add_cmd_and_type(t_tokens *token, t_cmd *st_cmd, char **path)
 		}
 		i++;
 	}
+	if (!st_cmd->cmd)
+		return (0);
+	return (1);
 }
 
 void	store_chevron(t_cmd **cmd_st, t_tokens **token)
@@ -80,7 +83,9 @@ void	store_chevron(t_cmd **cmd_st, t_tokens **token)
 
 void	read_tokens(t_cmd *cmd_st, t_tokens **token, char **path)
 {
+	int cmd_found;
 
+	cmd_found = 0;
 	cmd_st->append = 0;
 	cmd_st->infile = NULL;
 	cmd_st->outfile = NULL;
@@ -97,7 +102,7 @@ void	read_tokens(t_cmd *cmd_st, t_tokens **token, char **path)
 		// if (ft_strncmp(token->token, "args", 1) == 0)
 		// 	do smth
 		if (cmd_st->cmd == NULL || cmd_st->cmd[0] == '\0')
-			add_cmd_and_type(*token, cmd_st, path);
+			cmd_found = add_cmd_and_type(*token, cmd_st, path);
 		*token = (*token)->next;
 	}
 }
@@ -116,28 +121,28 @@ void	init_cmd_struct(t_cmd *cmd)
 	cmd->append = 0;
 }
 
-int	main(int argc, char *argv[], char **env)
-{
-	t_tokens	*l_tokens = NULL;
-	char	**path = get_paths(env);
-	t_cmd	st_cmd;
+// int	main(int argc, char *argv[], char **env)
+// {
+// 	t_tokens	*l_tokens = NULL;
+// 	char	**path = get_paths(env);
+// 	t_cmd	st_cmd;
 
-	if (argc != 2)
-	{
-		printf("Need 1 argument!\n");
-		exit(0);
-	}
-	l_tokens = get_tokens(argv[1]);
-	printf("~~~~~\nString to parse: |%s|\n\nFound tokens:\n", argv[1]);
-	print_tokens(l_tokens);
-	printf("~~~~~\n");
+// 	if (argc != 2)
+// 	{
+// 		printf("Need 1 argument!\n");
+// 		exit(0);
+// 	}
+// 	l_tokens = get_tokens(argv[1]);
+// 	printf("~~~~~\nString to parse: |%s|\n\nFound tokens:\n", argv[1]);
+// 	print_tokens(l_tokens);
+// 	printf("~~~~~\n");
 
-	read_tokens(&st_cmd, &l_tokens, path);
-	printf("Command type : %d\n", st_cmd.cmd_type);
-	printf("Command : %s\n", st_cmd.cmd);
-	printf("Append mode: %d\n", st_cmd.append);
-	printf("infile name: %s\n",st_cmd.infile);
-	printf("outfile name: %s\n",st_cmd.outfile);
-	free_tokens(l_tokens);
-	return (0);
-}
+// 	read_tokens(&st_cmd, &l_tokens, path);
+// 	printf("Command type : %d\n", st_cmd.cmd_type);
+// 	printf("Command : %s\n", st_cmd.cmd);
+// 	printf("Append mode: %d\n", st_cmd.append);
+// 	printf("infile name: %s\n",st_cmd.infile);
+// 	printf("outfile name: %s\n",st_cmd.outfile);
+// 	free_tokens(l_tokens);
+// 	return (0);
+// }

@@ -63,17 +63,15 @@ void	add_cmd_and_type(t_tokens *token, t_cmd *st_cmd, char **path)
 	}
 }
 
-void	read_tokens(t_tokens *token, char **path)
+void	read_tokens(t_cmd **cmd_st, t_tokens **token, char **path)
 {
-	t_cmd	*cmd_st;
-
 	// if (!token)
 	// 	return (NULL);
-	while (token)
+	while (*token)
 	{
-		if (ft_strncmp(token->token, "|", 1) == 0)
+		if (ft_strncmp((*token)->token, "|", 1) == 0)
 			break ;
-		cmd_st = malloc(sizeof(t_cmd));
+		*cmd_st = malloc(sizeof(t_cmd));
 		// if (ft_strncmp(token->token, "<", 1) == 0)
 		// 	do smth
 		// if (ft_strncmp(token->token, "<<", 2) == 0)
@@ -90,40 +88,25 @@ void	read_tokens(t_tokens *token, char **path)
 		// 	do smth
 		// if (ft_strncmp(token->token, "args", 1) == 0)
 		// 	do smth
-		add_cmd_and_type(token, cmd_st, path);
-		token = token->next;
+		add_cmd_and_type(*token, *cmd_st, path);
+		*token = (*token)->next;
 	}
 }
 
-// t_tokens	*get_tokens(char *line)
+t_tokens	*get_tokens(char *line)
+{
+	t_tokens	*l_tokens;
+
+	l_tokens = NULL;
+	parse(&l_tokens, line);
+	return (l_tokens);
+}
+
+// int	main(int argc, char *argv[], char **env)
 // {
-// 	t_tokens	*l_tokens;
-
-// 	l_tokens = NULL;
-// 	parse(&l_tokens, line);
-// 	return (l_tokens);
-// }
-
-// int main(int ac, char **av, char **env)
-// {
-// 	t_cmd	*st_cmd;
-// 	char *line = ft_strdup("schlag and pog and pdw and");
-// 	t_tokens	*token = get_tokens(line);
-// 	ac = 0;
-// 	av = NULL;
-// 	char **path = get_paths(env);
-// 	st_cmd = malloc(sizeof(t_cmd));
-// 	add_cmd_and_type(token, st_cmd, path);
-// 	printf("%d",st_cmd->cmd_type);
-// 	printf("%s",st_cmd->cmd);
-// 	return (0);
-// }
-
-
-
-// int	main(int argc, char *argv[])
-// {
-// 	t_tokens	*l_tokens;
+// 	t_tokens	*l_tokens = NULL;
+// 	char	**path = get_paths(env);
+// 	t_cmd	*st_cmd = NULL;
 
 // 	if (argc != 2)
 // 	{
@@ -134,6 +117,10 @@ void	read_tokens(t_tokens *token, char **path)
 // 	printf("~~~~~\nString to parse: |%s|\n\nFound tokens:\n", argv[1]);
 // 	print_tokens(l_tokens);
 // 	printf("~~~~~\n");
+
+// 	read_tokens(&st_cmd, &l_tokens, path);
+// 	printf("%d\n",st_cmd->cmd_type);
+// 	printf("%s\n",st_cmd->cmd);
 // 	free_tokens(l_tokens);
 // 	return (0);
 // }

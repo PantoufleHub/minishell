@@ -19,7 +19,7 @@ void	entry_display(void)
 		"███  █████ █████\n");
 	ft_printf("  ░░░░░     ░░░░░ ░░░░░ ░░░░ ░░░░░ ░░░░░ ░░░░░░  ░░░░ ░░░░░  ░░░"
 		"░░░  ░░░░░ ░░░░░\n"NRM);
-	ft_printf(NRM"  v0.5.1 Testing in progress..."
+	ft_printf(NRM"  v0.5.2 Error: ^C not found"
 		"\n\n"NRM);
 	ft_printf(MAG"                This project is brought to you by jbido and a"
 		"péro\n\n\n"NRM);

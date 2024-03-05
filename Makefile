@@ -1,26 +1,28 @@
 ########################## VARIABLES ###############################
 
-NAME		= minishell
+NAME			= minishell
 
-SRC_FOLDER	= ./src/
+SRC_FOLDER		= ./src/
 
-SRCS_BLANK	= main prompt signal command path utils split split_utils parsing_1 \
-			parsing_2 parsing_3 parsing_main syntax broken_pipe string env_variables \
-			bags
+MAIN			= main
+SRCS_BLANK		= prompt signal command path utils split split_utils parsing_1 \
+				parsing_2 parsing_3 parsing_main syntax broken_pipe string env_variables \
+				bags
 
-SRCS		= $(addsuffix .c, $(addprefix $(SRC_FOLDER), $(SRCS_BLANK)))
+SRCS_NOMAIN		= $(addsuffix .c, $(addprefix $(SRC_FOLDER), $(SRCS_BLANK)))
+SRCS			= $(SRCS_NOMAIN) $(addsuffix .c, $(addprefix $(SRC_FOLDER), $(MAIN)))	
 
-LIBFLAGS	= -L./libft -lft -L$(HOME)/.brew/opt/readline/lib -lreadline -ledit
-BREWFLAGS	= -I$(HOME)/.brew/opt/readline/include
-FLAGS		= -g -Wall -Wextra -Werror -fsanitize=address $(LIBFLAGS) $(BREWFLAGS)
-ALLFLAGS	= $(FLAGS) $(LIBFLAGS) $(BREWFLAGS)
+LIBFLAGS		= -L./libft -lft -L$(HOME)/.brew/opt/readline/lib -lreadline -ledit
+BREWFLAGS		= -I$(HOME)/.brew/opt/readline/include
+FLAGS			= -g -Wall -Wextra -Werror -fsanitize=address $(LIBFLAGS) $(BREWFLAGS)
+ALLFLAGS		= $(FLAGS) $(LIBFLAGS) $(BREWFLAGS)
 
-CC			= gcc
+CC				= gcc
 
-RM			= rm -f
-RM_ALL		= rm -rf
+RM				= rm -f
+RM_ALL			= rm -rf
 
-TO_CLEAN	= *.dSYM *.o *test .vscode
+TO_CLEAN		= *.dSYM *.o *test .vscode
 
 ########################## TARGETS ###############################
 
@@ -31,8 +33,7 @@ $(NAME): $(SRCS)
 
 test:
 	@echo "Running test..."
-	$(CC) -g -Wextra -Wall $(SRCS) -o $@
-	@./$@
+	$(CC) $(ALLFLAGS) $(SRCS_NOMAIN) -o $@
 
 run:
 	@./$(NAME)

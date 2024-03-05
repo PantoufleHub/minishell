@@ -19,7 +19,7 @@ void	entry_display(void)
 		"███  █████ █████\n");
 	ft_printf("  ░░░░░     ░░░░░ ░░░░░ ░░░░ ░░░░░ ░░░░░ ░░░░░░  ░░░░ ░░░░░  ░░░"
 		"░░░  ░░░░░ ░░░░░\n"NRM);
-	ft_printf(NRM"  v0.5.3 "MAG"Try "RED"out "YEL"the "GRN"environment "BLU
+	ft_printf(NRM"  v0.5.4 "MAG"Try "RED"out "YEL"the "GRN"environment "BLU
 		"variable "CYN"parsing"
 		"\n\n"NRM);
 	ft_printf(MAG"                This project is brought to you by jbido and a"

@@ -230,42 +230,45 @@ t_tokens	*get_tokens(char *line)
 // 	return (0);
 // }
 
-To do:
 
-typedef struct s_bag
-{
-	t_tokens	*tokens;
-	struct s_bag	*next;
-}	t_bag
+// To do:
+// ~~~~~~~~~~~~~~~ JAI MIS EN COMMENTAIRE POUR POUVOIR COMPILER ~~~~~~~~~~~~~~~
 
-t_list	*get_bags_list(t_tokens *token)
-{
-	t_list	*bags;
-	t_bag	current_bag;
-	while (token)
-	{
-		//ajoute token au bag
-		//quand rencontre |, ajotue bag a list bags
-		//recree un bag
-	}
-	return (bags);
-}
+// typedef struct s_bag
+// {
+// 	t_tokens		*tokens;
+// 	struct s_bag	*next;
+// }	t_bag;
 
-t_cmd	*bags_to_cmd(t_bag *bag)
-{
-	//cree un t_cmd a partir d'un bag de token
-}
+// t_list	*get_bags_list(t_tokens *tokens)
+// {
+// 	t_list	*bags;
+// 	t_bag	current_bag;
+// 	while (tokens)
+// 	{
+// 		//ajoute token au bag
+// 		//quand rencontre |, ajotue bag a list bags
+// 		//recree un bag
+// 	}
+// 	return (bags);
+// }
 
-t_list	*get_cmds_from_bag(t_list *bags)
-{
-	while(bags)
-		bags_to_cmd(bags);
-	return (t_list_cmd);
-}
+// t_cmd	*bags_to_cmd(t_bag *bag)
+// {
+// 	//cree un t_cmd a partir d'un bag de token
+// }
 
-t_cmd_list	*get_cmds_from_tokens(t_tokens *token)
-{
-	t_list	bags = get_bags_list(token);
-	t_cmd_list	cmds = get_cmds_from_bags(bags);
-	return (cmds);
-}
+// t_list	*get_cmds_from_bag(t_list *bags)
+// {
+// 	t_list_cmd	cmds;
+// 	while (bags)
+// 		add (bags_to_cmd(bags)) to bag;
+// 	return (cmds);
+// }
+
+// t_cmd_list	*get_cmds_from_tokens(t_tokens *tokens)
+// {
+// 	t_list	bags = get_bags_list(tokens);
+// 	t_cmd_list	cmds = get_cmds_from_bags(bags);
+// 	return (cmds);
+// }

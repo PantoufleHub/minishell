@@ -19,8 +19,7 @@ void	entry_display(void)
 		"███  █████ █████\n");
 	ft_printf("  ░░░░░     ░░░░░ ░░░░░ ░░░░ ░░░░░ ░░░░░ ░░░░░░  ░░░░ ░░░░░  ░░░"
 		"░░░  ░░░░░ ░░░░░\n"NRM);
-	ft_printf(NRM"  v0.5.4 "MAG"Try "RED"out "YEL"the "GRN"environment "BLU
-		"variable "CYN"parsing"
+	ft_printf(MAG"  v0.5.5 "RED"Jbido: "YEL"Vous "GRN"avez "BLU"reçu "CYN"un "MAG"message"NRM" "RED"("YEL"dans "GRN"bags"BLU".c"CYN")"
 		"\n\n"NRM);
 	ft_printf(MAG"                This project is brought to you by jbido and a"
 		"péro\n\n\n"NRM);

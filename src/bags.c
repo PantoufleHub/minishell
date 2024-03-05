@@ -234,6 +234,10 @@ t_tokens	*get_tokens(char *line)
 // To do:
 // ~~~~~~~~~~~~~~~ JAI MIS EN COMMENTAIRE POUR POUVOIR COMPILER ~~~~~~~~~~~~~~~
 
+// AUSSI JE PENSE QUE RECREER UNE STRUCTURE BAGS EST INUTILE, ELLE REPRESENTE
+// LA MEME CHOSE QUE T_TOKENS. IL FAUT JUST FAIRE DES LISTE T_TOKENS QUI SONT 
+// SEPARÉS PAR LES PIPES. <3
+
 // typedef struct s_bag
 // {
 // 	t_tokens		*tokens;

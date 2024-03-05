@@ -121,7 +121,18 @@ int	check_chev(t_tokens **token)
 	return (0);
 }
 
-void	read_tokens(t_cmd *cmd_st, t_tokens **token, char **path)
+void	init_cmd_st(t_cmd **new_cmd)
+{
+	(*new_cmd)->append = 0;
+	(*new_cmd)->cmd = NULL;
+	(*new_cmd)->cmd_type = 0;
+	(*new_cmd)->infile = NULL;
+	(*new_cmd)->outfile = NULL;
+	(*new_cmd)->fd_in = STDIN_FILENO;
+	(*new_cmd)->fd_out = STDOUT_FILENO;
+}
+
+void	fill_cmd_st(t_cmd *new_cmd, t_tokens *current_token, char **path)
 {
 	int	cmd_found;
 	int	i;
@@ -130,26 +141,51 @@ void	read_tokens(t_cmd *cmd_st, t_tokens **token, char **path)
 	cmd_found = 0;
 	i = 0;
 	is_chevron = 0;
-	cmd_st->append = 0;
-	cmd_st->infile = NULL;
-	cmd_st->outfile = NULL;
-	cmd_st->cmd = NULL;
-	while (*token)
+	init_cmd_st(&new_cmd);
+	while (ft_strncmp(current_token->token, "|", 1) != 0)
 	{
-		if (ft_strncmp((*token)->token, "|", 1) == 0)
-			break ;
-		is_chevron = store_chevron(&cmd_st, token);
-		// if (ft_strncmp((*token)->token, "<<", 2) == 0)
+		is_chevron = store_chevron(&new_cmd, &current_token);
+		// if (ft_strncmp(current_token->token, "<<", 2) == 0)
 		// HERE_DOC to do;
 		if (cmd_found)
 		{
 			if(is_chevron == 0)
-				add_arg(cmd_st, (*token)->token);
+				add_arg(new_cmd, current_token->token);
 		}
-		if (cmd_st->cmd == NULL || cmd_st->cmd[0] == '\0')
-			cmd_found = add_cmd_and_type(*token, cmd_st, path);
-		*token = (*token)->next;
+		if (new_cmd->cmd == NULL || new_cmd->cmd[0] == '\0')
+			cmd_found = add_cmd_and_type(current_token, new_cmd, path);
+		current_token = current_token->next;
 	}
+}
+
+t_list_cmd	*read_tokens(t_tokens *token, char **path)
+{
+	t_list_cmd	*list_cmd;
+	t_list_cmd	*current_list_cmd;
+	t_cmd		*new_cmd;
+
+	list_cmd = NULL;
+	current_list_cmd = NULL;
+	new_cmd = NULL;
+	while (token != NULL)
+	{
+		fill_cmd_st(new_cmd, token, path);
+	}
+	if (!list_cmd)
+	{
+		list_cmd = malloc(sizeof(t_list_cmd));
+		list_cmd->cmd = *new_cmd;
+		list_cmd->next = NULL;
+		current_list_cmd = list_cmd;
+	}
+	else
+	{
+		current_list_cmd->next = malloc(sizeof(t_list_cmd));
+		current_list_cmd = current_list_cmd->next;
+		current_list_cmd->cmd = *new_cmd;
+		current_list_cmd->next = NULL;
+	}
+	return (list_cmd);
 }
 
 t_tokens	*get_tokens(char *line)
@@ -161,35 +197,75 @@ t_tokens	*get_tokens(char *line)
 	return (l_tokens);
 }
 
-int	main(int argc, char *argv[], char **env)
+// int	main(int argc, char *argv[], char **env)
+// {
+// 	t_tokens	*l_tokens = NULL;
+// 	char	**path = get_paths(env);
+// 	// t_cmd	cmd_st = {0};
+
+// 	if (argc != 2)
+// 	{
+// 		printf("Need 1 argument!\n");
+// 		exit(0);
+// 	}
+// 	l_tokens = get_tokens(argv[1]);
+// 	printf("~~~~~\nString to parse: |%s|\n\nFound tokens:\n", argv[1]);
+// 	print_tokens(l_tokens);
+// 	printf("~~~~~\n");
+
+// 	t_list_cmd *list_cmd = read_tokens(&l_tokens, path);
+// 	printf("Command type : %d\n", list_cmd->cmd.cmd_type);
+// 	// printf("Command : %s\n", cmd_st.cmd);
+
+// 	// t_list_arg *current_arg = cmd_st.args; // Use a temporary pointer for iteration
+// 	// while (current_arg) {
+// 	// 	printf("arguments : %s\n", current_arg->arg); // Print the current argument
+// 	// 	current_arg = current_arg->next; // Move to the next argument
+// 	// }
+// 	// // printf("argument : %s\n", cmd_st.args[0]);
+// 	// printf("Append mode: %d\n", cmd_st.append);
+// 	// printf("infile name: %s\n",cmd_st.infile);
+// 	// printf("outfile name: %s\n",cmd_st.outfile);
+// 	free_tokens(l_tokens);
+// 	return (0);
+// }
+
+To do:
+
+typedef struct s_bag
 {
-	t_tokens	*l_tokens = NULL;
-	char	**path = get_paths(env);
-	t_cmd	cmd_st = {0};
+	t_tokens	*tokens;
+	struct s_bag	*next;
+}	t_bag
 
-	if (argc != 2)
+t_list	*get_bags_list(t_tokens *token)
+{
+	t_list	*bags;
+	t_bag	current_bag;
+	while (token)
 	{
-		printf("Need 1 argument!\n");
-		exit(0);
+		//ajoute token au bag
+		//quand rencontre |, ajotue bag a list bags
+		//recree un bag
 	}
-	l_tokens = get_tokens(argv[1]);
-	printf("~~~~~\nString to parse: |%s|\n\nFound tokens:\n", argv[1]);
-	print_tokens(l_tokens);
-	printf("~~~~~\n");
+	return (bags);
+}
 
-	read_tokens(&cmd_st, &l_tokens, path);
-	printf("Command type : %d\n", cmd_st.cmd_type);
-	printf("Command : %s\n", cmd_st.cmd);
+t_cmd	*bags_to_cmd(t_bag *bag)
+{
+	//cree un t_cmd a partir d'un bag de token
+}
 
-	t_list_arg *current_arg = cmd_st.args; // Use a temporary pointer for iteration
-	while (current_arg) {
-		printf("arguments : %s\n", current_arg->arg); // Print the current argument
-		current_arg = current_arg->next; // Move to the next argument
-	}
-	// printf("argument : %s\n", cmd_st.args[0]);
-	printf("Append mode: %d\n", cmd_st.append);
-	printf("infile name: %s\n",cmd_st.infile);
-	printf("outfile name: %s\n",cmd_st.outfile);
-	free_tokens(l_tokens);
-	return (0);
+t_list	*get_cmds_from_bag(t_list *bags)
+{
+	while(bags)
+		bags_to_cmd(bags);
+	return (t_list_cmd);
+}
+
+t_cmd_list	*get_cmds_from_tokens(t_tokens *token)
+{
+	t_list	bags = get_bags_list(token);
+	t_cmd_list	cmds = get_cmds_from_bags(bags);
+	return (cmds);
 }

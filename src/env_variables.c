@@ -27,7 +27,8 @@ void	interpret_dollar(t_string **str, char *line, int *index)
 
 	var_name = NULL;
 	*index += 1;
-	while (line[*index] != 0 && ft_isalnum(line[*index]))
+	while (line[*index] != 0 && (ft_isalnum(line[*index])
+			|| line[*index] == '_'))
 	{
 		add_char(&var_name, line[*index]);
 		*index += 1;

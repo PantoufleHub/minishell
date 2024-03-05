@@ -7,6 +7,7 @@
 # include <signal.h>
 # include <unistd.h>
 # include <string.h>
+# include <termios.h>
 # include <readline/readline.h>
 # include <readline/history.h>
 
@@ -15,6 +16,10 @@
 # include "constants.h"
 
 void					broken_pipe(void);
+
+void					restore_terminal(struct termios *save);
+
+void					set_terminal(struct termios *save);
 
 void					display_prompt(void);
 
@@ -97,7 +102,7 @@ int						token_count(t_tokens *token);
 void					add_cmd_node(t_list_cmd **cmds, t_cmd *st_cmd);
 
 int						add_cmd_and_type(t_tokens *token,
-	t_cmd *st_cmd, char **path);
+							t_cmd *st_cmd, char **path);
 
 char					*get_cmd(char **paths, char *cmd);
 

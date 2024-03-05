@@ -35,6 +35,10 @@ void	interpret_line(char *line, char *envp[])
 	ft_printf(YEL"Received line:\n"NRM"|%s|\n", line);
 	if (!line)
 		return ;
+	printf("\n");
+	line = parse_env_var(line);
+	printf(YEL"Parsed for environment variables: "NRM"\n%s\n", line);
+	printf("\n");
 	cmd = get_cmd(get_paths(envp), line);
 	if (!cmd)
 		error_message(RED"Failed to get command"NRM);
@@ -45,8 +49,6 @@ void	interpret_line(char *line, char *envp[])
 	ft_printf(YEL"Got tokens:\n"NRM);
 	print_tokens(tokens);
 	syntax_check(tokens);
-	printf("\n");
-	printf(YEL"Line with environment variables: "NRM"\n%s\n", parse_env_var(line));
 	printf(MAG SEP"\n"NRM);
 	// printf("%d", token_count(tokens));
 }

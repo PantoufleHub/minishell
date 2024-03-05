@@ -33,6 +33,12 @@ typedef enum e_cmd_type
 	CMD_BUILTIN
 }	t_cmd_type;
 
+typedef struct s_list_arg
+{
+	char				*arg;
+	struct s_list_arg	*next;
+}	t_list_arg;
+
 //append mode is to differenciate between overwriting a file >
 // and appending to a file >> in output redirections.
 //I propose: 0 false > overwrite (0_TRUNC)     |    1 true >> append (0_APPEND)
@@ -40,7 +46,7 @@ typedef struct s_cmd
 {
 	t_cmd_type	cmd_type;
 	char		*cmd;
-	char		**args;
+	t_list_arg	*args;
 	char		*infile;
 	char		*outfile;
 	int			append;

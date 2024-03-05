@@ -96,7 +96,7 @@ int						token_count(t_tokens *token);
 
 void					add_cmd_node(t_list_cmd **cmds, t_cmd *st_cmd);
 
-void					add_cmd_and_type(t_tokens *token,
+int						add_cmd_and_type(t_tokens *token,
 	t_cmd *st_cmd, char **path);
 
 char					*get_cmd(char **paths, char *cmd);

@@ -14,6 +14,7 @@ int	token_count(t_tokens *token)
 	return (count);
 }
 
+//there may be a libft one working already. gotta check
 void	add_cmd_node(t_list_cmd **cmds, t_cmd *st_cmd)
 {
 	t_list_cmd	*new;
@@ -81,11 +82,33 @@ void	store_chevron(t_cmd **cmd_st, t_tokens **token)
 	}
 }
 
+void	add_arg(t_cmd *cmd_st, char *arg)
+{
+	t_list_arg	*new_arg;
+
+	new_arg = malloc(sizeof(t_list_arg));
+	if (!new_arg)
+		return ;
+	new_arg->arg = ft_strdup(arg);
+	new_arg->next = NULL;
+	if(cmd_st->args == NULL)
+		cmd_st->args = new_arg;
+	else
+	{
+		t_list_arg	*last = cmd_st->args;
+		while(last->next != NULL)
+			last = last->next;
+		last->next = new_arg;
+	}
+}
+
 void	read_tokens(t_cmd *cmd_st, t_tokens **token, char **path)
 {
-	int cmd_found;
+	int	cmd_found;
+	int	i;
 
 	cmd_found = 0;
+	i = 0;
 	cmd_st->append = 0;
 	cmd_st->infile = NULL;
 	cmd_st->outfile = NULL;
@@ -101,6 +124,10 @@ void	read_tokens(t_cmd *cmd_st, t_tokens **token, char **path)
 		// }
 		// if (ft_strncmp(token->token, "args", 1) == 0)
 		// 	do smth
+		if (cmd_found)
+		{
+			add_arg(cmd_st, (*token)->token);
+		}
 		if (cmd_st->cmd == NULL || cmd_st->cmd[0] == '\0')
 			cmd_found = add_cmd_and_type(*token, cmd_st, path);
 		*token = (*token)->next;
@@ -125,7 +152,7 @@ void	init_cmd_struct(t_cmd *cmd)
 // {
 // 	t_tokens	*l_tokens = NULL;
 // 	char	**path = get_paths(env);
-// 	t_cmd	st_cmd;
+// 	t_cmd	cmd_st = {0};
 
 // 	if (argc != 2)
 // 	{
@@ -137,12 +164,19 @@ void	init_cmd_struct(t_cmd *cmd)
 // 	print_tokens(l_tokens);
 // 	printf("~~~~~\n");
 
-// 	read_tokens(&st_cmd, &l_tokens, path);
-// 	printf("Command type : %d\n", st_cmd.cmd_type);
-// 	printf("Command : %s\n", st_cmd.cmd);
-// 	printf("Append mode: %d\n", st_cmd.append);
-// 	printf("infile name: %s\n",st_cmd.infile);
-// 	printf("outfile name: %s\n",st_cmd.outfile);
+// 	read_tokens(&cmd_st, &l_tokens, path);
+// 	printf("Command type : %d\n", cmd_st.cmd_type);
+// 	printf("Command : %s\n", cmd_st.cmd);
+
+// 	t_list_arg *current_arg = cmd_st.args; // Use a temporary pointer for iteration
+// 	while (current_arg) {
+// 		printf("arguments : %s\n", current_arg->arg); // Print the current argument
+// 		current_arg = current_arg->next; // Move to the next argument
+// 	}
+// 	// printf("argument : %s\n", cmd_st.args[0]);
+// 	printf("Append mode: %d\n", cmd_st.append);
+// 	printf("infile name: %s\n",cmd_st.infile);
+// 	printf("outfile name: %s\n",cmd_st.outfile);
 // 	free_tokens(l_tokens);
 // 	return (0);
 // }

@@ -62,24 +62,29 @@ int	add_cmd_and_type(t_tokens *token, t_cmd *st_cmd, char **path)
 	return (1);
 }
 
-void	store_chevron(t_cmd **cmd_st, t_tokens **token)
+int	store_chevron(t_cmd **cmd_st, t_tokens **token)
 {
 	if (ft_strncmp((*token)->token, "<", 1) == 0)
 	{
 		*token = (*token)->next;
 		(*cmd_st)->infile = (*token)->token;
+		return (1);
 	}
 	else if (ft_strncmp((*token)->token, ">>", 2) == 0)
 	{
 		(*cmd_st)->append = 1;
 		*token = (*token)->next;
 		(*cmd_st)->outfile = (*token)->token;
+		return (1);
 	}
 	else if (ft_strncmp((*token)->token, ">", 1) == 0)
 	{
+		(*cmd_st)->append = 0;
 		*token = (*token)->next;
 		(*cmd_st)->outfile = (*token)->token;
+		return (1);
 	}
+	return (0);
 }
 
 void	add_arg(t_cmd *cmd_st, char *arg)
@@ -102,13 +107,29 @@ void	add_arg(t_cmd *cmd_st, char *arg)
 	}
 }
 
+int	check_chev(t_tokens **token)
+{
+	printf("%s", (*token)->token);
+	if (ft_strncmp((*token)->token, "<", 1) == 0)
+		return (1);
+	if (ft_strncmp((*token)->token, ">", 1) == 0)
+		return (1);
+	if (ft_strncmp((*token)->token, "<<", 2) == 0)
+		return (1);
+	if (ft_strncmp((*token)->token, ">>", 2) == 0)
+		return (1);
+	return (0);
+}
+
 void	read_tokens(t_cmd *cmd_st, t_tokens **token, char **path)
 {
 	int	cmd_found;
 	int	i;
+	int	is_chevron;
 
 	cmd_found = 0;
 	i = 0;
+	is_chevron = 0;
 	cmd_st->append = 0;
 	cmd_st->infile = NULL;
 	cmd_st->outfile = NULL;
@@ -117,16 +138,13 @@ void	read_tokens(t_cmd *cmd_st, t_tokens **token, char **path)
 	{
 		if (ft_strncmp((*token)->token, "|", 1) == 0)
 			break ;
-		store_chevron(&cmd_st, token);
+		is_chevron = store_chevron(&cmd_st, token);
 		// if (ft_strncmp((*token)->token, "<<", 2) == 0)
-		// {
-		// 	HERE_DOC to do;
-		// }
-		// if (ft_strncmp(token->token, "args", 1) == 0)
-		// 	do smth
+		// HERE_DOC to do;
 		if (cmd_found)
 		{
-			add_arg(cmd_st, (*token)->token);
+			if(is_chevron == 0)
+				add_arg(cmd_st, (*token)->token);
 		}
 		if (cmd_st->cmd == NULL || cmd_st->cmd[0] == '\0')
 			cmd_found = add_cmd_and_type(*token, cmd_st, path);
@@ -143,40 +161,35 @@ t_tokens	*get_tokens(char *line)
 	return (l_tokens);
 }
 
-void	init_cmd_struct(t_cmd *cmd)
+int	main(int argc, char *argv[], char **env)
 {
-	cmd->append = 0;
+	t_tokens	*l_tokens = NULL;
+	char	**path = get_paths(env);
+	t_cmd	cmd_st = {0};
+
+	if (argc != 2)
+	{
+		printf("Need 1 argument!\n");
+		exit(0);
+	}
+	l_tokens = get_tokens(argv[1]);
+	printf("~~~~~\nString to parse: |%s|\n\nFound tokens:\n", argv[1]);
+	print_tokens(l_tokens);
+	printf("~~~~~\n");
+
+	read_tokens(&cmd_st, &l_tokens, path);
+	printf("Command type : %d\n", cmd_st.cmd_type);
+	printf("Command : %s\n", cmd_st.cmd);
+
+	t_list_arg *current_arg = cmd_st.args; // Use a temporary pointer for iteration
+	while (current_arg) {
+		printf("arguments : %s\n", current_arg->arg); // Print the current argument
+		current_arg = current_arg->next; // Move to the next argument
+	}
+	// printf("argument : %s\n", cmd_st.args[0]);
+	printf("Append mode: %d\n", cmd_st.append);
+	printf("infile name: %s\n",cmd_st.infile);
+	printf("outfile name: %s\n",cmd_st.outfile);
+	free_tokens(l_tokens);
+	return (0);
 }
-
-// int	main(int argc, char *argv[], char **env)
-// {
-// 	t_tokens	*l_tokens = NULL;
-// 	char	**path = get_paths(env);
-// 	t_cmd	cmd_st = {0};
-
-// 	if (argc != 2)
-// 	{
-// 		printf("Need 1 argument!\n");
-// 		exit(0);
-// 	}
-// 	l_tokens = get_tokens(argv[1]);
-// 	printf("~~~~~\nString to parse: |%s|\n\nFound tokens:\n", argv[1]);
-// 	print_tokens(l_tokens);
-// 	printf("~~~~~\n");
-
-// 	read_tokens(&cmd_st, &l_tokens, path);
-// 	printf("Command type : %d\n", cmd_st.cmd_type);
-// 	printf("Command : %s\n", cmd_st.cmd);
-
-// 	t_list_arg *current_arg = cmd_st.args; // Use a temporary pointer for iteration
-// 	while (current_arg) {
-// 		printf("arguments : %s\n", current_arg->arg); // Print the current argument
-// 		current_arg = current_arg->next; // Move to the next argument
-// 	}
-// 	// printf("argument : %s\n", cmd_st.args[0]);
-// 	printf("Append mode: %d\n", cmd_st.append);
-// 	printf("infile name: %s\n",cmd_st.infile);
-// 	printf("outfile name: %s\n",cmd_st.outfile);
-// 	free_tokens(l_tokens);
-// 	return (0);
-// }

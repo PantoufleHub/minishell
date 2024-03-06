@@ -14,7 +14,7 @@ SRCS			= $(SRCS_NOMAIN) $(addsuffix .c, $(addprefix $(SRC_FOLDER), $(MAIN)))
 
 LIBFLAGS		= -L./libft -lft -L$(HOME)/.brew/opt/readline/lib -lreadline -ledit
 BREWFLAGS		= -I$(HOME)/.brew/opt/readline/include
-FLAGS			= -g -Wall -Wextra -Werror -fsanitize=address $(LIBFLAGS) $(BREWFLAGS)
+FLAGS			= -g -Wall -Wextra -Werror -fsanitize=address
 ALLFLAGS		= $(FLAGS) $(LIBFLAGS) $(BREWFLAGS)
 
 CC				= gcc

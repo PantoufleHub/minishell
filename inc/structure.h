@@ -56,7 +56,7 @@ typedef struct s_cmd
 
 typedef struct s_list_cmd
 {
-	t_cmd				cmd;
+	t_cmd				*cmd;
 	struct s_list_cmd	*next;
 }	t_list_cmd;
 

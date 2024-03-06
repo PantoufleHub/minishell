@@ -19,8 +19,8 @@ void	entry_display(void)
 		"███  █████ █████\n");
 	ft_printf("  ░░░░░     ░░░░░ ░░░░░ ░░░░ ░░░░░ ░░░░░ ░░░░░░  ░░░░ ░░░░░  ░░░"
 		"░░░  ░░░░░ ░░░░░\n"NRM);
-	ft_printf(MAG"  v0.5.5 "RED"Jbido: "YEL"Vous "GRN"avez "BLU"reçu "CYN"un "MAG"message"NRM" "RED"("YEL"dans "GRN"bags"BLU".c"CYN")"
-		"\n\n"NRM);
+	ft_printf(MAG"  v0.5.6  Why do programmers prefer dark mode? Because light\
+	attracts bugs... or so Gpetes says");
 	ft_printf(MAG"                This project is brought to you by jbido and a"
 		"péro\n\n\n"NRM);
 }

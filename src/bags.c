@@ -300,15 +300,15 @@ void print_list_cmds(t_list_cmd *list_cmd) {
             printf("Command: %s\n", cmd->cmd);
         }
 
-        // // Print arguments
-        // t_list_arg *current_arg = cmd->args;
-        // printf("Arguments:");
-        // while (current_arg != NULL) {
-        //     if (current_arg->arg != NULL) {
-        //         printf(" %s", current_arg->arg);
-        //     }
-        //     current_arg = current_arg->next;
-        // }
+        // Print arguments
+		// t_list_arg *current_arg = cmd->args;
+		// printf("Arguments:");
+		// while (current_arg != NULL) {
+		// 	if (current_arg->arg != NULL) {
+		// 		printf(" %s", current_arg->arg);
+		// 	}
+		// 	current_arg = current_arg->next;
+		// }
         printf("\n");
 
         // Print infile and outfile
@@ -328,37 +328,38 @@ void print_list_cmds(t_list_cmd *list_cmd) {
 
         // Move to the next node in the list
         printf("\n"); // Add a newline for better readability between commands
+		printf("~~~~~~~~~~~~~~~~~~\n");
         current = current->next;
     }
 }
 
 
-// int	main(int argc, char *argv[], char **env)
-// {
-// 	t_tokens	*l_tokens = NULL;
-// 	char	**path = get_paths(env);
+int	main(int argc, char *argv[], char **env)
+{
+	t_tokens	*l_tokens = NULL;
+	char	**path = get_paths(env);
 
-// 	if (argc != 2)
-// 	{
-// 		printf("Need 1 argument!\n");
-// 		exit(0);
-// 	}
-// 	path = NULL;
+	if (argc != 2)
+	{
+		printf("Need 1 argument!\n");
+		exit(0);
+	}
+	path = NULL;
 
-// 	l_tokens = get_tokens(argv[1]);
-// 	printf("~~~~~\nString to parse: |%s|\n\nFound tokens:\n", argv[1]);
-// 	print_tokens(l_tokens);
-// 	printf("~~~~~\n");
+	l_tokens = get_tokens(argv[1]);
+	printf("~~~~~\nString to parse: |%s|\n\nFound tokens:\n", argv[1]);
+	print_tokens(l_tokens);
+	printf("~~~~~\n");
 
-// 	t_list *lst_bag = get_bags_list(l_tokens);
-// 	print_bag_contents(lst_bag);
-// 	t_list_cmd *list_cmd = get_list_cmds_from_bags(lst_bag, path);
-// 	print_list_cmds(list_cmd);
-// 	list_cmd = NULL;
-// 	free_tokens(l_tokens);
-// 	// ft_lstclear(&lst_bag, fuck);
-// 	return (0);
-// }
+	t_list *lst_bag = get_bags_list(l_tokens);
+	// print_bag_contents(lst_bag);
+	t_list_cmd *list_cmd = get_list_cmds_from_bags(lst_bag, path);
+	print_list_cmds(list_cmd);
+	list_cmd = NULL;
+	free_tokens(l_tokens);
+	// ft_lstclear(&lst_bag, fuck);
+	return (0);
+}
 
 	// printf("Command : %s\n", cmd_st.cmd);
 	// t_list_arg *current_arg = cmd_st.args; // Use a temporary pointer for iteration
@@ -370,3 +371,4 @@ void print_list_cmds(t_list_cmd *list_cmd) {
 	// printf("Append mode: %d\n", cmd_st.append);
 	// printf("infile name: %s\n",cmd_st.infile);
 	// printf("outfile name: %s\n",cmd_st.outfile);
+

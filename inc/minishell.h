@@ -97,13 +97,31 @@ int						syntax_check(t_tokens *token);
 
 int						dub_dub_chev(t_tokens *token);
 
-int						token_count(t_tokens *token);
+char					*get_cmd(char **paths, char *cmd);
 
-void					add_cmd_node(t_list_cmd **cmds, t_cmd *st_cmd);
+void					init_cmd_st(t_cmd *new_cmd);
+
+void					add_cmd_and_type_utils(char **cmd,
+	t_tokens *token, t_cmd *st_cmd, char **path);
 
 int						add_cmd_and_type(t_tokens *token,
-							t_cmd *st_cmd, char **path);
+	t_cmd *st_cmd, char **path);
 
-char					*get_cmd(char **paths, char *cmd);
+void					add_arg(t_cmd *cmd_st, char *arg);
+
+int						store_chevron(t_cmd **cmd_st, t_tokens **token);
+
+int						check_chev(t_tokens **token);
+
+void					fill_cmd_st(t_cmd *new_cmd,
+	t_tokens *current_token, char **path);
+
+t_cmd					*bag_to_cmd(t_tokens *bag, char **path);
+
+t_list					*get_bags_list(t_tokens *tokens);
+
+t_list_cmd				*get_list_cmds_from_bags(t_list *bags, char **path);
+
+t_list_cmd				*get_cmds_from_tokens(t_tokens *tokens, char **path);
 
 #endif

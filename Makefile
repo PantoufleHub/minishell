@@ -7,10 +7,10 @@ SRC_FOLDER		= ./src/
 MAIN			= main
 SRCS_BLANK		= prompt signal command path utils split split_utils parsing_1 \
 				parsing_2 parsing_3 parsing_main syntax broken_pipe string env_variables \
-				bags terminal
+				bags_1 bags_2 bags_main terminal
 
 SRCS_NOMAIN		= $(addsuffix .c, $(addprefix $(SRC_FOLDER), $(SRCS_BLANK)))
-SRCS			= $(SRCS_NOMAIN) $(addsuffix .c, $(addprefix $(SRC_FOLDER), $(MAIN)))	
+SRCS			= $(SRCS_NOMAIN) $(addsuffix .c, $(addprefix $(SRC_FOLDER), $(MAIN)))
 
 LIBFLAGS		= -L./libft -lft -L$(HOME)/.brew/opt/readline/lib -lreadline -ledit
 BREWFLAGS		= -I$(HOME)/.brew/opt/readline/include

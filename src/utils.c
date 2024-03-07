@@ -20,7 +20,7 @@ void	entry_display(void)
 	ft_printf("  ░░░░░     ░░░░░ ░░░░░ ░░░░ ░░░░░ ░░░░░ ░░░░░░  ░░░░ ░░░░░  ░░░"
 		"░░░  ░░░░░ ░░░░░\n"NRM);
 	ft_printf(MAG"  v0.5.6  Why do programmers prefer dark mode? Because light\
-	attracts bugs... or so Gpetes says");
+	attracts bugs...\n or so Gpetes says\n\n");
 	ft_printf(MAG"                This project is brought to you by jbido and a"
 		"péro\n\n\n"NRM);
 }

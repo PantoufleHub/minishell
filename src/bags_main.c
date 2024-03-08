@@ -132,13 +132,12 @@ t_list_cmd	*get_cmds_from_tokens(t_tokens *tokens, char **path)
 
 //         // Print append mode
 //         printf("Append mode: %d\n", cmd->append);
-
+// 		printf("Heredoc content :%s\n", cmd->heredoc);
 //         // // Print file descriptors (if you need to)
 //         // printf("File Descriptor (in): %d\n", cmd->fd_in);
 //         // printf("File Descriptor (out): %d\n", cmd->fd_out);
 
 //         // Move to the next node in the list
-//         printf("\n");
 // 		printf("~~~~~~~~~~~~~~~~~~\n");
 //         current = current->next;
 //     }
@@ -156,15 +155,14 @@ t_list_cmd	*get_cmds_from_tokens(t_tokens *tokens, char **path)
 // 	}
 
 // 	l_tokens = get_tokens(argv[1]);
-// 	printf("~~~~~\nString to parse: |%s|\n\nFound tokens:\n", argv[1]);
-// 	print_tokens(l_tokens);
-// 	printf("~~~~~\n");
+// 	// printf("~~~~~\nString to parse: |%s|\n\nFound tokens:\n", argv[1]);
+// 	// print_tokens(l_tokens);
+// 	// printf("~~~~~\n");
 
 // 	t_list *lst_bag = get_bags_list(l_tokens);
 // 	// print_bag_contents(lst_bag);
 // 	t_list_cmd *list_cmd = get_list_cmds_from_bags(lst_bag, path);
 // 	print_list_cmds(list_cmd);
-
 // 	free_tokens(l_tokens);
 // 	// ft_lstclear(&lst_bag, fuck);
 // 	return (0);

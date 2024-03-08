@@ -124,4 +124,6 @@ t_list_cmd				*get_list_cmds_from_bags(t_list *bags, char **path);
 
 t_list_cmd				*get_cmds_from_tokens(t_tokens *tokens, char **path);
 
+char					*heredoc(t_tokens **token);
+
 #endif

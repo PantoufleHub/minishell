@@ -42,6 +42,7 @@ typedef struct s_list_arg
 //append mode is to differenciate between overwriting a file >
 // and appending to a file >> in output redirections.
 //I propose: 0 false > overwrite (0_TRUNC)     |    1 true >> append (0_APPEND)
+// 
 typedef struct s_cmd
 {
 	t_cmd_type	cmd_type;
@@ -52,6 +53,7 @@ typedef struct s_cmd
 	char		*outfile;
 	char		*heredoc;
 	int			append;
+	int			error;
 	int			fd_in;
 	int			fd_out;
 }	t_cmd;

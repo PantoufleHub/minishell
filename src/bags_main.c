@@ -135,6 +135,7 @@ t_list_cmd	*get_cmds_from_tokens(t_tokens *tokens, char **path)
 //         printf("Append mode: %d\n", cmd->append);
 // 		if (cmd->heredoc)
 // 			printf("Heredoc content :%s\n", cmd->heredoc);
+// 		printf("Error mode : %d\n", cmd->error);
 
 //         // Move to the next node in the list
 // 		printf("~~~~~~~~~~~~~~~~~~\n");

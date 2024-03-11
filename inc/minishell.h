@@ -111,7 +111,9 @@ void					add_arg(t_cmd *cmd_st, char *arg);
 
 int						store_chevron(t_cmd **cmd_st, t_tokens **token);
 
-void					chev_utils(t_cmd **cmd_st, t_tokens **token, int a);
+int						chev_utils(t_cmd **cmd_st, t_tokens **token, int a);
+
+int						chev_utils_bis(t_cmd **cmd_st, t_tokens **token, int a);
 
 void					fill_cmd_st(t_cmd *new_cmd,
 	t_tokens *current_token, char **path);

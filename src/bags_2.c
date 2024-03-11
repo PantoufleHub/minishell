@@ -29,12 +29,14 @@ int	store_chevron(t_cmd **cmd_st, t_tokens **token)
 	{
 		*token = (*token)->next;
 		(*cmd_st)->heredoc = heredoc(token);
+		(*cmd_st)->doc = 1;
 		return (1);
 	}
 	else if (ft_strncmp((*token)->token, "<", 1) == 0)
 	{
 		*token = (*token)->next;
 		(*cmd_st)->infile = (*token)->token;
+		(*cmd_st)->doc = 0;
 		return (1);
 	}
 	else if (ft_strncmp((*token)->token, ">>", 2) == 0)

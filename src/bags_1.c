@@ -9,6 +9,7 @@ void	init_cmd_st(t_cmd *new_cmd)
 	new_cmd->infile = NULL;
 	new_cmd->outfile = NULL;
 	new_cmd->heredoc = NULL;
+	new_cmd->doc = 0;
 	new_cmd->fd_in = STDIN_FILENO;
 	new_cmd->fd_out = STDOUT_FILENO;
 }

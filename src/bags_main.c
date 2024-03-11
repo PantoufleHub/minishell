@@ -126,6 +126,7 @@ t_list_cmd	*get_cmds_from_tokens(t_tokens *tokens, char **path)
 //         if (cmd->infile != NULL) {
 //             printf("Input file: %s\n", cmd->infile);
 //         }
+// 		printf("Heredoc state: %d\n", cmd->doc);
 //         if (cmd->outfile != NULL) {
 //             printf("Output file: %s\n", cmd->outfile);
 //         }
@@ -134,9 +135,7 @@ t_list_cmd	*get_cmds_from_tokens(t_tokens *tokens, char **path)
 //         printf("Append mode: %d\n", cmd->append);
 // 		if (cmd->heredoc)
 // 			printf("Heredoc content :%s\n", cmd->heredoc);
-//         // // Print file descriptors (if you need to)
-//         // printf("File Descriptor (in): %d\n", cmd->fd_in);
-//         // printf("File Descriptor (out): %d\n", cmd->fd_out);
+
 
 //         // Move to the next node in the list
 // 		printf("~~~~~~~~~~~~~~~~~~\n");

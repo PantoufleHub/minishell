@@ -12,6 +12,9 @@ int	n_count_echo(t_list_arg *args)
 		if ((ft_strncmp(tmp->arg, "-n", 2) == 0)
 			&& (ft_strncmp(tmp->arg, "-n", ft_strlen(tmp->arg)) == 0))
 			i++;
+		if ((ft_strncmp(tmp->arg, "-n", 2) != 0)
+			&& (ft_strncmp(tmp->arg, "-n", ft_strlen(tmp->arg)) != 0))
+			break ;
 		tmp = tmp->next;
 	}
 	return (i);
@@ -126,10 +129,12 @@ int	ft_echo(t_list_arg *args)
 // 		}
 //         printf("\n");
 
-//         // Print infile and outfile
+        // Print infile and outfile
 //         if (cmd->infile != NULL) {
 //             printf("Input file: %s\n", cmd->infile);
 //         }
+// 		if (cmd->doc == 1)
+// 			printf("Heredoc to be used\n");
 //         if (cmd->outfile != NULL) {
 //             printf("Output file: %s\n", cmd->outfile);
 //         }

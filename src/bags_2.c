@@ -23,7 +23,7 @@ char	*heredoc(t_tokens **token)
 	return (doc);
 }
 
-int	store_chevron(t_cmd **cmd_st, t_tokens **token)
+int	store_chevron_a(t_cmd **cmd_st, t_tokens **token)
 {
 	if (ft_strncmp((*token)->token, "<<", 2) == 0)
 	{
@@ -39,7 +39,12 @@ int	store_chevron(t_cmd **cmd_st, t_tokens **token)
 		(*cmd_st)->doc = 0;
 		return (1);
 	}
-	else if (ft_strncmp((*token)->token, ">>", 2) == 0)
+	return (0);
+}
+
+int	store_chevron_b(t_cmd **cmd_st, t_tokens **token)
+{
+	if (ft_strncmp((*token)->token, ">>", 2) == 0)
 	{
 		(*cmd_st)->append = 1;
 		*token = (*token)->next;
@@ -56,21 +61,6 @@ int	store_chevron(t_cmd **cmd_st, t_tokens **token)
 	return (0);
 }
 
-int	check_chev(t_tokens **token)
-{
-	printf("%s", (*token)->token);
-	if (ft_strncmp((*token)->token, "<", 1) == 0)
-		return (1);
-	if (ft_strncmp((*token)->token, ">", 1) == 0)
-		return (1);
-	if (ft_strncmp((*token)->token, "<<", 2) == 0)
-		return (1);
-	if (ft_strncmp((*token)->token, ">>", 2) == 0)
-		return (1);
-	return (0);
-}
-
-// still heredoc to do
 void	fill_cmd_st(t_cmd *new_cmd, t_tokens *current_token, char **path)
 {
 	int	cmd_found;
@@ -80,7 +70,8 @@ void	fill_cmd_st(t_cmd *new_cmd, t_tokens *current_token, char **path)
 	is_chevron = 0;
 	while (current_token)
 	{
-		is_chevron = store_chevron(&new_cmd, &current_token);
+		is_chevron = store_chevron_a(&new_cmd, &current_token);
+		is_chevron = store_chevron_b(&new_cmd, &current_token);
 		if (cmd_found && !is_chevron)
 		{
 			add_arg(new_cmd, current_token->token);

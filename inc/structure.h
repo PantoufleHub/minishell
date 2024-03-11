@@ -48,6 +48,7 @@ typedef struct s_cmd
 	char		*cmd;
 	t_list_arg	*args;
 	char		*infile;
+	int			doc;
 	char		*outfile;
 	char		*heredoc;
 	int			append;

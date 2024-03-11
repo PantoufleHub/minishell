@@ -23,6 +23,13 @@ char	*heredoc(t_tokens **token)
 	return (doc);
 }
 
+void	chev_utils(t_cmd **cmd_st, t_tokens **token, int a)
+{
+	(*cmd_st)->append = a;
+	*token = (*token)->next;
+	(*cmd_st)->outfile = (*token)->token;
+}
+
 int	store_chevron(t_cmd **cmd_st, t_tokens **token)
 {
 	if (ft_strncmp((*token)->token, "<<", 2) == 0)
@@ -41,16 +48,12 @@ int	store_chevron(t_cmd **cmd_st, t_tokens **token)
 	}
 	else if (ft_strncmp((*token)->token, ">>", 2) == 0)
 	{
-		(*cmd_st)->append = 1;
-		*token = (*token)->next;
-		(*cmd_st)->outfile = (*token)->token;
+		chev_utils(cmd_st, token, 1);
 		return (1);
 	}
 	else if (ft_strncmp((*token)->token, ">", 1) == 0)
 	{
-		(*cmd_st)->append = 0;
-		*token = (*token)->next;
-		(*cmd_st)->outfile = (*token)->token;
+		chev_utils(cmd_st, token, 0);
 		return (1);
 	}
 	return (0);

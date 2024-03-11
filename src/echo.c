@@ -1,77 +1,81 @@
 #include "../inc/minishell.h"
 
-t_cmd	*bag_to_cmd(t_tokens *bag, char **path)
+int	n_count_echo(t_list_arg *args)
 {
-	t_cmd	*cmd;
+	int			i;
+	t_list_arg	*tmp;
 
-	cmd = malloc(sizeof(t_cmd));
-	init_cmd_st(cmd);
-	fill_cmd_st(cmd, bag, path);
-	return (cmd);
-}
-
-t_list	*get_bags_list(t_tokens *tokens)
-{
-	t_list		*bags;
-	t_list		*current_bag;
-	t_tokens	*current_tokens;
-
-	bags = NULL;
-	current_bag = NULL;
-	current_tokens = NULL;
-	while (tokens != NULL)
+	tmp = args;
+	i = 0;
+	while (tmp)
 	{
-		current_tokens = NULL;
-		while (tokens != NULL && !(ft_strncmp(tokens->token, "|", 1) == 0))
-		{
-			add_token(&current_tokens, tokens->token);
-			tokens = tokens->next;
-		}
-		current_bag = ft_lstnew(current_tokens);
-		ft_lstadd_back(&bags, current_bag);
-		if (tokens != NULL && ft_strncmp(tokens->token, "|", 1) == 0)
-			tokens = tokens->next;
+		if ((ft_strncmp(tmp->arg, "-n", 2) == 0)
+			&& (ft_strncmp(tmp->arg, "-n", ft_strlen(tmp->arg)) == 0))
+			i++;
+		tmp = tmp->next;
 	}
-	return (bags);
+	return (i);
 }
 
-t_list_cmd	*get_list_cmds_from_bags(t_list *bags, char **path)
+int	echo_wo_n(t_list_arg *args)
 {
-	t_list_cmd	*cmds;
-	t_list_cmd	*last_node;
-	t_list_cmd	*new_node;
+	int			i;
+	int			count;
+	t_list_arg	*tmp;
 
-	cmds = NULL;
-	last_node = NULL;
-	new_node = NULL;
-	while (bags)
+	tmp = args;
+	i = 0;
+	count = 0;
+	while (tmp)
 	{
-		new_node = malloc(sizeof(t_list_cmd));
-		new_node->next = NULL;
-		new_node->cmd = bag_to_cmd((t_tokens *)bags->content, path);
-		if (!cmds)
-		{
-			cmds = new_node;
-			last_node = new_node;
-		}
-		else
-		{
-			last_node->next = new_node;
-			last_node = last_node->next;
-		}
-		bags = bags->next;
+		if (count)
+			printf(" ");
+		count = printf("%s", tmp->arg);
+		tmp = tmp->next;
 	}
-	return (cmds);
+	printf("\n");
+	return (0);
 }
 
-t_list_cmd	*get_cmds_from_tokens(t_tokens *tokens, char **path)
+int	echo_w_n(t_list_arg *args)
 {
-	t_list		*bags;
-	t_list_cmd	*cmds;
+	int			i;
+	int			count;
+	t_list_arg	*tmp;
 
-	bags = get_bags_list(tokens);
-	cmds = get_list_cmds_from_bags(bags, path);
-	return (cmds);
+	tmp = args;
+	count = 0;
+	i = n_count_echo(args);
+	while (tmp)
+	{
+		while (i > 0)
+		{
+			tmp = tmp->next;
+			i--;
+		}
+		if (count)
+			printf(" ");
+		count = printf("%s", tmp->arg);
+		tmp = tmp->next;
+	}
+	return (0);
+}
+
+int	ft_echo(t_list_arg *args)
+{
+	int	i;
+	int	count;
+
+	i = 0;
+	count = 0;
+	if (!args)
+		return (0);
+	if ((ft_strncmp(args->arg, "-n", 2) == 0)
+		&& (ft_strncmp(args->arg, "-n", ft_strlen(args->arg)) == 0))
+		echo_w_n(args);
+	else
+		echo_wo_n(args);
+	return (0);
 }
 
 // t_tokens	*get_tokens(char *line)
@@ -164,6 +168,7 @@ t_list_cmd	*get_cmds_from_tokens(t_tokens *tokens, char **path)
 // 	// print_bag_contents(lst_bag);
 // 	t_list_cmd *list_cmd = get_list_cmds_from_bags(lst_bag, path);
 // 	print_list_cmds(list_cmd);
+// 	ft_echo(list_cmd->cmd->args);
 // 	free_tokens(l_tokens);
 // 	// ft_lstclear(&lst_bag, fuck);
 // 	return (0);

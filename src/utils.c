@@ -19,7 +19,7 @@ void	entry_display(void)
 		"███  █████ █████\n");
 	ft_printf("  ░░░░░     ░░░░░ ░░░░░ ░░░░ ░░░░░ ░░░░░ ░░░░░░  ░░░░ ░░░░░  ░░░"
 		"░░░  ░░░░░ ░░░░░\n"NRM);
-	ft_printf(MAG"  v0.6.0 Parsing is pretty much donerino swaggers \n\n");
+	ft_printf(MAG"  v0.6.1 "RED"YALALAIHOUUU "GRN"YAlalaihouuuuu "YEL"ya..la..la..i..ouuuu "WHT"....aaa..... ii....uu\n\n");
 	ft_printf(MAG"                This project is brought to you by jbido and a"
 		"péro\n\n\n"NRM);
 }

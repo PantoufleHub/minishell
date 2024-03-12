@@ -8,6 +8,8 @@
 # include <unistd.h>
 # include <string.h>
 # include <termios.h>
+# include <sys/types.h>
+# include <sys/wait.h>
 # include <readline/readline.h>
 # include <readline/history.h>
 
@@ -137,5 +139,7 @@ int						echo_w_n(t_list_arg *args);
 int						ft_echo(t_list_arg *args);
 
 int						n_count_echo(t_list_arg *args);
+
+t_tokens				*get_tokens(char *line);
 
 #endif

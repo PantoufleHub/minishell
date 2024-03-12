@@ -19,7 +19,8 @@ void	entry_display(void)
 		"███  █████ █████\n");
 	ft_printf("  ░░░░░     ░░░░░ ░░░░░ ░░░░ ░░░░░ ░░░░░ ░░░░░░  ░░░░ ░░░░░  ░░░"
 		"░░░  ░░░░░ ░░░░░\n"NRM);
-	ft_printf(MAG"  v0.6.2 Don't forget, a "RED"no"MAG" is a "RED"no"MAG" and a "RED"yes"MAG" can also.\n\n");
+	ft_printf(NRM"  v0.6.4 "RED"EXECUTIOOOOON!!!"NRM" of commands (no piping) (a"
+		"part from me piping your mum) (sorry)\n\n");
 	ft_printf(MAG"                This project is brought to you by jbido and a"
 		"péro\n\n\n"NRM);
 }

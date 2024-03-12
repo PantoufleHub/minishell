@@ -1,10 +1,28 @@
 #include "../inc/minishell.h"
 
+int	args_size(t_list_arg *args)
+{
+	int			count;
+	t_list_arg	*current;
+
+	if (!args)
+		return (0);
+	count = 0;
+	current = args;
+	while (current != NULL)
+	{
+		count++;
+		current = current->next;
+	}
+	return (count);
+}
+
 void	init_cmd_st(t_cmd *new_cmd)
 {
 	new_cmd->append = 0;
 	new_cmd->cmd = NULL;
 	new_cmd->args = NULL;
+	new_cmd->a_arg = NULL;
 	new_cmd->cmd_type = 0;
 	new_cmd->infile = NULL;
 	new_cmd->outfile = NULL;

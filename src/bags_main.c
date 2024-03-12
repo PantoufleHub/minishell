@@ -1,5 +1,24 @@
 #include "../inc/minishell.h"
 
+void	arg_helper(t_cmd *cmd_st)
+{
+	int		i;
+
+	i = 1;
+	if (!cmd_st->args || !cmd_st->cmd)
+		return ;
+	cmd_st->a_arg = malloc((args_size(cmd_st->args) + 2) * sizeof(char *));
+	cmd_st->a_arg[0] = cmd_st->cmd;
+	while (cmd_st->args)
+	{
+		cmd_st->a_arg[i] = cmd_st->args->arg;
+		cmd_st->args = cmd_st->args->next;
+		i++;
+	}
+	cmd_st->a_arg[i] = 0;
+	cmd_st->args = NULL;
+}
+
 t_cmd	*bag_to_cmd(t_tokens *bag, char **path)
 {
 	t_cmd	*cmd;
@@ -7,6 +26,7 @@ t_cmd	*bag_to_cmd(t_tokens *bag, char **path)
 	cmd = malloc(sizeof(t_cmd));
 	init_cmd_st(cmd);
 	fill_cmd_st(cmd, bag, path);
+	arg_helper(cmd);
 	return (cmd);
 }
 
@@ -136,6 +156,15 @@ t_list_cmd	*get_cmds_from_tokens(t_tokens *tokens, char **path)
 // 		if (cmd->heredoc)
 // 			printf("Heredoc content :%s\n", cmd->heredoc);
 // 		printf("Error mode : %d\n", cmd->error);
+// 		int a = 0;
+// 		if (cmd->a_arg)
+// 		{
+// 			while (cmd->a_arg[a])
+// 			{
+// 				printf("content of the arg table n:%d, %s\n",a , cmd->a_arg[a]);
+// 				a++;
+// 			}
+// 		}
 
 //         // Move to the next node in the list
 // 		printf("~~~~~~~~~~~~~~~~~~\n");

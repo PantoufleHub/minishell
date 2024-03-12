@@ -4,11 +4,9 @@ void	arg_helper(t_cmd *cmd_st)
 {
 	int		i;
 
-	i = 1;
-	if (!cmd_st->args || !cmd_st->cmd)
-		return ;
 	cmd_st->a_arg = malloc((args_size(cmd_st->args) + 2) * sizeof(char *));
 	cmd_st->a_arg[0] = cmd_st->cmd;
+	i = 1;
 	while (cmd_st->args)
 	{
 		cmd_st->a_arg[i] = cmd_st->args->arg;
@@ -94,14 +92,14 @@ t_list_cmd	*get_cmds_from_tokens(t_tokens *tokens, char **path)
 	return (cmds);
 }
 
-// t_tokens	*get_tokens(char *line)
-// {
-// 	t_tokens	*l_tokens;
+t_tokens	*get_tokens(char *line)
+{
+	t_tokens	*l_tokens;
 
-// 	l_tokens = NULL;
-// 	parse(&l_tokens, line);
-// 	return (l_tokens);
-// }
+	l_tokens = NULL;
+	parse(&l_tokens, line);
+	return (l_tokens);
+}
 
 // void print_bag_contents(t_list *bags) {
 //     while (bags) {

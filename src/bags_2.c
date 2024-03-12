@@ -35,7 +35,8 @@ int	chev_utils(t_cmd **cmd_st, t_tokens **token, int a)
 			printf("Error accessing file\n");
 			return (-1);
 		}
-		open((*token)->token, O_WRONLY | O_CREAT | O_TRUNC, 0644);
+		(*cmd_st)->fd_out = open((*token)->token,
+				O_WRONLY | O_CREAT | O_TRUNC, 0644);
 	}
 	if ((*cmd_st)->append == 1)
 	{
@@ -45,7 +46,8 @@ int	chev_utils(t_cmd **cmd_st, t_tokens **token, int a)
 			printf("Error accessing file\n");
 			return (-1);
 		}
-		open((*token)->token, O_WRONLY | O_CREAT | O_APPEND, 0644);
+		(*cmd_st)->fd_out = open((*token)->token,
+				O_WRONLY | O_CREAT | O_APPEND, 0644);
 	}
 	(*cmd_st)->outfile = (*token)->token;
 	return (1);
@@ -68,6 +70,12 @@ int	chev_utils_bis(t_cmd **cmd_st, t_tokens **token, int a)
 			printf("No such file or directory\n");
 			return (-1);
 		}
+		if (open((*cmd_st)->infile, O_RDONLY) < 0)
+		{
+			printf("%s : Permission denied\n", (*cmd_st)->infile);
+			return (-1);
+		}
+		(*cmd_st)->fd_in = open((*cmd_st)->infile, O_RDONLY);
 		(*cmd_st)->doc = a;
 	}
 	return (1);

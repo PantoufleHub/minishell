@@ -1,31 +1,28 @@
 #include "../inc/minishell.h"
 
-int	cmd_count(t_list_cmd *cmds)
+void	set_in_out(t_cmd *cmd)
 {
-	int	count;
-
-	count = 0;
-	while (cmds)
+	if (cmd->infile)
 	{
-		count++;
-		cmds = cmds->next;
+		// printf("Trying to open infile: \"%s\"...\n", cmd->infile);
+		// int fd_in = open(cmd->infile, O_RDONLY);
+		if (cmd->fd_in != STDIN_FILENO)
+			dup2(cmd->fd_out, STDIN_FILENO);
 	}
-	return (count);
+	if (cmd->outfile)
+	{
+		// printf("Trying to open outfile: \"%s\"...\n", cmd->outfile);
+		// int fd_out = open(cmd->infile, O_WRONLY);
+		if (cmd->fd_out != STDOUT_FILENO)
+			dup2(cmd->fd_out, STDOUT_FILENO);
+	}
 }
 
 void	exec_command(t_cmd	*cmd, char **env)
 {
-	// printf("Running command %s\n", cmd->cmd);
-	// printf("With args: %s\n", cmd->a_arg[0]);
-	// char *targs[] = {"", "", NULL};
-	// int index = 0;
-	// while (cmd->a_arg[index])
-	// {
-	// 	printf("Arg %d: %s\n", index, cmd->a_arg[index]);
-	// 	index++;
-	// }
 	if (cmd->error)
 		exit(0);
+	set_in_out(cmd);
 	if (cmd->cmd_type == CMD_EXTERNAL)
 		execve(cmd->cmd, cmd->a_arg, env);
 	else
@@ -47,7 +44,6 @@ void	exec_commands(t_list_cmd *list_cmd, char **env)
 	index = 0;
 	while (list_cmd)
 	{
-		// printf("Executing command %d: %s\n", index+1, list_cmd->cmd->cmd);
 		pid = fork();
 		if (pid == 0)
 			exec_command(list_cmd->cmd, env);
@@ -57,31 +53,7 @@ void	exec_commands(t_list_cmd *list_cmd, char **env)
 	wait_children();
 }
 
-// typedef struct s_cmd
-// {
-// 	t_cmd_type	cmd_type;
-// 	char		*cmd;
-// 	t_list_arg	*args;
-// 	char		*infile;
-// 	int			doc;
-// 	char		*outfile;
-// 	char		*heredoc;
-// 	int			append;
-// 	int			error;
-// 	int			fd_in;
-// 	int			fd_out;
-// }	t_cmd;
-
-// int	main(void)
-// {
-// 	t_list_cmd *list = NULL;
-// 	printf("isufh");
-// 	t_cmd node1 = get_new_cmd("YU", "YI");
-
-// 	add_cmd_node(&list, &node1);
-
-// 	exec_commands(list);
-// }
+//////////// FUNCTIONS BELOW ONLY FOR TESTING 
 
 void print_bag_contents(t_list *bags) {
     while (bags) {
@@ -163,7 +135,7 @@ int	main(int argc, char *argv[], char **env)
 	// print_bag_contents(lst_bag);
 	t_list_cmd *list_cmd = get_list_cmds_from_bags(lst_bag, path);
 	print_list_cmds(list_cmd);
-	free_tokens(l_tokens);
+	// free_tokens(l_tokens);
 	printf(RED "~~~~~~~ EXECUTION ~~~~~~~" NRM "\n");
 	exec_commands(list_cmd, env);
 	// ft_lstclear(&lst_bag, fuck);

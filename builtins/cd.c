@@ -29,12 +29,13 @@
 //     return (EXIT_SUCCESS);
 // }
 
-int main(int ac, char **av)
+int main(int ac,char **av)
 {
     if (chdir(av[1]) == -1)
     {
         perror("chdir failed");
         return (EXIT_FAILURE);       
     }
+    ac = 0;
     return (0);
 }

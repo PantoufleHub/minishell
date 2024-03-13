@@ -132,13 +132,13 @@ t_list_cmd				*get_cmds_from_tokens(t_tokens *tokens, char **path);
 
 char					*heredoc(t_tokens **token);
 
-int						echo_wo_n(t_list_arg *args);
+int						echo_wo_n(char **av);
 
-int						echo_w_n(t_list_arg *args);
+int						echo_w_n(char **av);
 
-int						ft_echo(t_list_arg *args);
+int						ft_echo(char **av);
 
-int						n_count_echo(t_list_arg *args);
+int						n_count_echo(char **av);
 
 t_tokens				*get_tokens(char *line);
 

@@ -19,7 +19,7 @@ void	entry_display(void)
 		"███  █████ █████\n");
 	ft_printf("  ░░░░░     ░░░░░ ░░░░░ ░░░░ ░░░░░ ░░░░░ ░░░░░░  ░░░░ ░░░░░  ░░░"
 		"░░░  ░░░░░ ░░░░░\n"NRM);
-	ft_printf(NRM"  v0.7.5 More like "YEL"Microshell"NRM" am i right? hehehe"
+	ft_printf(NRM"  v0.7.6 YALALLAIHOUUUUU"GRN"   Yalalaihouuu.. "RED" echo done agane "
 		"\n\n");
 	ft_printf(MAG"                This project is brought to you by jbido and a"
 		"péro\n\n\n"NRM);

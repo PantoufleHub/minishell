@@ -26,29 +26,20 @@ char	*get_cmd(char **paths, char *cmd)
 
 void	interpret_line(char *line, char *envp[])
 {
-	// char *testargv[] = {"-e", "test.txt", NULL};
-	char		*cmd;
 	t_tokens	*tokens;
+	t_list		*list_bag;
+	t_list_cmd	*list_cmd;
 
-	tokens = NULL;
-	printf("\n"MAG SEP NRM);
-	ft_printf(YEL"Received line:\n"NRM"|%s|\n", line);
 	if (!line)
-		return ;
-	printf("\n");
+		exit(0);
+	tokens = NULL;
+	list_bag = NULL;
+	list_cmd = NULL;
 	line = parse_env_var(line);
-	printf(YEL"Parsed for environment variables: "NRM"\n%s\n", line);
-	printf("\n");
-	cmd = get_cmd(get_paths(envp), line);
-	if (!cmd)
-		error_message(RED"Failed to get command"NRM);
-	else
-		ft_printf(GRN"Got command: "NRM"%s\n", cmd);
-	printf("\n");
 	parse(&tokens, line);
-	ft_printf(YEL"Got tokens:\n"NRM);
-	print_tokens(tokens);
 	syntax_check(tokens);
-	printf(MAG SEP"\n"NRM);
-	// printf("%d", token_count(tokens));
+	tokens = get_tokens(line);
+	list_bag = get_bags_list(tokens);
+	list_cmd = get_list_cmds_from_bags(list_bag, get_paths(envp));
+	exec_commands(list_cmd, envp);
 }

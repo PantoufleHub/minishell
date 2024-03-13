@@ -142,4 +142,6 @@ int						n_count_echo(t_list_arg *args);
 
 t_tokens				*get_tokens(char *line);
 
+void					exec_commands(t_list_cmd *list_cmd, char **env);
+
 #endif

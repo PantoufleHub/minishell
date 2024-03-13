@@ -4,15 +4,11 @@ void	set_in_out(t_cmd *cmd)
 {
 	if (cmd->infile)
 	{
-		// printf("Trying to open infile: \"%s\"...\n", cmd->infile);
-		// int fd_in = open(cmd->infile, O_RDONLY);
 		if (cmd->fd_in != STDIN_FILENO)
-			dup2(cmd->fd_out, STDIN_FILENO);
+			dup2(cmd->fd_in, STDIN_FILENO);
 	}
 	if (cmd->outfile)
 	{
-		// printf("Trying to open outfile: \"%s\"...\n", cmd->outfile);
-		// int fd_out = open(cmd->infile, O_WRONLY);
 		if (cmd->fd_out != STDOUT_FILENO)
 			dup2(cmd->fd_out, STDOUT_FILENO);
 	}
@@ -23,10 +19,7 @@ void	exec_command(t_cmd	*cmd, char **env)
 	if (cmd->error)
 		exit(0);
 	set_in_out(cmd);
-	if (cmd->cmd_type == CMD_EXTERNAL)
-		execve(cmd->cmd, cmd->a_arg, env);
-	else
-		printf("Command %s not implemented yet!\n", cmd->cmd);
+	execve(cmd->cmd, cmd->a_arg, env);
 	exit(0);
 }
 
@@ -46,7 +39,10 @@ void	exec_commands(t_list_cmd *list_cmd, char **env)
 	{
 		pid = fork();
 		if (pid == 0)
+		{
+			set_signals_child();
 			exec_command(list_cmd->cmd, env);
+		}
 		list_cmd = list_cmd->next;
 		index++;
 	}

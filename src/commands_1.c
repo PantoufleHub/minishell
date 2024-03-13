@@ -30,16 +30,20 @@ void	interpret_line(char *line, char *envp[])
 	t_list		*list_bag;
 	t_list_cmd	*list_cmd;
 
+	printf(NRM);
 	if (!line)
 		exit(0);
+	rl_redisplay();
 	tokens = NULL;
 	list_bag = NULL;
 	list_cmd = NULL;
 	line = parse_env_var(line);
 	parse(&tokens, line);
-	syntax_check(tokens);
-	tokens = get_tokens(line);
-	list_bag = get_bags_list(tokens);
-	list_cmd = get_list_cmds_from_bags(list_bag, get_paths(envp));
-	exec_commands(list_cmd, envp);
+	if (syntax_check(tokens) == 0)
+	{
+		tokens = get_tokens(line);
+		list_bag = get_bags_list(tokens);
+		list_cmd = get_list_cmds_from_bags(list_bag, get_paths(envp));
+		exec_commands(list_cmd, envp);
+	}
 }

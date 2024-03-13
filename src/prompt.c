@@ -3,9 +3,16 @@
 char	*get_prompt(void)
 {
 	char	*prompt;
+	char	*cwd;
+	char	*cwd_np;
 
-	prompt = strings_join((char *[]){GRN"@swagminishell "CYN,
-			getenv("USER"), "$: ", NRM, NULL});
+	cwd = ft_calloc(4096, sizeof(char));
+	getcwd(cwd, 4096);
+	cwd_np = ft_strrchr(cwd, '/') + 1;
+	// CWD DOESNT UPDATE BY ITSELF!!
+	prompt = strings_join((char *[]){RED, "@Swag"YEL"Shell:"GRN, getenv("USER"),
+		" "CYN, cwd_np, BLU"/: ", MAG, NULL});
+	free(cwd);
 	return (prompt);
 }
 

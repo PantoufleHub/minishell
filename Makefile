@@ -5,8 +5,8 @@ NAME			= minishell
 BUILTIN_FOLDER	= ./builtins/
 BUILTINS_BLANK	= echo cd
 SRCS_BUILTIN	= $(addsuffix .c, $(addprefix $(BUILTIN_FOLDER), $(BUILTINS_BLANK)))
-SRCS_B = $(wildcard $(BUILTIN_FOLDER)/*.c)
-EXECS = $(patsubst $(BUILTIN_FOLDER)/%.c,%,$(SRCS_B))
+SRCS_B 			= $(wildcard $(BUILTIN_FOLDER)*.c)
+EXECS			 = $(patsubst $(BUILTIN_FOLDER)%.c,%,$(SRCS_B))
 
 SRC_FOLDER		= ./src/
 MAIN			= main
@@ -32,7 +32,6 @@ TO_CLEAN		= *.dSYM *.o *test .vscode $(BUILTIN_FOLDER)/*.dSYM
 ########################## TARGETS ###############################
 
 all: $(NAME) builtins run
-	@echo "Compiling all and running $(NAME)..."
 
 $(NAME): $(SRCS)
 	@$(CC) $(ALLFLAGS) $(SRCS) -o $@

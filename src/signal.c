@@ -3,10 +3,7 @@
 void	signal_handler_child(int signum)
 {
 	if (signum == SIGINT)
-	{
-		ft_printf("\n");
 		exit(0);
-	}
 	else if (signum == SIGQUIT)
 		exit(0);
 	else if (signum == SIGTERM)

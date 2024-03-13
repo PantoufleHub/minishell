@@ -19,8 +19,7 @@ void	entry_display(void)
 		"███  █████ █████\n");
 	ft_printf("  ░░░░░     ░░░░░ ░░░░░ ░░░░ ░░░░░ ░░░░░ ░░░░░░  ░░░░ ░░░░░  ░░░"
 		"░░░  ░░░░░ ░░░░░\n"NRM);
-	ft_printf(NRM"  v0.6.4 "RED"EXECUTIOOOOON!!!"NRM" of commands (no piping) (a"
-		"part from me piping your mum) (sorry)\n\n");
+	ft_printf(NRM"  v0.6.5 getting ready to mix things\n\n");
 	ft_printf(MAG"                This project is brought to you by jbido and a"
 		"péro\n\n\n"NRM);
 }

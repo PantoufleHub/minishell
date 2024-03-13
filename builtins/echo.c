@@ -1,180 +1,87 @@
 #include "../inc/minishell.h"
 
-int	n_count_echo(t_list_arg *args)
-{
-	int			i;
-	t_list_arg	*tmp;
-
-	tmp = args;
-	i = 0;
-	while (tmp)
-	{
-		if ((ft_strncmp(tmp->arg, "-n", 2) == 0)
-			&& (ft_strncmp(tmp->arg, "-n", ft_strlen(tmp->arg)) == 0))
-			i++;
-		if ((ft_strncmp(tmp->arg, "-n", 2) != 0)
-			&& (ft_strncmp(tmp->arg, "-n", ft_strlen(tmp->arg)) != 0))
-			break ;
-		tmp = tmp->next;
-	}
-	return (i);
-}
-
-int	echo_wo_n(t_list_arg *args)
+int	n_count_echo(char **av)
 {
 	int			i;
 	int			count;
-	t_list_arg	*tmp;
 
-	tmp = args;
-	i = 0;
+	i = 1;
 	count = 0;
-	while (tmp)
+	while (av[i])
 	{
-		if (count)
+		if ((ft_strncmp(av[i], "-n", 2) == 0)
+			&& (ft_strncmp(av[i], "-n", ft_strlen(av[i])) == 0))
+			count++;
+		if ((ft_strncmp(av[i], "-n", 2) != 0)
+			&& (ft_strncmp(av[i], "-n", ft_strlen(av[i])) != 0))
+			break ;
+		i++;
+	}
+	return (count);
+}
+
+int	echo_wo_n(char **av)
+{
+	int			i;
+
+	i = 1;
+	while (av[i])
+	{
+		if (i > 1)
 			printf(" ");
-		count = printf("%s", tmp->arg);
-		tmp = tmp->next;
+		printf("%s", av[i]);
+		i++;
 	}
 	printf("\n");
 	return (0);
 }
 
-int	echo_w_n(t_list_arg *args)
+int	echo_w_n(char **av)
 {
+	int			n_count;
 	int			i;
-	int			count;
-	t_list_arg	*tmp;
 
-	tmp = args;
-	count = 0;
-	i = n_count_echo(args);
-	while (tmp)
+	n_count = n_count_echo(av);
+	i = 1;
+	while (av[i])
 	{
-		while (i > 0)
+		while (n_count > 0)
 		{
-			tmp = tmp->next;
-			i--;
+			n_count--;
+			i++;
 		}
-		if (count)
+		if (n_count < 0)
 			printf(" ");
-		count = printf("%s", tmp->arg);
-		tmp = tmp->next;
+		if (n_count < 1)
+		{
+			printf("%s", av[i]);
+			n_count--;
+		}
+		i++;
 	}
 	return (0);
 }
 
-int	ft_echo(t_list_arg *args)
+int	ft_echo(char **av)
 {
 	int	i;
-	int	count;
 
-	i = 0;
-	count = 0;
-	if (!args)
+	i = 1;
+	if (!av)
 		return (0);
-	if ((ft_strncmp(args->arg, "-n", 2) == 0)
-		&& (ft_strncmp(args->arg, "-n", ft_strlen(args->arg)) == 0))
-		echo_w_n(args);
+	if ((ft_strncmp(av[i], "-n", 2) == 0)
+		&& (ft_strncmp(av[i], "-n", ft_strlen(av[i])) == 0))
+		echo_w_n(av);
 	else
-		echo_wo_n(args);
+		echo_wo_n(av);
 	return (0);
 }
 
-// t_tokens	*get_tokens(char *line)
-// {
-// 	t_tokens	*l_tokens;
-
-// 	l_tokens = NULL;
-// 	parse(&l_tokens, line);
-// 	return (l_tokens);
-// }
-
-// void print_bag_contents(t_list *bags) {
-//     while (bags) {
-//         t_tokens *tokens_in_bag = (t_tokens *)(bags->content);
-
-//         while (tokens_in_bag) {
-//             printf("%s\n", tokens_in_bag->token);
-//             tokens_in_bag = tokens_in_bag->next;
-//         }
-// 		printf("------\n");
-//         bags = bags->next; // Move to the next bag
-//     }
-// }
-
-// void print_list_cmds(t_list_cmd *list_cmd) {
-//     t_list_cmd *current = list_cmd;
-
-//     // Iterate over each node in the list
-//     while (current != NULL) {
-//         t_cmd *cmd = current->cmd;
-
-//         // Print command type
-//         printf("Command type: %d\n", cmd->cmd_type);
-
-//         // Print command
-//         if (cmd->cmd != NULL) {
-//             printf("Command: %s\n", cmd->cmd);
-//         }
-
-//         // Print arguments
-// 		t_list_arg *current_arg = cmd->args;
-// 		printf("Arguments:");
-// 		while (current_arg != NULL) {
-// 			if (current_arg->arg != NULL) {
-// 				printf(" %s", current_arg->arg);
-// 			}
-// 			current_arg = current_arg->next;
-// 		}
-//         printf("\n");
-
-        // Print infile and outfile
-//         if (cmd->infile != NULL) {
-//             printf("Input file: %s\n", cmd->infile);
-//         }
-// 		if (cmd->doc == 1)
-// 			printf("Heredoc to be used\n");
-//         if (cmd->outfile != NULL) {
-//             printf("Output file: %s\n", cmd->outfile);
-//         }
-
-//         // Print append mode
-//         printf("Append mode: %d\n", cmd->append);
-// 		if (cmd->heredoc)
-// 			printf("Heredoc content :%s\n", cmd->heredoc);
-//         // // Print file descriptors (if you need to)
-//         // printf("File Descriptor (in): %d\n", cmd->fd_in);
-//         // printf("File Descriptor (out): %d\n", cmd->fd_out);
-
-//         // Move to the next node in the list
-// 		printf("~~~~~~~~~~~~~~~~~~\n");
-//         current = current->next;
-//     }
-// }
-
-// int	main(int argc, char *argv[], char **env)
-// {
-// 	t_tokens	*l_tokens = NULL;
-// 	char	**path = get_paths(env);
-
-// 	if (argc != 2)
-// 	{
-// 		printf("Need 1 argument!\n");
-// 		exit(0);
-// 	}
-
-// 	l_tokens = get_tokens(argv[1]);
-// 	// printf("~~~~~\nString to parse: |%s|\n\nFound tokens:\n", argv[1]);
-// 	// print_tokens(l_tokens);
-// 	// printf("~~~~~\n");
-
-// 	t_list *lst_bag = get_bags_list(l_tokens);
-// 	// print_bag_contents(lst_bag);
-// 	t_list_cmd *list_cmd = get_list_cmds_from_bags(lst_bag, path);
-// 	print_list_cmds(list_cmd);
-// 	ft_echo(list_cmd->cmd->args);
-// 	free_tokens(l_tokens);
-// 	// ft_lstclear(&lst_bag, fuck);
-// 	return (0);
-// }
+int	main(int ac, char **av)
+{
+	if (ac < 2)
+		printf ("\n");
+	else
+		ft_echo(av);
+	return (0);
+}

@@ -146,6 +146,8 @@ int						ft_echo(char **av);
 
 int 					ft_cd(char **a_arg);
 
-int 					ft_pwd(char **a_arg);
+int 					ft_pwd(void);
+
+void 					ft_exit(int status);
 
 #endif

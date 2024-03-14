@@ -3,7 +3,7 @@
 NAME			= minishell
 
 BUILTIN_FOLDER	= ./builtins/
-BUILTINS_BLANK	= echo cd pwd
+BUILTINS_BLANK	= echo cd pwd exit
 SRCS_BUILTIN	= $(addsuffix .c, $(addprefix $(BUILTIN_FOLDER), $(BUILTINS_BLANK)))
 SRCS_B 			= $(wildcard $(BUILTIN_FOLDER)*.c)
 EXECS			 = $(patsubst $(BUILTIN_FOLDER)%.c,%,$(SRCS_B))

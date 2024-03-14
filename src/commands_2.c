@@ -2,7 +2,17 @@
 
 void	set_in_out(t_cmd *cmd)
 {
-	if (cmd->infile)
+	int	pipo[2];
+
+	if (cmd->doc)
+	{
+		pipe(pipo);
+		write(pipo[1], cmd->heredoc, ft_strlen(cmd->heredoc));
+		dup2(pipo[0], STDIN_FILENO);
+		close(pipo[0]);
+		close(pipo[1]);
+	}
+	else if (cmd->infile)
 	{
 		if (cmd->fd_in != STDIN_FILENO)
 			dup2(cmd->fd_in, STDIN_FILENO);

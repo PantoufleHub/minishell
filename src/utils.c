@@ -19,7 +19,8 @@ void	entry_display(void)
 		"███  █████ █████\n");
 	ft_printf("  ░░░░░     ░░░░░ ░░░░░ ░░░░ ░░░░░ ░░░░░ ░░░░░░  ░░░░ ░░░░░  ░░░"
 		"░░░  ░░░░░ ░░░░░\n"NRM);
-	ft_printf(YEL"v0.8.0 "GRN"Best. Minishell. Ever. "NRM"-"RED"IGN\n\n");
+	ft_printf(RED"v0.8.1 "NRM"Come "YEL"here doc"NRM", lemme "GRN"pipe"NRM" you"
+		" -xXx_G4Yl0rD_xXx\n\n");
 	ft_printf(MAG"                This project is brought to you by jbido and a"
 		"péro\n\n\n"NRM);
 }

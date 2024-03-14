@@ -2,6 +2,7 @@
 
 int	main(int argc, char *argv[], char *envp[])
 {
+	t_shell			swagshell;
 	char			*line;
 	char			*prompt;
 	struct termios	save;
@@ -9,6 +10,7 @@ int	main(int argc, char *argv[], char *envp[])
 	set_signals();
 	set_terminal(&save);
 	entry_display();
+	init_shell(&swagshell, envp);
 	while (argv[0] && argc)
 	{
 		prompt = get_prompt();

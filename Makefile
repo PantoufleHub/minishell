@@ -7,6 +7,7 @@ MAIN			= main
 SRCS_BLANK		= prompt signal commands_1 path utils split split_utils parsing_1 echo \
 				parsing_2 parsing_3 parsing_main syntax broken_pipe string env_variables \
 				bags_1 bags_2 bags_main terminal commands_2 cd pwd exit commands_builtins \
+				shell
 
 SRCS_NOMAIN		= $(addsuffix .c, $(addprefix $(SRC_FOLDER), $(SRCS_BLANK)))
 SRCS			= $(SRCS_NOMAIN) $(addsuffix .c, $(addprefix $(SRC_FOLDER), $(MAIN)))

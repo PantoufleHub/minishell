@@ -150,4 +150,6 @@ int 					ft_pwd(void);
 
 void 					ft_exit(int status);
 
+void   					ft_env(char **env);
+
 #endif

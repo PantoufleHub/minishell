@@ -1,10 +1,9 @@
 #include "../inc/minishell.h"
 
-int ft_pwd(char **a_arg)
+int ft_pwd(void)
 {
     char    *cwd;
 
-    a_arg = NULL;
     cwd = getcwd(NULL, 0);
     if (!cwd)
     {
@@ -19,6 +18,7 @@ int ft_pwd(char **a_arg)
 int main(int ac, char **av)
 {
     ac = 0;
-    ft_pwd(av);
+    av = NULL;
+    ft_pwd();
     return (0);
 }

@@ -101,11 +101,11 @@ int	ft_echo(char **av)
 	return (0);
 }
 
-// int	main(int ac, char **av)
-// {
-// 	if (ac < 2)
-// 		printf ("\n");
-// 	else
-// 		ft_echo(av);
-// 	return (0);
-// }
+int	main(int ac, char **av)
+{
+	if (ac < 2)
+		printf ("\n");
+	else
+		ft_echo(av);
+	return (0);
+}

@@ -4,6 +4,7 @@ int ft_pwd(char **a_arg)
 {
     char    *cwd;
 
+    a_arg = NULL;
     cwd = getcwd(NULL, 0);
     if (!cwd)
     {
@@ -15,8 +16,9 @@ int ft_pwd(char **a_arg)
     return (EXIT_SUCCESS);
 }
 
-// int main(int ac, char **av)
-// {
-//     ft_pwd(av);
-//     return (0);
-// }
+int main(int ac, char **av)
+{
+    ac = 0;
+    ft_pwd(av);
+    return (0);
+}

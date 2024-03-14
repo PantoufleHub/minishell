@@ -157,4 +157,6 @@ void   					ft_env(char **env);
 
 void					init_shell(t_shell *shell, char **env);
 
+int						ft_export(char **export);
+
 #endif

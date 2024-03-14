@@ -155,4 +155,6 @@ void					exec_builtin(t_cmd *cmd);
 
 void   					ft_env(char **env);
 
+void					init_shell(t_shell *shell, char **env);
+
 #endif

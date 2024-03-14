@@ -8,7 +8,9 @@ char	*heredoc(t_tokens **token)
 	doc = ft_strdup("");
 	while (1)
 	{
-		line = readline("");
+		line = readline("> ");
+		if (!line)
+			break ;
 		if (!(ft_strncmp((*token)->token, line, ft_strlen((*token)->token)))
 			&& !(ft_strncmp((*token)->token, line, ft_strlen(line))))
 		{
@@ -20,6 +22,7 @@ char	*heredoc(t_tokens **token)
 		doc = ft_strjoin(doc, line);
 		free(line);
 	}
+	doc = ft_strjoin(doc, "\n");
 	return (doc);
 }
 

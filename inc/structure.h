@@ -65,4 +65,12 @@ typedef struct s_list_cmd
 	struct s_list_cmd	*next;
 }	t_list_cmd;
 
+// Only the best shell ever
+typedef struct s_shell
+{
+	t_list_cmd	*cmds;
+	int			dollar_question_mark;
+	char		**env;
+}	t_shell;
+
 #endif

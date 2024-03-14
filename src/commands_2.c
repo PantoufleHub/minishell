@@ -19,7 +19,11 @@ void	exec_command(t_cmd	*cmd, char **env)
 	if (cmd->error)
 		exit(0);
 	set_in_out(cmd);
-	execve(cmd->cmd, cmd->a_arg, env);
+	if (execve(cmd->cmd, cmd->a_arg, env) == -1)
+	{
+		printf("%s: command not found\n", cmd->cmd);
+		exit(EXIT_FAILURE);
+	}
 	exit(0);
 }
 

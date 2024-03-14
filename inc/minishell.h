@@ -152,4 +152,6 @@ void					ft_exit(int status);
 
 void					exec_builtin(t_cmd *cmd);
 
+void   					ft_env(char **env);
+
 #endif

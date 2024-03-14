@@ -144,10 +144,12 @@ int						n_count_echo(char **av);
 
 int						ft_echo(char **av);
 
-int 					ft_cd(char **a_arg);
+int						ft_cd(char **a_arg);
 
-int 					ft_pwd(void);
+int						ft_pwd(void);
 
-void 					ft_exit(int status);
+void					ft_exit(int status);
+
+void					exec_builtin(t_cmd *cmd);
 
 #endif

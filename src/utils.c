@@ -19,7 +19,7 @@ void	entry_display(void)
 		"███  █████ █████\n");
 	ft_printf("  ░░░░░     ░░░░░ ░░░░░ ░░░░ ░░░░░ ░░░░░ ░░░░░░  ░░░░ ░░░░░  ░░░"
 		"░░░  ░░░░░ ░░░░░\n"NRM);
-	ft_printf(NRM"  "RED"v0.7.9"YEL" this minishell is just Pay Do Win annnnd.. exit(swag)\n\n");
+	ft_printf(YEL"v0.8.0 "GRN"Best. Minishell. Ever. "NRM"-"RED"IGN\n\n");
 	ft_printf(MAG"                This project is brought to you by jbido and a"
 		"péro\n\n\n"NRM);
 }

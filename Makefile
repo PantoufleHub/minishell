@@ -2,17 +2,11 @@
 
 NAME			= minishell
 
-BUILTIN_FOLDER	= ./builtins/
-BUILTINS_BLANK	= echo cd pwd exit
-SRCS_BUILTIN	= $(addsuffix .c, $(addprefix $(BUILTIN_FOLDER), $(BUILTINS_BLANK)))
-SRCS_B 			= $(wildcard $(BUILTIN_FOLDER)*.c)
-EXECS			 = $(patsubst $(BUILTIN_FOLDER)%.c,%,$(SRCS_B))
-
 SRC_FOLDER		= ./src/
 MAIN			= main
-SRCS_BLANK		= prompt signal commands_1 path utils split split_utils parsing_1 \
+SRCS_BLANK		= prompt signal commands_1 path utils split split_utils parsing_1 echo \
 				parsing_2 parsing_3 parsing_main syntax broken_pipe string env_variables \
-				bags_1 bags_2 bags_main terminal commands_2
+				bags_1 bags_2 bags_main terminal commands_2 cd pwd exit commands_builtins \
 
 SRCS_NOMAIN		= $(addsuffix .c, $(addprefix $(SRC_FOLDER), $(SRCS_BLANK)))
 SRCS			= $(SRCS_NOMAIN) $(addsuffix .c, $(addprefix $(SRC_FOLDER), $(MAIN)))
@@ -27,11 +21,11 @@ CC				= gcc
 RM				= rm -f
 RM_ALL			= rm -rf
 
-TO_CLEAN		= *.dSYM *.o *test .vscode $(BUILTIN_FOLDER)/*.dSYM
+TO_CLEAN		= *.dSYM *.o *test .vscode
 
 ########################## TARGETS ###############################
 
-all: $(NAME) builtins run
+all: $(NAME) run
 
 $(NAME): $(SRCS)
 	@$(CC) $(ALLFLAGS) $(SRCS) -o $@
@@ -40,9 +34,6 @@ $(NAME): $(SRCS)
 test:
 	@echo "Compiling test..."
 	@$(CC) $(ALLFLAGS) $(SRCS_NOMAIN) -o $@
-
-builtins: $(EXECS)
-	@echo "Compiling builtins..."
 
 %: $(BUILTIN_FOLDER)/%.c
 	@$(CC) $(ALLFLAGS) -o $(BUILTIN_FOLDER)$@ $<

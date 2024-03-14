@@ -37,11 +37,16 @@ void	exec_commands(t_list_cmd *list_cmd, char **env)
 	index = 0;
 	while (list_cmd)
 	{
-		pid = fork();
-		if (pid == 0)
+		if (list_cmd->cmd->cmd_type == CMD_BUILTIN)
+			exec_builtin(list_cmd->cmd);
+		else
 		{
-			set_signals_child();
-			exec_command(list_cmd->cmd, env);
+			pid = fork();
+			if (pid == 0)
+			{
+				set_signals_child();
+				exec_command(list_cmd->cmd, env);
+			}
 		}
 		list_cmd = list_cmd->next;
 		index++;

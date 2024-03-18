@@ -19,8 +19,7 @@ void	entry_display(void)
 		"███  █████ █████\n");
 	ft_printf("  ░░░░░     ░░░░░ ░░░░░ ░░░░ ░░░░░ ░░░░░ ░░░░░░  ░░░░ ░░░░░  ░░░"
 		"░░░  ░░░░░ ░░░░░\n"NRM);
-	ft_printf(RED"v0.8.1 "NRM"Come "YEL"here doc"NRM", lemme "GRN"pipe"NRM" you"
-		" -xXx_G4Yl0rD_xXx\n\n");
+	ft_printf(YEL"v0.8.2 "NRM"Single and ready to m̶i̶n̶g̶l̶e̶ "RED"execute\n\n");
 	ft_printf(MAG"                This project is brought to you by jbido and a"
 		"péro\n\n\n"NRM);
 }

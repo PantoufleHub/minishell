@@ -24,7 +24,7 @@ char	*get_cmd(char **paths, char *cmd)
 	return (NULL);
 }
 
-void	interpret_line(char *line, char *envp[])
+void	interpret_line(char *line, t_shell *shell)
 {
 	t_tokens	*tokens;
 	t_list		*list_bag;
@@ -43,7 +43,8 @@ void	interpret_line(char *line, char *envp[])
 	{
 		tokens = get_tokens(line);
 		list_bag = get_bags_list(tokens);
-		list_cmd = get_list_cmds_from_bags(list_bag, get_paths(envp));
-		exec_commands(list_cmd, envp);
+		list_cmd = get_list_cmds_from_bags(list_bag, get_paths(shell->env));
+		shell->single_cmd = !(list_cmd && list_cmd->next);
+		exec_commands(shell, list_cmd);
 	}
 }

@@ -159,4 +159,12 @@ void					init_shell(t_shell *shell, char **env);
 
 int						ft_export(char **export);
 
+char					*add_quote_export(char *env);
+
+char					*get_base_export(char *env, char *tmp);
+
+char					*fuse_export(char *env);
+
+char					 **ulti_fuse_export(char **env);
+
 #endif

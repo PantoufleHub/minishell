@@ -65,19 +65,14 @@ typedef struct s_list_cmd
 	struct s_list_cmd	*next;
 }	t_list_cmd;
 
-typedef struct s_export
-{
-	char			*key;
-	char			*value;
-	struct s_export	*next;
-}	t_export;
-
 // Only the best shell ever
 typedef struct s_shell
 {
-	t_list_cmd	*cmds;
-	int			dollar_question_mark;
-	char		**env;
+	// t_list_cmd		*cmds;
+	int				single_cmd;
+	char			**env;
+	int				dollar_question_mark;
+	struct termios	term_save;
 }	t_shell;
 
 #endif

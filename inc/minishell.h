@@ -36,7 +36,7 @@ char					**get_paths(char *envp[]);
 
 char					*get_prompt(void);
 
-void					interpret_line(char *line, char *envp[]);
+void					interpret_line(char *line, t_shell *shell);
 
 void					set_signals(void);
 
@@ -107,10 +107,10 @@ int						args_size(t_list_arg *args);
 void					init_cmd_st(t_cmd *new_cmd);
 
 void					add_cmd_and_type_utils(char **cmd,
-	t_tokens *token, t_cmd *st_cmd, char **path);
+							t_tokens *token, t_cmd *st_cmd, char **path);
 
 int						add_cmd_and_type(t_tokens *token,
-	t_cmd *st_cmd, char **path);
+							t_cmd *st_cmd, char **path);
 
 void					add_arg(t_cmd *cmd_st, char *arg);
 
@@ -121,7 +121,7 @@ int						chev_utils(t_cmd **cmd_st, t_tokens **token, int a);
 int						chev_utils_bis(t_cmd **cmd_st, t_tokens **token, int a);
 
 void					fill_cmd_st(t_cmd *new_cmd,
-	t_tokens *current_token, char **path);
+							t_tokens *current_token, char **path);
 
 t_cmd					*bag_to_cmd(t_tokens *bag, char **path);
 
@@ -135,7 +135,7 @@ char					*heredoc(t_tokens **token);
 
 t_tokens				*get_tokens(char *line);
 
-void					exec_commands(t_list_cmd *list_cmd, char **env);
+void					exec_commands(t_shell *shell, t_list_cmd *list_cmd);
 
 int						echo_wo_n(char **av);
 
@@ -153,7 +153,7 @@ void					ft_exit(int status);
 
 void					exec_builtin(t_cmd *cmd);
 
-void   					ft_env(char **env);
+void					ft_env(char **env);
 
 void					init_shell(t_shell *shell, char **env);
 
@@ -165,6 +165,8 @@ char					*get_base_export(char *env, char *tmp);
 
 char					*fuse_export(char *env);
 
-char					 **ulti_fuse_export(char **env);
+char					**ulti_fuse_export(char **env);
+
+void					destroy_shell(t_shell *shell);
 
 #endif

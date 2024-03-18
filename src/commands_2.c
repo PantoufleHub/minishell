@@ -27,7 +27,7 @@ void	set_in_out(t_cmd *cmd)
 void	exec_command(t_cmd	*cmd, char **env)
 {
 	if (cmd->error)
-		exit(0);
+		return ;
 	set_in_out(cmd);
 	if (execve(cmd->cmd, cmd->a_arg, env) == -1)
 	{
@@ -37,13 +37,16 @@ void	exec_command(t_cmd	*cmd, char **env)
 	exit(0);
 }
 
-void	wait_children(void)
+void	choose_exec(t_cmd *cmd, t_shell *shell)
 {
-	while (wait(NULL) > 0)
-		;
+	set_signals_child();
+	if (cmd->cmd_type == CMD_BUILTIN)
+		exec_builtin(cmd);
+	else
+		exec_command(cmd, shell->env);
 }
 
-void	exec_commands(t_list_cmd *list_cmd, char **env)
+void	exec_commands(t_shell *shell, t_list_cmd *list_cmd)
 {
 	pid_t	pid;
 	int		index;
@@ -51,21 +54,22 @@ void	exec_commands(t_list_cmd *list_cmd, char **env)
 	index = 0;
 	while (list_cmd)
 	{
-		if (list_cmd->cmd->cmd_type == CMD_BUILTIN)
-			exec_builtin(list_cmd->cmd);
+		if (shell->single_cmd && list_cmd->cmd->cmd_type == CMD_BUILTIN)
+			choose_exec(list_cmd->cmd, shell);
 		else
 		{
 			pid = fork();
 			if (pid == 0)
 			{
-				set_signals_child();
-				exec_command(list_cmd->cmd, env);
+				choose_exec(list_cmd->cmd, shell);
+				exit (0);
 			}
 		}
 		list_cmd = list_cmd->next;
 		index++;
 	}
-	wait_children();
+	while (wait(NULL) > 0)
+		;
 }
 
 //////////// FUNCTIONS BELOW ONLY FOR TESTING 

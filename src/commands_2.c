@@ -41,7 +41,7 @@ void	choose_exec(t_cmd *cmd, t_shell *shell)
 {
 	set_signals_child();
 	if (cmd->cmd_type == CMD_BUILTIN)
-		exec_builtin(cmd);
+		exec_builtin(cmd, shell);
 	else
 		exec_command(cmd, shell->env);
 }

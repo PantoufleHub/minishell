@@ -65,17 +65,10 @@ typedef struct s_list_cmd
 	struct s_list_cmd	*next;
 }	t_list_cmd;
 
-typedef struct s_var
-{
-	char	*key;
-	char	*value;
-}	t_var;
-
 // Only the best shell ever
 typedef struct s_shell
 {
 	char			**env;
-	t_var			**vars;
 	int				dollar_question_mark;
 	struct termios	term_save;
 }	t_shell;

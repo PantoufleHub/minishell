@@ -74,8 +74,6 @@ typedef struct s_var
 // Only the best shell ever
 typedef struct s_shell
 {
-	// t_list_cmd		*cmds;
-	int				single_cmd;
 	char			**env;
 	t_var			**vars;
 	int				dollar_question_mark;

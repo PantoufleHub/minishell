@@ -1,9 +1,25 @@
 #include "../inc/minishell.h"
 
-void	set_paip(int *paip[])
+int	**init_paips(int nb_paips)
 {
-	dup2(paip[0], STDIN_FILENO);
-	dup2(paip[1], STDOUT_FILENO);
+	int	index;
+	int	**paips;
+
+	if (nb_paips <= 0)
+		return (NULL);
+	index = 0;
+	paips = malloc(nb_paips * sizeof(int *));
+	while (index < nb_paips)
+	{
+		pipe(paips[index]);
+		index++;
+	}
+	return (paips);
+}
+
+void	set_paip(int *paips[])
+{
+	paips = NULL;
 	printf("PIPING\n");
 }
 
@@ -43,11 +59,10 @@ void	exec_command(t_cmd	*cmd, char **env)
 	exit(0);
 }
 
-void	choose_exec(t_cmd *cmd, int paip[], t_shell *shell)
+void	choose_exec(t_cmd *cmd, int *paips[], t_shell *shell)
 {
+	paips = NULL;
 	set_signals_child();
-	if (!(shell->single_cmd))
-		set_paip(paip);
 	set_in_out(cmd);
 	if (cmd->cmd_type == CMD_BUILTIN)
 		exec_builtin(cmd, shell);
@@ -59,30 +74,27 @@ void	exec_commands(t_shell *shell, t_list_cmd *list_cmd)
 {
 	pid_t	pid;
 	int		index;
-	int		*paip[2];
+	int		**paips;
 
 	index = 0;
-	// pipe(paip);
-	paip[0] = STDIN_FILENO;
-	paip[1] = STDOUT_FILENO;
+	paips = init_paips(count_cmds(list_cmd)-1);
+	paips = NULL;
 	while (list_cmd)
 	{
-		if (shell->single_cmd && list_cmd->cmd->cmd_type == CMD_BUILTIN)
-			choose_exec(list_cmd->cmd, paip, shell);
+		if (count_cmds(list_cmd) == 1 && list_cmd->cmd->cmd_type == CMD_BUILTIN)
+			choose_exec(list_cmd->cmd, paips, shell);
 		else
 		{
 			pid = fork();
 			if (pid == 0)
 			{
-				choose_exec(list_cmd->cmd, paip, shell);
+				choose_exec(list_cmd->cmd, paips, shell);
 				exit (0);
 			}
 		}
 		list_cmd = list_cmd->next;
 		index++;
 	}
-	close(paip[0]);
-	close(paip[1]);
 	while (wait(NULL) > 0)
 		;
 }

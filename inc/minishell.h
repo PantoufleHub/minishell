@@ -1,7 +1,7 @@
 #ifndef MINISHELL_H
 # define MINISHELL_H
 
-# define DEBUG printf("%s:%d", __FILE__, __LINE__);
+# define DEBUG printf("File: %s, Line: %d\n", __FILE__, __LINE__);
 
 # include <stdio.h>
 # include <stdlib.h>
@@ -172,5 +172,7 @@ char					**ulti_fuse_export(char **env);
 void					destroy_shell(t_shell *shell);
 
 char					*ft_strncpy(char *dest, const char *src, size_t n);
+
+int						count_cmds(t_list_cmd *cmds);
 
 #endif

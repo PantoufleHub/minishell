@@ -35,7 +35,6 @@ void	init_shell(t_shell *shell, char **env)
 	set_terminal(&(shell->term_save));
 	entry_display();
 	shell->dollar_question_mark = 0;
-	shell->single_cmd = 0;
 	init_shell_utils(shell, env);
 }
 

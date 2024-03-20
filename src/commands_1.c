@@ -1,5 +1,18 @@
 #include "../inc/minishell.h"
 
+int	count_cmds(t_list_cmd *cmds)
+{
+	int	count;
+
+	count = 0;
+	while (cmds)
+	{
+		count++;
+		cmds = cmds->next;
+	}
+	return (count);
+}
+
 // Finds an executable file from the command and adds path if necessary
 // Returns NULL if not found or no access
 char	*get_cmd(char **paths, char *cmd)
@@ -30,10 +43,10 @@ void	interpret_line(char *line, t_shell *shell)
 	t_list		*list_bag;
 	t_list_cmd	*list_cmd;
 
-	printf(NRM);
+	write(STDOUT_FILENO, NRM, ft_strlen(NRM));
+	// rl_redisplay();
 	if (!line)
 		exit(0);
-	rl_redisplay();
 	tokens = NULL;
 	list_bag = NULL;
 	list_cmd = NULL;
@@ -44,7 +57,6 @@ void	interpret_line(char *line, t_shell *shell)
 		tokens = get_tokens(line);
 		list_bag = get_bags_list(tokens);
 		list_cmd = get_list_cmds_from_bags(list_bag, get_paths(shell->env));
-		shell->single_cmd = !(list_cmd && list_cmd->next);
 		exec_commands(shell, list_cmd);
 	}
 }

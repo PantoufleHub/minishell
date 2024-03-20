@@ -29,4 +29,5 @@ void	init_shell(t_shell *shell, char **env)
 void	destroy_shell(t_shell *shell)
 {
 	restore_terminal(&(shell->term_save));
+	exit(0);
 }

@@ -49,8 +49,7 @@ int	chev_utils(t_cmd **cmd_st, t_tokens **token, int a)
 			printf("Error accessing file\n");
 			return (-1);
 		}
-		(*cmd_st)->fd_out = open((*token)->token,
-				O_WRONLY | O_CREAT | O_APPEND, 0644);
+		(*cmd_st)->fd_out = open((*token)->token, 0x209, 0644);
 	}
 	(*cmd_st)->outfile = (*token)->token;
 	return (1);

@@ -48,13 +48,7 @@ void					signal_handler(int signum);
 
 char					*strings_join(char **arr);
 
-size_t					word_count(const char *s, const char c);
-
-char					**ft_split_p(const char *s, const char c);
-
 char					*parse_env_var(char *line, t_shell *shell);
-
-char					*trim_sp(char **split);
 
 void					print_tokens(t_tokens *l_tokens);
 

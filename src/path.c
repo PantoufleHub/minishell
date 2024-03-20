@@ -17,7 +17,6 @@ char	*get_env(char **envp, char *var)
 	return ("");
 }
 
-// lol flemme de corriger hihihi
 char	*find_paths(char *envp[])
 {
 	return (get_env(envp, "PATH"));
@@ -32,4 +31,3 @@ char	**get_paths(char *envp[])
 		error_message("Unable to find paths");
 	return (paths);
 }
-

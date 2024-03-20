@@ -3,10 +3,8 @@
 void    ft_env(char **env)
 {
     int i;
-    int j;
 
     i = 0;
-    j = 0;
     while (env[i])
     {
         printf("%s\n", env[i]);

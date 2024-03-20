@@ -50,7 +50,7 @@ void	choose_exec(t_cmd *cmd, int paip[], t_shell *shell)
 		set_paip(paip);
 	set_in_out(cmd);
 	if (cmd->cmd_type == CMD_BUILTIN)
-		exec_builtin(cmd);
+		exec_builtin(cmd, shell);
 	else
 		exec_command(cmd, shell->env);
 }

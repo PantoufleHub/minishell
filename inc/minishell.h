@@ -1,6 +1,8 @@
 #ifndef MINISHELL_H
 # define MINISHELL_H
 
+# define DEBUG printf("%s:%d", __FILE__, __LINE__);
+
 # include <stdio.h>
 # include <stdlib.h>
 # include <histedit.h>
@@ -151,13 +153,13 @@ int						ft_pwd(void);
 
 void					ft_exit(int status);
 
-void					exec_builtin(t_cmd *cmd);
+void					exec_builtin(t_cmd *cmd, t_shell *shell);
 
 void					ft_env(char **env);
 
 void					init_shell(t_shell *shell, char **env);
 
-int						ft_export(char **export);
+void					ft_export(char **a_arg, t_shell *shell);
 
 char					*add_quote_export(char *env);
 
@@ -168,5 +170,7 @@ char					*fuse_export(char *env);
 char					**ulti_fuse_export(char **env);
 
 void					destroy_shell(t_shell *shell);
+
+char					*ft_strncpy(char *dest, const char *src, size_t n);
 
 #endif

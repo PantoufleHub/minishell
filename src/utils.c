@@ -19,7 +19,7 @@ void	entry_display(void)
 		"███  █████ █████\n");
 	ft_printf("  ░░░░░     ░░░░░ ░░░░░ ░░░░ ░░░░░ ░░░░░ ░░░░░░  ░░░░ ░░░░░  ░░░"
 		"░░░  ░░░░░ ░░░░░\n"NRM);
-	ft_printf(YEL"v0.9.2"NRM" PFTTT, get a load of this "GRN"PIPE"NRM"\n\n");
+	ft_printf(CYN"  v0.10.0"YEL" HOW YOU LIKE ME "RED"NOOOOOOOOWWWWWW?!?!?!\n\n");
 	ft_printf(MAG"                This project is brought to you by jbido and a"
 		"péro\n\n\n"NRM);
 }

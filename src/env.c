@@ -1,15 +1,22 @@
 #include "../inc/minishell.h"
 
-void    ft_env(char **env)
+int	ft_env(t_shell *shell)
 {
-    int i;
+	int		i;
+	char	*equal;
 
-    i = 0;
-    while (env[i])
-    {
-        printf("%s\n", env[i]);
-        i++;
-    }
+	i = 0;
+	equal = NULL;
+	if (!shell->env)
+		return (0);
+	while (shell->env[i])
+	{
+		equal = ft_strchr(shell->env[i], '=');
+		if (equal)
+			printf("%s\n", shell->env[i]);
+		i++;
+	}
+	return (0);
 }
 
 // int main(int ac, char **av, char **env)

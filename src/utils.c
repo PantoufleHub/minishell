@@ -19,7 +19,7 @@ void	entry_display(void)
 		"███  █████ █████\n");
 	ft_printf("  ░░░░░     ░░░░░ ░░░░░ ░░░░ ░░░░░ ░░░░░ ░░░░░░  ░░░░ ░░░░░  ░░░"
 		"░░░  ░░░░░ ░░░░░\n"NRM);
-	ft_printf(YEL"v0.8.3 exporting is not always the right choice Peeposadge\n\n");
+	ft_printf(YEL"v0.8.4 "RED"MASSIVE"YEL" EXPORT "RED"MASSIVE"YEL" STONKS\n\n");
 	ft_printf(MAG"                This project is brought to you by jbido and a"
 		"péro\n\n\n"NRM);
 }

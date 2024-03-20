@@ -155,22 +155,34 @@ void					ft_exit(int status);
 
 void					exec_builtin(t_cmd *cmd, t_shell *shell);
 
-void					ft_env(char **env);
+int						ft_env(t_shell *shell);
 
 void					init_shell(t_shell *shell, char **env);
 
 void					ft_export(char **a_arg, t_shell *shell);
 
-char					*add_quote_export(char *env);
-
-char					*get_base_export(char *env, char *tmp);
-
-char					*fuse_export(char *env);
-
-char					**ulti_fuse_export(char **env);
-
 void					destroy_shell(t_shell *shell);
 
 char					*ft_strncpy(char *dest, const char *src, size_t n);
+
+char					*copy_until_char_or_all(char *src, char c);
+
+void					print_export(t_shell *shell);
+
+int						export_syntax(char *arg);
+
+void					free_arr_str(char **str);
+
+int						count_env_vars(char **env);
+
+int						find_var_index(char *key, char **env);
+
+void					var_utils_helper(char *a_arg, char **new, int *found, int i);
+
+void					var_utils(char **env, char *a_arg, char **new, int env_len);
+
+char					**add_var_env(char **export, char *a_arg);
+
+void					ft_export(char **a_arg, t_shell *shell);
 
 #endif

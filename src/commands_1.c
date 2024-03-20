@@ -30,10 +30,9 @@ void	interpret_line(char *line, t_shell *shell)
 	t_list		*list_bag;
 	t_list_cmd	*list_cmd;
 
-	printf(NRM);
+	write(STDOUT_FILENO, NRM, ft_strlen(NRM));
 	if (!line)
 		exit(0);
-	rl_redisplay();
 	tokens = NULL;
 	list_bag = NULL;
 	list_cmd = NULL;

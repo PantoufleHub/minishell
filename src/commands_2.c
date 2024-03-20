@@ -51,6 +51,8 @@ void	exec_command(t_cmd	*cmd, char **env)
 {
 	if (cmd->error)
 		return ;
+	if ((cmd->infile || cmd->heredoc) && !cmd->cmd)
+		exit(0);
 	if (execve(cmd->cmd, cmd->a_arg, env) == -1)
 	{
 		printf("%s: command not found\n", cmd->cmd);

@@ -14,4 +14,6 @@ void	exec_builtin(t_cmd *cmd, t_shell *shell)
 		ft_export(cmd->a_arg, shell);
 	else if (ft_strncmp(cmd->cmd, "env", 3) == 0)
 		ft_env(shell);
+	else if (ft_strncmp(cmd->cmd, "unset", 5) == 0)
+		ft_unset(shell, cmd->a_arg);
 }

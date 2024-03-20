@@ -189,4 +189,6 @@ int						count_cmds(t_list_cmd *cmds);
 
 char					*get_env(char **envp, char *var);
 
+void					ft_unset(t_shell *shell, char **a_arg);
+
 #endif

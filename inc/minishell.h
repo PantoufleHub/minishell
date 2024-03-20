@@ -189,4 +189,16 @@ int						count_cmds(t_list_cmd *cmds);
 
 char					*get_env(char **envp, char *var);
 
+void					exec_command(t_cmd	*cmd, char **env);
+
+void					exec_commands(t_shell *shell, t_list_cmd *list_cmd);
+
+void					close_paips(int **paips);
+
+int						**init_paips(int nb_paips);
+
+void					set_paip(int *paips[], int cmd_nb);
+
+void					set_in_out(t_cmd *cmd);
+
 #endif

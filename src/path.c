@@ -12,7 +12,9 @@ char	*get_env(char **envp, char *var)
 	str[ft_strlen(var)] = 0;
 	while (envp[index] && ft_strncmp(str, envp[index], ft_strlen(str)))
 		index++;
-	return (envp[index] + ft_strlen(str) + 1);
+	if (envp[index])
+		return (envp[index] + ft_strlen(str) + 1);
+	return ("");
 }
 
 // lol flemme de corriger hihihi

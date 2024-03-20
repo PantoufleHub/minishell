@@ -1,5 +1,28 @@
 #include "../inc/minishell.h"
 
+int	**init_paips(int nb_paips)
+{
+	int	index;
+	int	**paips;
+
+	if (nb_paips <= 0)
+		return (NULL);
+	index = 0;
+	paips = malloc(nb_paips * sizeof(int *));
+	while (index < nb_paips)
+	{
+		pipe(paips[index]);
+		index++;
+	}
+	return (paips);
+}
+
+void	set_paip(int *paips[])
+{
+	paips = NULL;
+	printf("PIPING\n");
+}
+
 void	set_in_out(t_cmd *cmd)
 {
 	int	pipo[2];
@@ -28,7 +51,6 @@ void	exec_command(t_cmd	*cmd, char **env)
 {
 	if (cmd->error)
 		return ;
-	set_in_out(cmd);
 	if (execve(cmd->cmd, cmd->a_arg, env) == -1)
 	{
 		printf("%s: command not found\n", cmd->cmd);
@@ -37,9 +59,11 @@ void	exec_command(t_cmd	*cmd, char **env)
 	exit(0);
 }
 
-void	choose_exec(t_cmd *cmd, t_shell *shell)
+void	choose_exec(t_cmd *cmd, int *paips[], t_shell *shell)
 {
+	paips = NULL;
 	set_signals_child();
+	set_in_out(cmd);
 	if (cmd->cmd_type == CMD_BUILTIN)
 		exec_builtin(cmd, shell);
 	else
@@ -50,18 +74,21 @@ void	exec_commands(t_shell *shell, t_list_cmd *list_cmd)
 {
 	pid_t	pid;
 	int		index;
+	int		**paips;
 
 	index = 0;
+	paips = init_paips(count_cmds(list_cmd)-1);
+	paips = NULL;
 	while (list_cmd)
 	{
-		if (shell->single_cmd && list_cmd->cmd->cmd_type == CMD_BUILTIN)
-			choose_exec(list_cmd->cmd, shell);
+		if (count_cmds(list_cmd) == 1 && list_cmd->cmd->cmd_type == CMD_BUILTIN)
+			choose_exec(list_cmd->cmd, paips, shell);
 		else
 		{
 			pid = fork();
 			if (pid == 0)
 			{
-				choose_exec(list_cmd->cmd, shell);
+				choose_exec(list_cmd->cmd, paips, shell);
 				exit (0);
 			}
 		}

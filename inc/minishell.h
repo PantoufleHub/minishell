@@ -1,7 +1,7 @@
 #ifndef MINISHELL_H
 # define MINISHELL_H
 
-# define DEBUG printf("%s:%d", __FILE__, __LINE__);
+# define DEBUG printf("File: %s, Line: %d\n", __FILE__, __LINE__);
 
 # include <stdio.h>
 # include <stdlib.h>
@@ -184,5 +184,7 @@ void					var_utils(char **env, char *a_arg, char **new, int env_len);
 char					**add_var_env(char **export, char *a_arg);
 
 void					ft_export(char **a_arg, t_shell *shell);
+
+int						count_cmds(t_list_cmd *cmds);
 
 #endif

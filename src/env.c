@@ -18,11 +18,3 @@ int	ft_env(t_shell *shell)
 	}
 	return (0);
 }
-
-// int main(int ac, char **av, char **env)
-// {
-//     ac = 0;
-//     av = NULL;
-//     ft_env(env);
-//     return (0);
-// }

@@ -27,3 +27,12 @@ void	add_token(t_tokens **l_tokens, char *token)
 		(tmp)->next = new;
 	}
 }
+
+t_tokens	*get_tokens(char *line)
+{
+	t_tokens	*l_tokens;
+
+	l_tokens = NULL;
+	parse(&l_tokens, line);
+	return (l_tokens);
+}

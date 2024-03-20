@@ -70,15 +70,3 @@ char	*parse_env_var(char *line, t_shell *shell)
 	free_string(str);
 	return (ret);
 }
-
-// int	main(int argc, char *argv[], char *envp[])
-// {
-// 	if (argc != 2)
-// 		exit(0);
-// 	// printf("ENV: %s\n", getenv(NULL));
-// 	// printf(CYN"Var: %s\n"RED"Expected:  %s\n"YEL"Got value: %s\n"NRM, argv[1], getenv(argv[1]+1), get_env_var(argv[1], envp));
-// 	char *s= parse_env_var(argv[1]);
-// 	printf(YEL"%s\n"NRM, s);
-// 	free(s);
-// 	return (0);
-// }

@@ -72,7 +72,10 @@ int	ft_echo(char **av)
 	if (!av)
 		return (0);
 	if (!av[i])
+	{
+		printf("\n");
 		return (0);
+	}
 	if ((ft_strncmp(av[i], "-n", 2) == 0)
 		&& (ft_strncmp(av[i], "-n", ft_strlen(av[i])) == 0))
 		echo_w_n(av);

@@ -32,7 +32,7 @@ int	**init_paips(int nb_paips)
 	return (paips);
 }
 
-void	set_paip(int *paips[], int cmd_nb)
+void	set_paip(t_cmd *cmd, int *paips[], int cmd_nb)
 {
 	int	nb_paipos;
 
@@ -42,13 +42,21 @@ void	set_paip(int *paips[], int cmd_nb)
 	while (paips[nb_paipos])
 		nb_paipos++;
 	if (cmd_nb == 0)
-		dup2(paips[cmd_nb][1], STDOUT_FILENO);
+	{
+		if (!cmd->outfile)
+			dup2(paips[cmd_nb][1], STDOUT_FILENO);
+	}
 	else if (cmd_nb == nb_paipos)
-		dup2(paips[cmd_nb - 1][0], STDIN_FILENO);
+	{
+		if (!cmd->infile)
+			dup2(paips[cmd_nb - 1][0], STDIN_FILENO);
+	}
 	else
 	{
-		dup2(paips[cmd_nb - 1][0], STDIN_FILENO);
-		dup2(paips[cmd_nb][1], STDOUT_FILENO);
+		if (!cmd->infile)
+			dup2(paips[cmd_nb - 1][0], STDIN_FILENO);
+		if (!cmd->outfile)
+			dup2(paips[cmd_nb][1], STDOUT_FILENO);
 	}
 }
 
@@ -82,6 +90,12 @@ void	exec_command(t_cmd	*cmd, char **env)
 		return ;
 	if ((cmd->infile || cmd->heredoc) && !cmd->cmd)
 		exit(0);
+	if (!cmd->cmd)
+		exit(0);
+	if (cmd->fd_in && cmd->fd_in != STDIN_FILENO)
+		close(cmd->fd_in);
+	if (cmd->fd_out && cmd->fd_out != STDOUT_FILENO)
+		close(cmd->fd_out);
 	if (execve(cmd->cmd, cmd->a_arg, env) == -1)
 	{
 		printf("%s: command not found\n", cmd->cmd);

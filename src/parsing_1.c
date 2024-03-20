@@ -33,6 +33,7 @@ t_tokens	*get_tokens(char *line)
 	t_tokens	*l_tokens;
 
 	l_tokens = NULL;
-	parse(&l_tokens, line);
-	return (l_tokens);
+	if (parse(&l_tokens, line))
+		return (l_tokens);
+	return (NULL);
 }

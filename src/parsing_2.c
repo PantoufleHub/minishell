@@ -14,12 +14,12 @@ void	free_tokens(t_tokens *tokens)
 	}
 }
 
-void	end_of_line(int in_quote, t_string *token, t_tokens **tokens)
+int	end_of_line(int in_quote, t_string *token, t_tokens **tokens)
 {
 	if (in_quote)
 	{
 		ft_printf("Unfinished quotes!\n");
-		exit(0);
+		return (0);
 	}
 	if (token)
 	{
@@ -27,6 +27,7 @@ void	end_of_line(int in_quote, t_string *token, t_tokens **tokens)
 		free_string(token);
 	}
 	token = NULL;
+	return (1);
 }
 
 void	acco_tokenizor(t_string **token, t_tokens **tokens, char *line,

@@ -19,7 +19,6 @@ void	init_shell_utils(t_shell *shell, char **env)
 
 void	init_shell(t_shell *shell, char **env)
 {
-	set_signals();
 	set_terminal(&(shell->term_save));
 	entry_display();
 	shell->dollar_question_mark = 0;

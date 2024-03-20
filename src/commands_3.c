@@ -23,7 +23,7 @@ void	close_paip(int *paips[], int cmd_nb)
 void	choose_exec(t_cmd *cmd, int *paips[], int cmd_nb, t_shell *shell)
 {
 	set_signals_child();
-	set_paip(paips, cmd_nb);
+	set_paip(cmd, paips, cmd_nb);
 	close_paips(paips);
 	set_in_out(cmd);
 	if (cmd->cmd_type == CMD_BUILTIN)
@@ -50,7 +50,10 @@ void	exec_commands(t_shell *shell, t_list_cmd *list_cmd)
 		{
 			pid = fork();
 			if (pid == 0)
+			{
 				choose_exec(list_cmd->cmd, paips, index, shell);
+				exit(0);
+			}
 		}
 		list_cmd = list_cmd->next;
 		index++;

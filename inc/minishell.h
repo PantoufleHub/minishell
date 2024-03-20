@@ -1,8 +1,6 @@
 #ifndef MINISHELL_H
 # define MINISHELL_H
 
-# define DEBUG printf("File: %s, Line: %d\n", __FILE__, __LINE__);
-
 # include <stdio.h>
 # include <stdlib.h>
 # include <histedit.h>
@@ -64,7 +62,7 @@ void					free_string(t_string *string);
 
 void					free_tokens(t_tokens *tokens);
 
-void					end_of_line(int in_quote, t_string *token,
+int						end_of_line(int in_quote, t_string *token,
 							t_tokens **tokens);
 
 void					acco_tokenizor(t_string **token, t_tokens **tokens,
@@ -84,7 +82,7 @@ void					accopipo(t_string **token, t_tokens **tokens,
 
 void					init_parse(t_parse *p);
 
-void					parse(t_tokens **tokens, char *line);
+int						parse(t_tokens **tokens, char *line);
 
 int						last_chevron(t_tokens *token);
 
@@ -193,7 +191,7 @@ void					close_paips(int **paips);
 
 int						**init_paips(int nb_paips);
 
-void					set_paip(int *paips[], int cmd_nb);
+void					set_paip(t_cmd *cmd, int *paips[], int cmd_nb);
 
 void					set_in_out(t_cmd *cmd);
 

@@ -70,6 +70,8 @@ typedef struct s_shell
 {
 	char			**env;
 	int				dollar_question_mark;
+	int				fd_in;
+	int				fd_out;
 	struct termios	term_save;
 }	t_shell;
 

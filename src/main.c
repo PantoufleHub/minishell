@@ -9,6 +9,7 @@ int	main(int argc, char *argv[], char *envp[])
 	init_shell(&swagshell, envp);
 	while (argv[0] && argc)
 	{
+		set_signals();
 		prompt = get_prompt();
 		line = readline(prompt);
 		interpret_line(line, &swagshell);

@@ -12,4 +12,6 @@
 
 # define SEP "~~~~~~~~~~~~~~~~~~~~~~~~~\n"
 
+# define DEBUG printf("File: "GRN"%s"NRM", Line: "RED"%d"NRM"\n", __FILE__, __LINE__);
+
 #endif

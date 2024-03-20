@@ -6,7 +6,7 @@ void	init_parse(t_parse *p)
 	p->in_quote = 0;
 }
 
-void	parse(t_tokens **tokens, char *line)
+int	parse(t_tokens **tokens, char *line)
 {
 	t_string	*token;
 	t_parse		p;
@@ -32,5 +32,5 @@ void	parse(t_tokens **tokens, char *line)
 			in_quotenizor(&token, line, &p);
 		(&p)->index++;
 	}
-	end_of_line((&p)->in_quote, token, tokens);
+	return (end_of_line((&p)->in_quote, token, tokens));
 }

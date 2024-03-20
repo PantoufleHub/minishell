@@ -52,7 +52,7 @@ size_t					word_count(const char *s, const char c);
 
 char					**ft_split_p(const char *s, const char c);
 
-char					*parse_env_var(char *line);
+char					*parse_env_var(char *line, t_shell *shell);
 
 char					*trim_sp(char **split);
 
@@ -186,5 +186,7 @@ char					**add_var_env(char **export, char *a_arg);
 void					ft_export(char **a_arg, t_shell *shell);
 
 int						count_cmds(t_list_cmd *cmds);
+
+char					*get_env(char **envp, char *var);
 
 #endif

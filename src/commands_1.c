@@ -49,7 +49,7 @@ void	interpret_line(char *line, t_shell *shell)
 	tokens = NULL;
 	list_bag = NULL;
 	list_cmd = NULL;
-	line = parse_env_var(line);
+	line = parse_env_var(line, shell);
 	parse(&tokens, line);
 	if (syntax_check(tokens) == 0)
 	{

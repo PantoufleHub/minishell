@@ -18,7 +18,7 @@ void	quotexor(int *in_quote, char c)
 	}
 }
 
-void	interpret_dollar(t_string **str, char *line, int *index)
+void	interpret_dollar(t_string **str, char *line, int *index, t_shell *shell)
 {
 	t_string	*var_name;
 	char		*var;
@@ -35,7 +35,7 @@ void	interpret_dollar(t_string **str, char *line, int *index)
 	}
 	var = get_string(var_name);
 	free_string(var_name);
-	env = getenv(var);
+	env = get_env(shell->env, var);
 	free(var);
 	i = 0;
 	while (env && env[i])
@@ -45,7 +45,7 @@ void	interpret_dollar(t_string **str, char *line, int *index)
 	}
 }
 
-char	*parse_env_var(char *line)
+char	*parse_env_var(char *line, t_shell *shell)
 {
 	t_string	*str;
 	int			index;
@@ -58,7 +58,7 @@ char	*parse_env_var(char *line)
 	while (line[index])
 	{
 		if (line[index] == '$' && in_quote != 1)
-			interpret_dollar(&str, line, &index);
+			interpret_dollar(&str, line, &index, shell);
 		else
 		{
 			quotexor(&in_quote, line[index]);

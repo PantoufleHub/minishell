@@ -1,13 +1,24 @@
 #include "../inc/minishell.h"
 
-char	*find_paths(char *envp[])
+char	*get_env(char **envp, char *var)
 {
-	int	index;
+	int		index;
+	char	*str;
 
 	index = 0;
-	while (envp[index] && ft_strncmp("PATH=", envp[index], 5))
+	str = malloc(ft_strlen(var) + 2);
+	ft_strncpy(str, var, ft_strlen(var));
+	str[ft_strlen(var)] = '=';
+	str[ft_strlen(var)] = 0;
+	while (envp[index] && ft_strncmp(str, envp[index], ft_strlen(str)))
 		index++;
-	return (envp[index] + 5);
+	return (envp[index] + ft_strlen(str) + 1);
+}
+
+// lol flemme de corriger hihihi
+char	*find_paths(char *envp[])
+{
+	return (get_env(envp, "PATH"));
 }
 
 char	**get_paths(char *envp[])

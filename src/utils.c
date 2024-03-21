@@ -19,7 +19,7 @@ void	entry_display(void)
 		"███  █████ █████\n");
 	ft_printf("  ░░░░░     ░░░░░ ░░░░░ ░░░░ ░░░░░ ░░░░░ ░░░░░░  ░░░░ ░░░░░  ░░░"
 		"░░░  ░░░░░ ░░░░░\n"NRM);
-	ft_printf(CYN"  v0.10.0"YEL" HOW YOU LIKE ME "RED"NOOOOOOOOWWWWWW?!?!?!\n\n");
+	ft_printf(CYN"  v0.10.1"YEL" Did you call a plumber ? How about "RED"Super Aperrio?!\n\n");
 	ft_printf(MAG"                This project is brought to you by jbido and a"
 		"péro\n\n\n"NRM);
 }

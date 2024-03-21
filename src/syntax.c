@@ -3,9 +3,13 @@
 int	last_chevron(t_tokens *token)
 {
 	if (!token)
+	{
 		return (EXIT_SUCCESS);
+	}
 	while (token->next)
+	{
 		token = token->next;
+	}
 	if ((ft_strncmp(token->token, ">", 1) == 0
 			|| ft_strncmp(token->token, "<", 1) == 0
 			|| ft_strncmp(token->token, ">>", 2) == 0

@@ -7,7 +7,7 @@ MAIN			= main
 SRCS_BLANK		= prompt signal commands_1 path utils  parsing_1 echo \
 				parsing_2 parsing_3 parsing_main syntax broken_pipe string env_variables \
 				bags_1 bags_2 bags_main terminal commands_2 cd pwd exit commands_builtins \
-				shell export export_utils env unset commands_3
+				shell export export_utils env unset commands_3 clean
 				
 
 SRCS_NOMAIN		= $(addsuffix .c, $(addprefix $(SRC_FOLDER), $(SRCS_BLANK)))
@@ -15,7 +15,7 @@ SRCS			= $(SRCS_NOMAIN) $(addsuffix .c, $(addprefix $(SRC_FOLDER), $(MAIN)))
 
 LIBFLAGS		= -L./libft -lft -L$(HOME)/.brew/opt/readline/lib -lreadline -ledit
 BREWFLAGS		= -I$(HOME)/.brew/opt/readline/include
-FLAGS			= -g -Wall -Wextra -Werror -fsanitize=address
+FLAGS			= -g -Wall -Wextra -Werror 
 ALLFLAGS		= $(FLAGS) $(LIBFLAGS) $(BREWFLAGS)
 
 CC				= gcc

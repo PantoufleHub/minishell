@@ -195,4 +195,14 @@ void					set_paip(t_cmd *cmd, int *paips[], int cmd_nb);
 
 void					set_in_out(t_cmd *cmd);
 
+void					clean_list_bag(t_list *list_bag);
+
+void					clean_list_arg(t_list_arg *args);
+
+void					free_str(char **str);
+
+void					clean_cmd_str(t_cmd *cmd);
+
+void					clean_list_cmd(t_list_cmd *list_cmd);
+
 #endif

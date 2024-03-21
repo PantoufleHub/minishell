@@ -50,9 +50,9 @@ void	interpret_line(char *line, t_shell *shell)
 	list_bag = NULL;
 	list_cmd = NULL;
 	line = parse_env_var(line, shell);
+	tokens = get_tokens(line);
 	if (syntax_check(tokens) == 0)
 	{
-		tokens = get_tokens(line);
 		if (!tokens)
 			return ;
 		list_bag = get_bags_list(tokens);
@@ -60,5 +60,7 @@ void	interpret_line(char *line, t_shell *shell)
 		shell->fd_in = dup(STDIN_FILENO);
 		shell->fd_out = dup(STDOUT_FILENO);
 		exec_commands(shell, list_cmd);
+		clean_list_bag(list_bag);
+		clean_list_cmd(list_cmd);
 	}
 }

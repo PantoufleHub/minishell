@@ -43,9 +43,9 @@ void	print_export(t_shell *shell)
 			printf("declare -x %s=\"%s\"\n", key, equal + 1);
 		else
 			printf("declare -x %s=%s\n", key, equal + 1);
+		free(key);
 		i++;
 	}
-	free(key);
 }
 
 int	export_syntax(char *arg)
@@ -83,13 +83,16 @@ void	free_arr_str(char **str)
 	i = 0;
 	if (!str)
 		return ;
-	while (str[i])
+	while (str && str[i])
 	{
 		free(str[i]);
 		i++;
 	}
 	if (str)
+	{
 		free(str);
+		str = NULL;
+	}
 }
 
 int	count_env_vars(char **env)

@@ -49,11 +49,20 @@ void	sigterm(void)
 	exit(0);
 }
 
+void	clean_swag(t_list_cmd *list_cmd, t_list *list_bag,
+	char **paths)
+{
+	free_arr_str(paths);
+	clean_list_bag(list_bag);
+	clean_list_cmd(list_cmd);
+}
+
 void	interpret_line(char *line, t_shell *shell)
 {
 	t_tokens	*tokens;
 	t_list		*list_bag;
 	t_list_cmd	*list_cmd;
+	char		**paths;
 
 	write(STDOUT_FILENO, NRM, ft_strlen(NRM));
 	if (!line)
@@ -65,13 +74,12 @@ void	interpret_line(char *line, t_shell *shell)
 	tokens = get_tokens(line);
 	if (tokens && syntax_check(tokens) == 0)
 	{
+		paths = get_paths(shell->env);
 		list_bag = get_bags_list(tokens);
-		list_cmd = get_list_cmds_from_bags(list_bag, get_paths(shell->env));
+		list_cmd = get_list_cmds_from_bags(list_bag, paths);
 		shell->fd_in = dup(STDIN_FILENO);
 		shell->fd_out = dup(STDOUT_FILENO);
 		exec_commands(shell, list_cmd);
-		clean_list_bag(list_bag);
-		clean_list_cmd(list_cmd);
-		clean_tokens(tokens);
+		clean_swag(list_cmd, list_bag, paths);
 	}
 }

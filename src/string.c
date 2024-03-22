@@ -50,6 +50,7 @@ void	add_char(t_string **string, char c)
 	new = malloc(sizeof(t_string));
 	new->c = c;
 	new->next = NULL;
+	tmp = NULL;
 	if (!(*string))
 		*string = new;
 	else

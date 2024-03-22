@@ -24,6 +24,7 @@ int	main(int argc, char *argv[], char *envp[])
 	{
 		set_signals();
 		prompt = get_prompt();
+		printf("\033[G");
 		line = readline(prompt);
 		interpret_line(line, &swagshell);
 		add_history(line);

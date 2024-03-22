@@ -37,6 +37,18 @@ char	*get_cmd(char **paths, char *cmd)
 	return (NULL);
 }
 
+void	sigterm(void)
+{
+	char	*prompt;
+
+	prompt = get_prompt();
+	printf("\033[F");
+	printf("\033[G");
+	printf("%sexit\n"NRM, prompt);
+	free(prompt);
+	exit(0);
+}
+
 void	interpret_line(char *line, t_shell *shell)
 {
 	t_tokens	*tokens;
@@ -45,16 +57,14 @@ void	interpret_line(char *line, t_shell *shell)
 
 	write(STDOUT_FILENO, NRM, ft_strlen(NRM));
 	if (!line)
-		exit(0);
+		sigterm();
 	tokens = NULL;
 	list_bag = NULL;
 	list_cmd = NULL;
 	line = parse_env_var(line, shell);
 	tokens = get_tokens(line);
-	if (syntax_check(tokens) == 0)
+	if (tokens && syntax_check(tokens) == 0)
 	{
-		if (!tokens)
-			return ;
 		list_bag = get_bags_list(tokens);
 		list_cmd = get_list_cmds_from_bags(list_bag, get_paths(shell->env));
 		shell->fd_in = dup(STDIN_FILENO);

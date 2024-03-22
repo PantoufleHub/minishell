@@ -72,6 +72,7 @@ void	clean_list_cmd(t_list_cmd *list_cmd)
 	while (list_cmd)
 	{
 		clean_cmd_str(list_cmd->cmd);
+		free(list_cmd->cmd);
 		tmp = list_cmd->next;
 		free(list_cmd);
 		list_cmd = tmp;

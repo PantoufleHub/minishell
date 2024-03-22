@@ -207,4 +207,7 @@ void					clean_cmd_str(t_cmd *cmd);
 
 void					clean_list_cmd(t_list_cmd *list_cmd);
 
+void					clean_swag(t_list_cmd *list_cmd, t_list *list_bag,
+							char **paths);
+
 #endif

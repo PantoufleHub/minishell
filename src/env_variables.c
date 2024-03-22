@@ -43,7 +43,6 @@ void	interpret_dollar(t_string **str, char *line, int *index, t_shell *shell)
 		add_char(str, env[i]);
 		i++;
 	}
-	free(env);
 }
 
 char	*parse_env_var(char *line, t_shell *shell)

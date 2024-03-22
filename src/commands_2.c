@@ -11,6 +11,13 @@ void	close_paips(int **paips)
 		close(paips[index][1]);
 		index++;
 	}
+	index = 0;
+	while (paips && paips[index])
+	{
+		free(paips[index]);
+		index++;
+	}
+	free(paips);
 }
 
 int	**init_paips(int nb_paips)

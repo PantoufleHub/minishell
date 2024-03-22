@@ -1,23 +1,30 @@
 #include "../inc/minishell.h"
 
-void	close_paip(int *paips[], int cmd_nb)
-{
-	int	nb_paipos;
+// void	close_paip(int *paips[], int cmd_nb)
+// {
+// 	int	nb_paipos;
 
-	if (!paips)
-		return ;
-	nb_paipos = 0;
-	while (paips[nb_paipos])
-		nb_paipos++;
-	if (cmd_nb == 0)
-		close(paips[cmd_nb][1]);
-	else if (cmd_nb == nb_paipos)
-		close(paips[cmd_nb - 1][0]);
-	else
-	{
-		close(paips[cmd_nb - 1][0]);
-		close(paips[cmd_nb][1]);
-	}
+// 	if (!paips)
+// 		return ;
+// 	nb_paipos = 0;
+// 	while (paips[nb_paipos])
+// 		nb_paipos++;
+// 	if (cmd_nb == 0)
+// 		close(paips[cmd_nb][1]);
+// 	else if (cmd_nb == nb_paipos)
+// 		close(paips[cmd_nb - 1][0]);
+// 	else
+// 	{
+// 		close(paips[cmd_nb - 1][0]);
+// 		close(paips[cmd_nb][1]);
+// 	}
+// }
+
+void	patatipatata25lines(int *paips[])
+{
+	close_paips(paips);
+	while (wait(NULL) > 0)
+		;
 }
 
 void	choose_exec(t_cmd *cmd, int *paips[], int cmd_nb, t_shell *shell)
@@ -58,7 +65,5 @@ void	exec_commands(t_shell *shell, t_list_cmd *list_cmd)
 		list_cmd = list_cmd->next;
 		index++;
 	}
-	close_paips(paips);
-	while (wait(NULL) > 0)
-		;
+	patatipatata25lines(paips);
 }

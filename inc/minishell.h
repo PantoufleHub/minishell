@@ -169,9 +169,11 @@ int						count_env_vars(char **env);
 
 int						find_var_index(char *key, char **env);
 
-void					var_utils_helper(char *a_arg, char **new, int *found, int i);
+void					var_utils_helper(char *a_arg, char **new, int *found,
+							int i);
 
-void					var_utils(char **env, char *a_arg, char **new, int env_len);
+void					var_utils(char **env, char *a_arg, char **new,
+							int env_len);
 
 char					**add_var_env(char **export, char *a_arg);
 

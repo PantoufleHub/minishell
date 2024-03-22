@@ -65,7 +65,7 @@ void	clean_cmd_str(t_cmd *cmd)
 void	clean_list_cmd(t_list_cmd *list_cmd)
 {
 	t_list_cmd	*tmp;
-	
+
 	tmp = NULL;
 	if (!list_cmd)
 		return ;

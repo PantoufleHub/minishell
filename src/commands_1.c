@@ -72,5 +72,6 @@ void	interpret_line(char *line, t_shell *shell)
 		exec_commands(shell, list_cmd);
 		clean_list_bag(list_bag);
 		clean_list_cmd(list_cmd);
+		clean_tokens(tokens);
 	}
 }

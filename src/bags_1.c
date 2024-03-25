@@ -38,14 +38,10 @@ void	add_cmd_and_type_utils(char **cmd,
 {
 	*cmd = get_cmd(path, token->token);
 	if (*cmd)
-	{
-		if (*cmd == token->token)
-			st_cmd->cmd = ft_strdup(*cmd);
-		else
-			st_cmd->cmd = *cmd;
-	}
+		st_cmd->cmd = ft_strdup(*cmd);
 	else
 		st_cmd->cmd = ft_strdup(token->token);
+	free(*cmd);
 }
 
 int	add_cmd_and_type(t_tokens *token, t_cmd *st_cmd, char **path)

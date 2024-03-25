@@ -72,6 +72,7 @@ void	interpret_line(char *line, t_shell *shell)
 	tokens = NULL;
 	list_bag = NULL;
 	list_cmd = NULL;
+	paths = NULL;
 	tmp_line = parse_env_var(line, shell);
 	tokens = get_tokens(tmp_line);
 	free(tmp_line);
@@ -83,6 +84,6 @@ void	interpret_line(char *line, t_shell *shell)
 		shell->fd_in = dup(STDIN_FILENO);
 		shell->fd_out = dup(STDOUT_FILENO);
 		exec_commands(shell, list_cmd);
-		clean_swag(list_cmd, list_bag, paths, tokens);
 	}
+	clean_swag(list_cmd, list_bag, paths, tokens);
 }

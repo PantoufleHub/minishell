@@ -8,9 +8,11 @@ void	free_tokens(t_tokens *tokens)
 	while (tokens)
 	{
 		free(tokens->token);
+		tokens->token = NULL;
 		tmp = tokens;
 		tokens = tokens->next;
 		free(tmp);
+		tmp = NULL;
 	}
 }
 
@@ -28,6 +30,7 @@ int	end_of_line(int in_quote, t_string *token, t_tokens **tokens)
 		prout = get_string(token);
 		add_token(tokens, prout);
 		free(prout);
+		prout = NULL;
 		free_string(token);
 	}
 	token = NULL;
@@ -44,6 +47,7 @@ void	acco_tokenizor(t_string **token, t_tokens **tokens, char *line,
 		prout = get_string(*token);
 		add_token(tokens, prout);
 		free(prout);
+		prout = NULL;
 		free_string(*token);
 	}
 	*token = NULL;
@@ -52,6 +56,7 @@ void	acco_tokenizor(t_string **token, t_tokens **tokens, char *line,
 	prout = get_string(*token);
 	add_token(tokens, prout);
 	free(prout);
+	prout = NULL;
 	free_string(*token);
 	*token = NULL;
 	p->index++;
@@ -67,6 +72,7 @@ void	pipo_tokenizor(t_string **token, t_tokens **tokens, char *line,
 		prout = get_string(*token);
 		add_token(tokens, prout);
 		free(prout);
+		prout = NULL;
 		free_string(*token);
 	}
 	*token = NULL;
@@ -74,6 +80,7 @@ void	pipo_tokenizor(t_string **token, t_tokens **tokens, char *line,
 	prout = get_string(*token);
 	add_token(tokens, prout);
 	free(prout);
+	prout = NULL;
 	free_string(*token);
 	*token = NULL;
 }

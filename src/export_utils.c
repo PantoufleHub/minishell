@@ -86,6 +86,7 @@ void	free_arr_str(char **str)
 	while (str && str[i])
 	{
 		free(str[i]);
+		str[i] = NULL;
 		i++;
 	}
 	if (str)

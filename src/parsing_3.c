@@ -16,6 +16,7 @@ void	tokenizor(t_tokens **tokens, t_string **token)
 	prout = get_string(*token);
 	add_token(tokens, prout);
 	free(prout);
+	prout = NULL;
 	free_string(*token);
 	*token = NULL;
 }

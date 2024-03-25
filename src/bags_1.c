@@ -42,6 +42,7 @@ void	add_cmd_and_type_utils(char *cmd,
 	else
 		st_cmd->cmd = ft_strdup(token->token);
 	free(cmd);
+	cmd = NULL;
 }
 
 int	add_cmd_and_type(t_tokens *token, t_cmd *st_cmd, char **path)

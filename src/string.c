@@ -9,6 +9,7 @@ void	free_string(t_string *string)
 		tmp = string;
 		string = string->next;
 		free(tmp);
+		tmp = NULL;
 	}
 }
 

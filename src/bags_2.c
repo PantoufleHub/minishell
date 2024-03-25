@@ -21,6 +21,7 @@ char	*heredoc(t_tokens **token)
 			doc = ft_strjoin(doc, "\n");
 		doc = ft_strjoin(doc, line);
 		free(line);
+		line = NULL;
 	}
 	doc = ft_strjoin(doc, "\n");
 	return (doc);
@@ -51,7 +52,7 @@ int	chev_utils(t_cmd **cmd_st, t_tokens **token, int a)
 		}
 		(*cmd_st)->fd_out = open((*token)->token, 0x209, 0644);
 	}
-	(*cmd_st)->outfile = (*token)->token;
+	(*cmd_st)->outfile = ft_strdup((*token)->token);
 	return (1);
 }
 
@@ -66,7 +67,7 @@ int	chev_utils_bis(t_cmd **cmd_st, t_tokens **token, int a)
 	if (a == 0)
 	{
 		*token = (*token)->next;
-		(*cmd_st)->infile = (*token)->token;
+		(*cmd_st)->infile = ft_strdup((*token)->token);
 		if (access((*token)->token, F_OK) == -1)
 		{
 			printf("No such file or directory\n");

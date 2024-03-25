@@ -25,6 +25,10 @@ void	clean_list_bag(t_list *list_bag)
 		while (token_list)
 		{
 			token = (char *)token_list->content;
+			// if (ft_strncmp(token, ">", 1) != 0)
+			// {
+			// 	printf(RED"Clean_list_bag freeing: %s\n"NRM, token);
+			// }
 			free(token);
 			token = NULL;
 			tmp_token_list = token_list;
@@ -47,7 +51,9 @@ void	clean_list_arg(t_list_arg *args)
 		return ;
 	while (args)
 	{
+		printf("Freeing str(clean list arg): %s\n", args->arg);
 		free(args->arg);
+		args->arg = NULL;
 		tmp = args->next;
 		free (args);
 		args = tmp;
@@ -62,6 +68,7 @@ void	clean_cmd_str(t_cmd *cmd)
 	while (cmd->a_arg && cmd->a_arg[i])
 	{
 		free(cmd->a_arg[i]);
+		cmd->a_arg[i] = NULL;
 		i++;
 	}
 	if (cmd->a_arg)
@@ -69,17 +76,11 @@ void	clean_cmd_str(t_cmd *cmd)
 		free(cmd->a_arg);
 		cmd->a_arg = NULL;
 	}
-	DEBUG
 	free_str(&cmd->cmd);
-	DEBUG
 	clean_list_arg(cmd->args);
-	DEBUG
 	free_str(&cmd->heredoc);
-	DEBUG
 	free_str(&cmd->infile);
-	DEBUG
 	free_str(&cmd->outfile);
-	DEBUG
 }
 
 void	clean_list_cmd(t_list_cmd *list_cmd)
@@ -91,11 +92,8 @@ void	clean_list_cmd(t_list_cmd *list_cmd)
 		return ;
 	while (list_cmd)
 	{
-		DEBUG
 		clean_cmd_str(list_cmd->cmd);
-		DEBUG
 		free(list_cmd->cmd);
-		DEBUG
 		tmp = list_cmd->next;
 		free(list_cmd);
 		list_cmd = tmp;

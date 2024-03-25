@@ -100,7 +100,7 @@ int						args_size(t_list_arg *args);
 
 void					init_cmd_st(t_cmd *new_cmd);
 
-void					add_cmd_and_type_utils(char **cmd,
+void					add_cmd_and_type_utils(char *cmd,
 							t_tokens *token, t_cmd *st_cmd, char **path);
 
 int						add_cmd_and_type(t_tokens *token,

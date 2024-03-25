@@ -7,8 +7,10 @@ void	clean_tokens(t_tokens *tokens)
 	while (tokens)
 	{
 		tmp = tokens->next;
-		free(tokens->token);
-		free(tokens);
+		if (tokens->token)
+			free(tokens->token);
+		if (tokens)
+			free(tokens);
 		tokens = tmp;
 	}
 }

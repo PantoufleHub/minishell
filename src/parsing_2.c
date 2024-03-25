@@ -16,6 +16,8 @@ void	free_tokens(t_tokens *tokens)
 
 int	end_of_line(int in_quote, t_string *token, t_tokens **tokens)
 {
+	char *prout;
+
 	if (in_quote)
 	{
 		ft_printf("Unfinished quotes!\n");
@@ -23,7 +25,9 @@ int	end_of_line(int in_quote, t_string *token, t_tokens **tokens)
 	}
 	if (token)
 	{
-		add_token(tokens, get_string(token));
+		prout = get_string(token);
+		add_token(tokens, prout);
+		free(prout);
 		free_string(token);
 	}
 	token = NULL;
@@ -33,15 +37,21 @@ int	end_of_line(int in_quote, t_string *token, t_tokens **tokens)
 void	acco_tokenizor(t_string **token, t_tokens **tokens, char *line,
 	t_parse *p)
 {
+	char *prout;
+
 	if (*token)
 	{
-		add_token(tokens, get_string(*token));
+		prout = get_string(*token);
+		add_token(tokens, prout);
+		free(prout);
 		free_string(*token);
 	}
 	*token = NULL;
 	add_char(token, line[p->index]);
 	add_char(token, line[p->index + 1]);
-	add_token(tokens, get_string(*token));
+	prout = get_string(*token);
+	add_token(tokens, prout);
+	free(prout);
 	free_string(*token);
 	*token = NULL;
 	p->index++;
@@ -50,14 +60,20 @@ void	acco_tokenizor(t_string **token, t_tokens **tokens, char *line,
 void	pipo_tokenizor(t_string **token, t_tokens **tokens, char *line,
 	t_parse *p)
 {
+	char *prout;
+
 	if (*token)
 	{
-		add_token(tokens, get_string(*token));
+		prout = get_string(*token);
+		add_token(tokens, prout);
+		free(prout);
 		free_string(*token);
 	}
 	*token = NULL;
 	add_char(token, line[p->index]);
-	add_token(tokens, get_string(*token));
+	prout = get_string(*token);
+	add_token(tokens, prout);
+	free(prout);
 	free_string(*token);
 	*token = NULL;
 }

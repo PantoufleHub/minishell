@@ -5,11 +5,11 @@ void	arg_helper(t_cmd *cmd_st)
 	int		i;
 
 	cmd_st->a_arg = malloc((args_size(cmd_st->args) + 2) * sizeof(char *));
-	cmd_st->a_arg[0] = cmd_st->cmd;
+	cmd_st->a_arg[0] = ft_strdup(cmd_st->cmd);
 	i = 1;
 	while (cmd_st->args)
 	{
-		cmd_st->a_arg[i] = cmd_st->args->arg;
+		cmd_st->a_arg[i] = ft_strdup(cmd_st->args->arg);
 		cmd_st->args = cmd_st->args->next;
 		i++;
 	}

@@ -52,10 +52,15 @@ void	sigterm(void)
 void	clean_swag(t_list_cmd *list_cmd, t_list *list_bag,
 	char **paths, t_tokens *tokens)
 {
+	DEBUG
 	free_arr_str(paths);
+	DEBUG
 	clean_list_bag(list_bag);
+	DEBUG
 	clean_list_cmd(list_cmd);
-	clean_tokens(tokens);
+	DEBUG
+	// clean_tokens(tokens);
+	tokens = NULL;
 }
 
 void	interpret_line(char *line, t_shell *shell)

@@ -15,7 +15,7 @@ void	add_token(t_tokens **l_tokens, char *token)
 	t_tokens	*tmp;
 
 	new = malloc(sizeof(t_tokens));
-	new->token = token;
+	new->token = ft_strdup(token);
 	new->next = NULL;
 	if (!(*l_tokens))
 		*l_tokens = new;

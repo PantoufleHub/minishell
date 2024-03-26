@@ -47,12 +47,12 @@ int	chev_utils_bis(t_cmd **cmd_st, t_tokens **token, int a)
 		(*cmd_st)->infile = ft_strdup((*token)->token);
 		if (access((*token)->token, F_OK) == -1)
 		{
-			printf("No such file or directory\n");
+			printf("%s: No such file or directory\n", (*token)->token);
 			return (-1);
 		}
 		if (open((*cmd_st)->infile, O_RDONLY) < 0)
 		{
-			printf("%s : Permission denied\n", (*cmd_st)->infile);
+			printf("%s: Permission denied\n", (*cmd_st)->infile);
 			return (-1);
 		}
 		(*cmd_st)->fd_in = open((*cmd_st)->infile, O_RDONLY);

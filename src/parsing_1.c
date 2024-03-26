@@ -35,5 +35,6 @@ t_tokens	*get_tokens(char *line)
 	l_tokens = NULL;
 	if (parse(&l_tokens, line))
 		return (l_tokens);
+	free_tokens(l_tokens);
 	return (NULL);
 }

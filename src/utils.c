@@ -19,7 +19,7 @@ void	entry_display(void)
 		"███  █████ █████\n");
 	ft_printf("  ░░░░░     ░░░░░ ░░░░░ ░░░░ ░░░░░ ░░░░░ ░░░░░░  ░░░░ ░░░░░  ░░░"
 		"░░░  ░░░░░ ░░░░░\n"NRM);
-	ft_printf(YEL"  v0.11.0 "RED"Today's breaking news:"NRM" No leaks reported and apostrocalypse survived!!\n\n");
+	ft_printf(YEL"  v0.11.1 Who would have guess HOME wasn't where the "RED"cd"YEL" is ?\n\n");
 	ft_printf(MAG"                This project is brought to you by jbido and a"
 		"péro\n\n\n"NRM);
 }

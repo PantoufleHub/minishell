@@ -22,6 +22,7 @@ int	end_of_line(int in_quote, t_string *token, t_tokens **tokens)
 
 	if (in_quote)
 	{
+		free_string(token);
 		ft_printf("Unfinished quotes!\n");
 		return (0);
 	}

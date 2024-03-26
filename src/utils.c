@@ -19,7 +19,7 @@ void	entry_display(void)
 		"███  █████ █████\n");
 	ft_printf("  ░░░░░     ░░░░░ ░░░░░ ░░░░ ░░░░░ ░░░░░ ░░░░░░  ░░░░ ░░░░░  ░░░"
 		"░░░  ░░░░░ ░░░░░\n"NRM);
-	ft_printf(CYN"  v0.10.6"YEL""RED" Plumbers at work... "YEL"Episode 5, season 12 titled : "RED"Chasing the "GRN"leek\n\n");
+	ft_printf(CYN"  v0.11.0 "YEL"Episode 10, season 12 titled : The "GRN"leek "YEL" has been fully "RED"swallowed.\n\n");
 	ft_printf(MAG"                This project is brought to you by jbido and a"
 		"péro\n\n\n"NRM);
 }

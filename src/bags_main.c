@@ -2,22 +2,23 @@
 
 void	arg_helper(t_cmd *cmd_st)
 {
-	int		i;
+	int			i;
+	t_list_arg	*tmp;
 
+	tmp = cmd_st->args;
 	cmd_st->a_arg = malloc((args_size(cmd_st->args) + 2) * sizeof(char *));
 	if (cmd_st->cmd)
 		cmd_st->a_arg[0] = ft_strdup(cmd_st->cmd);
 	else
 		cmd_st->a_arg[0] = NULL;
 	i = 1;
-	while (cmd_st->args)
+	while (tmp)
 	{
-		cmd_st->a_arg[i] = ft_strdup(cmd_st->args->arg);
-		cmd_st->args = cmd_st->args->next;
+		cmd_st->a_arg[i] = ft_strdup(tmp->arg);
+		tmp = tmp->next;
 		i++;
 	}
 	cmd_st->a_arg[i] = 0;
-	cmd_st->args = NULL;
 }
 
 t_cmd	*bag_to_cmd(t_tokens *bag, char **path)

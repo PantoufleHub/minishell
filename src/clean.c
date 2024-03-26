@@ -51,7 +51,6 @@ void	clean_list_arg(t_list_arg *args)
 		return ;
 	while (args)
 	{
-		printf("Freeing str(clean list arg): %s\n", args->arg);
 		free(args->arg);
 		args->arg = NULL;
 		tmp = args->next;
@@ -65,6 +64,12 @@ void	clean_cmd_str(t_cmd *cmd)
 	int	i;
 
 	i = 0;
+	while (cmd->a_arg && cmd->a_arg[i])
+	{
+		free(cmd->a_arg[i]);
+		cmd->a_arg[i] = NULL;
+		i++;
+	}
 	if (cmd->a_arg)
 	{
 		free(cmd->a_arg);

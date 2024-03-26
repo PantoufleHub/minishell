@@ -66,8 +66,6 @@ void	interpret_line(char *line, t_shell *shell)
 	char		**paths;
 	char		*tmp_line;
 
-	shell->fd_in = dup(STDIN_FILENO);
-	shell->fd_out = dup(STDOUT_FILENO);
 	write(STDOUT_FILENO, NRM, ft_strlen(NRM));
 	if (!line)
 		sigterm();

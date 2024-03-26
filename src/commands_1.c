@@ -68,6 +68,7 @@ void	interpret_line(char *line, t_shell *shell)
 
 	shell->fd_in = dup(STDIN_FILENO);
 	shell->fd_out = dup(STDOUT_FILENO);
+	signal(SIGINT, SIG_IGN);
 	write(STDOUT_FILENO, NRM, ft_strlen(NRM));
 	if (!line)
 		sigterm();

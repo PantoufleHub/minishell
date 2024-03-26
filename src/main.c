@@ -22,7 +22,6 @@ int	main(int argc, char *argv[], char *envp[])
 	init_shell(&swagshell, envp);
 	while (argv[0] && argc)
 	{
-		set_signals();
 		prompt = get_prompt();
 		line = readline(prompt);
 		interpret_line(line, &swagshell);
@@ -30,6 +29,7 @@ int	main(int argc, char *argv[], char *envp[])
 			add_history(line);
 		free(line);
 		free(prompt);
+		set_signals();
 	}
 	clean_env(&swagshell);
 	destroy_shell(&swagshell);

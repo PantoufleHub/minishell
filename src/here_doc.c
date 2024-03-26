@@ -26,11 +26,8 @@ char	*heredoc(t_tokens **token, t_shell *shell)
 		if (heredoc_helper(token, line))
 			break ;
 		tmp = doc;
-		if (tmp[0] != '\0')
-		{
-			doc = ft_strjoin(tmp, "\n");
-			free(tmp);
-		}
+		doc = ft_strjoin(tmp, "\n");
+		free(tmp);
 		tmp = doc;
 		doc = ft_strjoin(tmp, line);
 		free(tmp);

@@ -26,7 +26,8 @@ int	main(int argc, char *argv[], char *envp[])
 		prompt = get_prompt();
 		line = readline(prompt);
 		interpret_line(line, &swagshell);
-		add_history(line);
+		if (line && line[0] != 0)
+			add_history(line);
 		free(line);
 		free(prompt);
 	}

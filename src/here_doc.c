@@ -33,9 +33,12 @@ char	*heredoc(t_tokens **token, t_shell *shell)
 		free(tmp);
 		free(line);
 	}
-	tmp = doc;
-	doc = ft_strjoin(tmp, "\n");
-	free(tmp);
+	if (doc[0] != '\0')
+	{
+		tmp = doc;
+		doc = ft_strjoin(tmp, "\n");
+		free(tmp);
+	}
 	tmp = parse_env_var(doc, shell);
 	free(doc);
 	return (tmp);

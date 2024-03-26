@@ -21,13 +21,13 @@ void	arg_helper(t_cmd *cmd_st)
 	cmd_st->a_arg[i] = 0;
 }
 
-t_cmd	*bag_to_cmd(t_tokens *bag, char **path)
+t_cmd	*bag_to_cmd(t_tokens *bag, char **path, t_shell *shell)
 {
 	t_cmd	*cmd;
 
 	cmd = malloc(sizeof(t_cmd));
 	init_cmd_st(cmd);
-	fill_cmd_st(cmd, bag, path);
+	fill_cmd_st(cmd, bag, path, shell);
 	arg_helper(cmd);
 	return (cmd);
 }
@@ -57,7 +57,7 @@ t_list	*get_bags_list(t_tokens *tokens)
 	return (bags);
 }
 
-t_list_cmd	*get_list_cmds_from_bags(t_list *bags, char **path)
+t_list_cmd	*get_list_cmds_from_bags(t_list *bags, char **path, t_shell *shell)
 {
 	t_list_cmd	*cmds;
 	t_list_cmd	*last_node;
@@ -70,7 +70,7 @@ t_list_cmd	*get_list_cmds_from_bags(t_list *bags, char **path)
 	{
 		new_node = malloc(sizeof(t_list_cmd));
 		new_node->next = NULL;
-		new_node->cmd = bag_to_cmd((t_tokens *)bags->content, path);
+		new_node->cmd = bag_to_cmd((t_tokens *)bags->content, path, shell);
 		if (!cmds)
 		{
 			cmds = new_node;
@@ -86,12 +86,12 @@ t_list_cmd	*get_list_cmds_from_bags(t_list *bags, char **path)
 	return (cmds);
 }
 
-t_list_cmd	*get_cmds_from_tokens(t_tokens *tokens, char **path)
-{
-	t_list		*bags;
-	t_list_cmd	*cmds;
+// t_list_cmd	*get_cmds_from_tokens(t_tokens *tokens, char **path, t_shell *shell)
+// {
+// 	t_list		*bags;
+// 	t_list_cmd	*cmds;
 
-	bags = get_bags_list(tokens);
-	cmds = get_list_cmds_from_bags(bags, path);
-	return (cmds);
-}
+// 	bags = get_bags_list(tokens);
+// 	cmds = get_list_cmds_from_bags(bags, path, shell);
+// 	return (cmds);
+// }

@@ -20,10 +20,10 @@
 // 	}
 // }
 
-void	patatipatata25lines(int *paips[])
+void	patatipatata25lines(int *paips[], t_shell *shell)
 {
 	close_paips(paips);
-	while (wait(NULL) > 0)
+	while (wait(&(shell->dollar_question_mark)) > 0)
 		;
 }
 
@@ -65,5 +65,5 @@ void	exec_commands(t_shell *shell, t_list_cmd *list_cmd)
 		list_cmd = list_cmd->next;
 		index++;
 	}
-	patatipatata25lines(paips);
+	patatipatata25lines(paips, shell);
 }

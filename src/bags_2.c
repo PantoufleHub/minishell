@@ -31,12 +31,12 @@ int	chev_utils(t_cmd **cmd_st, t_tokens **token, int a)
 	return (1);
 }
 
-int	chev_utils_bis(t_cmd **cmd_st, t_tokens **token, int a)
+int	chev_utils_bis(t_cmd **cmd_st, t_tokens **token, int a, t_shell *shell)
 {
 	if (a == 1)
 	{
 		*token = (*token)->next;
-		(*cmd_st)->heredoc = heredoc(token);
+		(*cmd_st)->heredoc = heredoc(token, shell);
 		(*cmd_st)->doc = a;
 	}
 	if (a == 0)
@@ -61,15 +61,15 @@ int	chev_utils_bis(t_cmd **cmd_st, t_tokens **token, int a)
 	return (1);
 }
 
-int	store_chevron(t_cmd **cmd_st, t_tokens **token)
+int	store_chevron(t_cmd **cmd_st, t_tokens **token, t_shell *shell)
 {
 	if (ft_strncmp((*token)->token, "<<", 2) == 0)
 	{
-		return (chev_utils_bis(cmd_st, token, 1));
+		return (chev_utils_bis(cmd_st, token, 1, shell));
 	}
 	else if (ft_strncmp((*token)->token, "<", 1) == 0)
 	{
-		return (chev_utils_bis(cmd_st, token, 0));
+		return (chev_utils_bis(cmd_st, token, 0, shell));
 	}
 	else if (ft_strncmp((*token)->token, ">>", 2) == 0)
 	{
@@ -82,7 +82,8 @@ int	store_chevron(t_cmd **cmd_st, t_tokens **token)
 	return (0);
 }
 
-void	fill_cmd_st(t_cmd *new_cmd, t_tokens *current_token, char **path)
+void	fill_cmd_st(t_cmd *new_cmd, t_tokens *current_token, char **path,
+		t_shell *shell)
 {
 	int	cmd_found;
 	int	is_chevron;
@@ -91,7 +92,7 @@ void	fill_cmd_st(t_cmd *new_cmd, t_tokens *current_token, char **path)
 	is_chevron = 0;
 	while (current_token)
 	{
-		is_chevron = store_chevron(&new_cmd, &current_token);
+		is_chevron = store_chevron(&new_cmd, &current_token, shell);
 		if (is_chevron == -1)
 		{
 			new_cmd->error = 1;

@@ -26,16 +26,32 @@ void	interpret_dollar(t_string **str, char *line, int *index, t_shell *shell)
 	int			i;
 
 	var_name = NULL;
+	env = NULL;
 	*index += 1;
-	while (line[*index] != 0 && (ft_isalnum(line[*index])
-			|| line[*index] == '_'))
+	while (line[*index] != 0 && ((ft_isalnum(line[*index])
+				|| line[*index] == '_' || line[*index] == '?')))
 	{
 		add_char(&var_name, line[*index]);
+		if (line[*index] == '?')
+		{
+			*index += 1;
+			break ;
+		}
 		*index += 1;
 	}
 	var = get_string(var_name);
 	free_string(var_name);
-	env = get_env(shell->env, var);
+	if (var[0] == 0)
+	{
+		free(var);
+		return ;
+	}
+	if (ft_strncmp(var, "?", 1) == 0)
+	{
+		env = ft_itoa(shell->dollar_question_mark);
+	}
+	else
+		env = get_env(shell->env, var);
 	free(var);
 	i = 0;
 	while (env && env[i])
@@ -43,6 +59,8 @@ void	interpret_dollar(t_string **str, char *line, int *index, t_shell *shell)
 		add_char(str, env[i]);
 		i++;
 	}
+	if (env)
+		free(env);
 }
 
 char	*parse_env_var(char *line, t_shell *shell)

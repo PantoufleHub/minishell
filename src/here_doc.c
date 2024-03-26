@@ -13,7 +13,7 @@ int	heredoc_helper(t_tokens **token, char *line)
 	return (0);
 }
 
-char	*heredoc(t_tokens **token)
+char	*heredoc(t_tokens **token, t_shell *shell)
 {
 	char	*line;
 	char	*doc;
@@ -39,5 +39,7 @@ char	*heredoc(t_tokens **token)
 	tmp = doc;
 	doc = ft_strjoin(tmp, "\n");
 	free(tmp);
-	return (doc);
+	tmp = parse_env_var(doc, shell);
+	free(doc);
+	return (tmp);
 }

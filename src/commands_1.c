@@ -67,6 +67,7 @@ void	interpret_line(char *line, t_shell *shell)
 	char		*tmp_line;
 
 	signal(SIGINT, SIG_IGN);
+	signal(SIGQUIT, SIG_IGN);
 	write(STDOUT_FILENO, NRM, ft_strlen(NRM));
 	if (!line)
 		sigterm();

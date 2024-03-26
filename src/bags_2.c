@@ -25,6 +25,8 @@ int	chev_utils(t_cmd **cmd_st, t_tokens **token, int a)
 		}
 		(*cmd_st)->fd_out = open((*token)->token, 0x209, 0644);
 	}
+	if ((*cmd_st)->outfile)
+		free((*cmd_st)->outfile);
 	(*cmd_st)->outfile = ft_strdup((*token)->token);
 	return (1);
 }
@@ -40,6 +42,8 @@ int	chev_utils_bis(t_cmd **cmd_st, t_tokens **token, int a)
 	if (a == 0)
 	{
 		*token = (*token)->next;
+		if ((*cmd_st)->infile)
+			free((*cmd_st)->infile);
 		(*cmd_st)->infile = ft_strdup((*token)->token);
 		if (access((*token)->token, F_OK) == -1)
 		{

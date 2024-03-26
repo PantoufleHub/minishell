@@ -34,7 +34,7 @@ void	choose_exec(t_cmd *cmd, int *paips[], int cmd_nb, t_shell *shell)
 	close_paips(paips);
 	set_in_out(cmd);
 	if (cmd->cmd_type == CMD_BUILTIN)
-		exec_builtin(cmd, shell);
+		shell->dollar_question_mark = exec_builtin(cmd, shell);
 	else
 		exec_command(cmd, shell->env);
 }

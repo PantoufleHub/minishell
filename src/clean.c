@@ -65,12 +65,6 @@ void	clean_cmd_str(t_cmd *cmd)
 	int	i;
 
 	i = 0;
-	while (cmd->a_arg && cmd->a_arg[i])
-	{
-		free(cmd->a_arg[i]);
-		cmd->a_arg[i] = NULL;
-		i++;
-	}
 	if (cmd->a_arg)
 	{
 		free(cmd->a_arg);

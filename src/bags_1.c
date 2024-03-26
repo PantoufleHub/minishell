@@ -40,7 +40,9 @@ void	add_cmd_and_type_utils(char *cmd,
 	if (cmd)
 		st_cmd->cmd = ft_strdup(cmd);
 	else
+	{
 		st_cmd->cmd = ft_strdup(token->token);
+	}
 	free(cmd);
 	cmd = NULL;
 }

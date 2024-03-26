@@ -96,7 +96,9 @@ void	exec_command(t_cmd	*cmd, char **env)
 	if (cmd->error)
 		return ;
 	if ((cmd->infile || cmd->heredoc) && !cmd->cmd)
+	{
 		exit(0);
+	}
 	if (!cmd->cmd)
 		exit(0);
 	if (cmd->fd_in && cmd->fd_in != STDIN_FILENO)

@@ -10,6 +10,7 @@
 # include <termios.h>
 # include <sys/types.h>
 # include <sys/wait.h>
+# include <sys/stat.h>
 # include <errno.h>
 # include <readline/readline.h>
 # include <readline/history.h>
@@ -139,7 +140,7 @@ int						n_count_echo(char **av);
 
 int						ft_echo(char **av);
 
-int						ft_cd(char **a_arg);
+int						ft_cd(char **a_arg, t_shell *shell);
 
 int						ft_pwd(void);
 

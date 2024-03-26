@@ -22,7 +22,7 @@ char	*get_cmd(char **paths, char *cmd)
 	int		index;
 
 	if (access(cmd, F_OK) == 0 && access(cmd, X_OK) == 0)
-		return (cmd);
+		return (ft_strdup(cmd));
 	index = 0;
 	while (paths[index])
 	{

@@ -23,6 +23,8 @@ void	init_shell(t_shell *shell, char **env)
 	entry_display();
 	shell->dollar_question_mark = 0;
 	init_shell_utils(shell, env);
+	shell->fd_in = dup(STDIN_FILENO);
+	shell->fd_out = dup(STDOUT_FILENO);
 }
 
 void	destroy_shell(t_shell *shell)

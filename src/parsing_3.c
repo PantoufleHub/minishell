@@ -11,7 +11,7 @@ void	quotenizor(t_string **token, char *line, t_parse *p)
 
 void	tokenizor(t_tokens **tokens, t_string **token)
 {
-	char *prout;
+	char	*prout;
 
 	prout = get_string(*token);
 	add_token(tokens, prout);

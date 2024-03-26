@@ -33,7 +33,6 @@ char	**get_paths(char *envp[])
 	find_path = NULL;
 	find_path = find_paths(envp);
 	paths = ft_split(find_path, ':');
-	// free (find_path);
 	if (!paths)
 		error_message("Unable to find paths");
 	return (paths);

@@ -18,7 +18,7 @@ void	free_tokens(t_tokens *tokens)
 
 int	end_of_line(int in_quote, t_string *token, t_tokens **tokens)
 {
-	char *prout;
+	char	*prout;
 
 	if (in_quote)
 	{
@@ -40,7 +40,7 @@ int	end_of_line(int in_quote, t_string *token, t_tokens **tokens)
 void	acco_tokenizor(t_string **token, t_tokens **tokens, char *line,
 	t_parse *p)
 {
-	char *prout;
+	char	*prout;
 
 	if (*token)
 	{
@@ -65,7 +65,7 @@ void	acco_tokenizor(t_string **token, t_tokens **tokens, char *line,
 void	pipo_tokenizor(t_string **token, t_tokens **tokens, char *line,
 	t_parse *p)
 {
-	char *prout;
+	char	*prout;
 
 	if (*token)
 	{

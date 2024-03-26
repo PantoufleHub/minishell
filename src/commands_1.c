@@ -81,8 +81,6 @@ void	interpret_line(char *line, t_shell *shell)
 		paths = get_paths(shell->env);
 		list_bag = get_bags_list(tokens);
 		list_cmd = get_list_cmds_from_bags(list_bag, paths);
-		shell->fd_in = dup(STDIN_FILENO);
-		shell->fd_out = dup(STDOUT_FILENO);
 		exec_commands(shell, list_cmd);
 	}
 	clean_swag(list_cmd, list_bag, paths, tokens);

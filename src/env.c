@@ -8,7 +8,7 @@ int	ft_env(t_shell *shell)
 	i = 0;
 	equal = NULL;
 	if (!shell->env)
-		return (0);
+		return (EXIT_FAILURE);
 	while (shell->env[i])
 	{
 		equal = ft_strchr(shell->env[i], '=');
@@ -16,5 +16,5 @@ int	ft_env(t_shell *shell)
 			printf("%s\n", shell->env[i]);
 		i++;
 	}
-	return (0);
+	return (EXIT_SUCCESS);
 }

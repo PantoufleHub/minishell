@@ -70,16 +70,16 @@ int	ft_echo(char **av)
 
 	i = 1;
 	if (!av)
-		return (0);
+		return (EXIT_FAILURE);
 	if (!av[i])
 	{
 		printf("\n");
-		return (0);
+		return (EXIT_SUCCESS);
 	}
 	if ((ft_strncmp(av[i], "-n", 2) == 0)
 		&& (ft_strncmp(av[i], "-n", ft_strlen(av[i])) == 0))
 		echo_w_n(av);
 	else
 		echo_wo_n(av);
-	return (0);
+	return (EXIT_SUCCESS);
 }

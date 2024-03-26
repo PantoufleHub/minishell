@@ -43,18 +43,23 @@ char	**reduce_env(t_shell *shell, char *a_arg)
 	return (new);
 }
 
-void	ft_unset(t_shell *shell, char **a_arg)
+int	ft_unset(t_shell *shell, char **a_arg)
 {
 	int		i;
+	int		ret;
 	char	**tmp;
 
 	i = 1;
+	ret = EXIT_SUCCESS;
 	tmp = NULL;
 	while (a_arg[i])
 	{
 		tmp = reduce_env(shell, a_arg[i]);
 		if (tmp)
 			shell->env = tmp;
+		if (!tmp)
+			ret = EXIT_FAILURE;
 		i++;
 	}
+	return (ret);
 }

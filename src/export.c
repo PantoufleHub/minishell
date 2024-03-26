@@ -77,20 +77,25 @@ char	**add_var_env(char **export, char *a_arg)
 	return (new);
 }
 
-void	ft_export(char **a_arg, t_shell *shell)
+int	ft_export(char **a_arg, t_shell *shell)
 {
 	char	**tmp;
 	int		i;
+	int		ret;
 
 	i = 1;
+	ret = EXIT_SUCCESS;
 	tmp = NULL;
 	while (a_arg[i])
 	{
 		tmp = add_var_env(shell->env, a_arg[i]);
 		if (tmp)
 			shell->env = tmp;
+		if (!tmp)
+			ret = EXIT_FAILURE;
 		i++;
 	}
 	if (!a_arg[1])
 		print_export(shell);
+	return (ret);
 }

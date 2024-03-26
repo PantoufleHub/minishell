@@ -150,7 +150,7 @@ int						ft_cd(char **a_arg, t_shell *shell);
 
 int						ft_pwd(void);
 
-void					ft_exit(int status);
+int						ft_exit(int status);
 
 void					exec_builtin(t_cmd *cmd, t_shell *shell);
 
@@ -158,7 +158,7 @@ int						ft_env(t_shell *shell);
 
 void					init_shell(t_shell *shell, char **env);
 
-void					ft_export(char **a_arg, t_shell *shell);
+int						ft_export(char **a_arg, t_shell *shell);
 
 void					destroy_shell(t_shell *shell);
 
@@ -184,13 +184,11 @@ void					var_utils(char **env, char *a_arg, char **new,
 
 char					**add_var_env(char **export, char *a_arg);
 
-void					ft_export(char **a_arg, t_shell *shell);
-
 int						count_cmds(t_list_cmd *cmds);
 
 char					*get_env(char **envp, char *var);
 
-void					ft_unset(t_shell *shell, char **a_arg);
+int						ft_unset(t_shell *shell, char **a_arg);
 
 void					exec_command(t_cmd	*cmd, char **env);
 

@@ -1,6 +1,7 @@
 #include "../inc/minishell.h"
 
-void	ft_exit(int status)
+int	ft_exit(int status)
 {
 	exit(status);
+	return (status);
 }

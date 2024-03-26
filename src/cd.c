@@ -21,26 +21,40 @@ int	is_directory(char *path)
 	return (S_ISDIR(statbuf.st_mode));
 }
 
+int	cd_helper(t_shell *shell, int index)
+{
+	char	*home;
+
+	home = home_path(shell->env, index);
+	if (is_directory(home))
+	{
+		chdir(home);
+		free(home);
+		return (EXIT_SUCCESS);
+	}
+	else
+	{
+		printf("%s: No such file or directory\n", home);
+		free(home);
+		return (EXIT_FAILURE);
+	}
+}
+
 int	ft_cd(char **a_arg, t_shell *shell)
 {
 	int		index;
-	char	*home;
 
 	index = 0;
 	if (!a_arg[1])
 	{
 		index = find_var_index("HOME", shell->env);
 		if (index > -1)
-		{	
-			home = home_path(shell->env, index);
-			if (is_directory(home))
-				chdir(home);
-			else
-				printf("%s: No such file or directory\n", home);
-			free(home);
-		}
+			return (cd_helper(shell, index));
 		else
+		{
 			printf("cd: HOME not set\n");
+			return (EXIT_FAILURE);
+		}
 	}
 	else if (chdir(a_arg[1]) == -1)
 	{

@@ -19,7 +19,7 @@ void	entry_display(void)
 		"███  █████ █████\n");
 	ft_printf("  ░░░░░     ░░░░░ ░░░░░ ░░░░ ░░░░░ ░░░░░ ░░░░░░  ░░░░ ░░░░░  ░░░"
 		"░░░  ░░░░░ ░░░░░\n"NRM);
-	ft_printf(CYN"  v0.10.7 "YEL"Episode 10, season 12 titled : The "GRN"leek "YEL" has been fully "RED"swallowed. or... is it?\n\n");
+	ft_printf(CYN"  v0.10.8 "YEL"Episode 10, season 12 titled : The "GRN"leek "YEL" has been fully "RED"swallowed. or... is it?\n\n");
 	ft_printf(MAG"                This project is brought to you by jbido and a"
 		"péro\n\n\n"NRM);
 }

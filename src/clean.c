@@ -25,10 +25,6 @@ void	clean_list_bag(t_list *list_bag)
 		while (token_list)
 		{
 			token = (char *)token_list->content;
-			// if (ft_strncmp(token, ">", 1) != 0)
-			// {
-			// 	printf(RED"Clean_list_bag freeing: %s\n"NRM, token);
-			// }
 			free(token);
 			token = NULL;
 			tmp_token_list = token_list;

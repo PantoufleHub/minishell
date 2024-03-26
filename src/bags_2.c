@@ -1,32 +1,5 @@
 #include "../inc/minishell.h"
 
-char	*heredoc(t_tokens **token)
-{
-	char	*line;
-	char	*doc;
-
-	doc = ft_strdup("");
-	while (1)
-	{
-		line = readline("> ");
-		if (!line)
-			break ;
-		if (!(ft_strncmp((*token)->token, line, ft_strlen((*token)->token)))
-			&& !(ft_strncmp((*token)->token, line, ft_strlen(line))))
-		{
-			free (line);
-			break ;
-		}
-		if (doc[0] != '\0')
-			doc = ft_strjoin(doc, "\n");
-		doc = ft_strjoin(doc, line);
-		free(line);
-		line = NULL;
-	}
-	doc = ft_strjoin(doc, "\n");
-	return (doc);
-}
-
 int	chev_utils(t_cmd **cmd_st, t_tokens **token, int a)
 {
 	(*cmd_st)->append = a;

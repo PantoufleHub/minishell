@@ -3,13 +3,9 @@
 int	last_chevron(t_tokens *token)
 {
 	if (!token)
-	{
 		return (EXIT_SUCCESS);
-	}
 	while (token->next)
-	{
 		token = token->next;
-	}
 	if ((ft_strncmp(token->token, ">", 1) == 0
 			|| ft_strncmp(token->token, "<", 1) == 0
 			|| ft_strncmp(token->token, ">>", 2) == 0
@@ -96,6 +92,8 @@ int	syntax_check(t_tokens *token)
 	if (chevron_meta(token) == 1)
 		return (EXIT_FAILURE);
 	if (dub_dub_chev(token) == 1)
+		return (EXIT_FAILURE);
+	if (dub_pipo(token) == 1)
 		return (EXIT_FAILURE);
 	return (EXIT_SUCCESS);
 }

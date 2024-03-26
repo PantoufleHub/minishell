@@ -95,6 +95,8 @@ int						syntax_check(t_tokens *token);
 
 int						dub_dub_chev(t_tokens *token);
 
+int						dub_pipo(t_tokens *token);
+
 char					*get_cmd(char **paths, char *cmd);
 
 int						args_size(t_list_arg *args);

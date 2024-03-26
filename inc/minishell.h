@@ -109,24 +109,28 @@ int						add_cmd_and_type(t_tokens *token,
 
 void					add_arg(t_cmd *cmd_st, char *arg);
 
-int						store_chevron(t_cmd **cmd_st, t_tokens **token);
+int						store_chevron(t_cmd **cmd_st, t_tokens **token,
+							t_shell *shell);
 
 int						chev_utils(t_cmd **cmd_st, t_tokens **token, int a);
 
-int						chev_utils_bis(t_cmd **cmd_st, t_tokens **token, int a);
+int						chev_utils_bis(t_cmd **cmd_st, t_tokens **token, int a,
+							t_shell *shell);
 
-void					fill_cmd_st(t_cmd *new_cmd,
-							t_tokens *current_token, char **path);
+void					fill_cmd_st(t_cmd *new_cmd, t_tokens *current_token,
+							char **path, t_shell *shell);
 
-t_cmd					*bag_to_cmd(t_tokens *bag, char **path);
+t_cmd					*bag_to_cmd(t_tokens *bag, char **path, t_shell *shell);
 
 t_list					*get_bags_list(t_tokens *tokens);
 
-t_list_cmd				*get_list_cmds_from_bags(t_list *bags, char **path);
+t_list_cmd				*get_list_cmds_from_bags(t_list *bags, char **path,
+							t_shell *shell);
 
-t_list_cmd				*get_cmds_from_tokens(t_tokens *tokens, char **path);
+t_list_cmd				*get_cmds_from_tokens(t_tokens *tokens, char **path,
+							t_shell *shell);
 
-char					*heredoc(t_tokens **token);
+char					*heredoc(t_tokens **token, t_shell *shell);
 
 t_tokens				*get_tokens(char *line);
 

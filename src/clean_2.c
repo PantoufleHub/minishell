@@ -20,3 +20,12 @@ void	clean_tokens(t_tokens *tokens)
 		tokens = tmp;
 	}
 }
+
+void	free_str(char **str)
+{
+	if (str && *str)
+	{
+		free(*str);
+		(*str) = NULL;
+	}
+}

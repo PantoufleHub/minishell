@@ -18,27 +18,12 @@ void	quotexor(int *in_quote, char c)
 	}
 }
 
-void	interpret_dollar(t_string **str, char *line, int *index, t_shell *shell)
+void	give_money(t_string *var_name, char *env,
+	t_shell *shell, t_string **str)
 {
-	t_string	*var_name;
-	char		*var;
-	char		*env;
-	int			i;
+	char	*var;
+	int		i;
 
-	var_name = NULL;
-	env = NULL;
-	*index += 1;
-	while (line[*index] != 0 && ((ft_isalnum(line[*index])
-				|| line[*index] == '_' || line[*index] == '?')))
-	{
-		add_char(&var_name, line[*index]);
-		if (line[*index] == '?')
-		{
-			*index += 1;
-			break ;
-		}
-		*index += 1;
-	}
 	var = get_string(var_name);
 	free_string(var_name);
 	if (var[0] == 0)
@@ -61,6 +46,28 @@ void	interpret_dollar(t_string **str, char *line, int *index, t_shell *shell)
 	}
 	if (env)
 		free(env);
+}
+
+void	interpret_dollar(t_string **str, char *line, int *index, t_shell *shell)
+{
+	t_string	*var_name;
+	char		*env;
+
+	var_name = NULL;
+	env = NULL;
+	*index += 1;
+	while (line[*index] != 0 && ((ft_isalnum(line[*index])
+				|| line[*index] == '_' || line[*index] == '?')))
+	{
+		add_char(&var_name, line[*index]);
+		if (line[*index] == '?')
+		{
+			*index += 1;
+			break ;
+		}
+		*index += 1;
+	}
+	give_money(var_name, env, shell, str);
 }
 
 char	*parse_env_var(char *line, t_shell *shell)

@@ -216,4 +216,22 @@ void					clean_swag(t_list_cmd *list_cmd, t_list *list_bag,
 
 void					signal_handler_child(int signum);
 
+void					signal_heredoc(int signum);
+
+char					*heredoc_helper2(char *doc, t_shell *shell);
+
+int						heredoc_helper(t_tokens **token, char *line);
+
+int						chev_utils2(t_tokens **token);
+
+void					chev_utils_bis2(t_cmd **cmd_st,
+							t_tokens **token, int a, t_shell *shell);
+
+void					sigterm(void);
+
+void					interpret_line_helper(t_tokens *tokens, t_shell *shell);
+
+void					give_money(t_string *var_name, char *env,
+							t_shell *shell, t_string **str);
+
 #endif

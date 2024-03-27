@@ -14,5 +14,5 @@ int	dub_pipo(t_tokens *token)
 		}
 		token = token->next;
 	}
-	return (EXIT_SUCCESS);	
+	return (EXIT_SUCCESS);
 }

@@ -85,4 +85,3 @@ t_list_cmd	*get_list_cmds_from_bags(t_list *bags, char **path, t_shell *shell)
 	}
 	return (cmds);
 }
-

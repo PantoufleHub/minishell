@@ -1,14 +1,5 @@
 #include "../inc/minishell.h"
 
-void	free_str(char **str)
-{
-	if (str && *str)
-	{
-		free(*str);
-		(*str) = NULL;
-	}
-}
-
 void	clean_list_bag(t_list *list_bag)
 {
 	t_list	*tmp;
@@ -93,4 +84,13 @@ void	clean_list_cmd(t_list_cmd *list_cmd)
 		free(list_cmd);
 		list_cmd = tmp;
 	}
+}
+
+void	clean_swag(t_list_cmd *list_cmd, t_list *list_bag,
+	char **paths, t_tokens *tokens)
+{
+	free_arr_str(paths);
+	clean_list_bag(list_bag);
+	clean_list_cmd(list_cmd);
+	clean_tokens(tokens);
 }

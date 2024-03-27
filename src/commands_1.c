@@ -37,48 +37,15 @@ char	*get_cmd(char **paths, char *cmd)
 	return (NULL);
 }
 
-void	sigterm(void)
+void	interpret_line_helper(t_tokens *tokens, t_shell *shell)
 {
-	char	*prompt;
-
-	prompt = get_prompt();
-	printf("\033[F");
-	printf("\033[G");
-	printf("%sexit\n"NRM, prompt);
-	free(prompt);
-	exit(0);
-}
-
-void	clean_swag(t_list_cmd *list_cmd, t_list *list_bag,
-	char **paths, t_tokens *tokens)
-{
-	free_arr_str(paths);
-	clean_list_bag(list_bag);
-	clean_list_cmd(list_cmd);
-	clean_tokens(tokens);
-}
-
-void	interpret_line(char *line, t_shell *shell)
-{
-	t_tokens	*tokens;
+	char		**paths;
 	t_list		*list_bag;
 	t_list_cmd	*list_cmd;
-	char		**paths;
-	char		*tmp_line;
 
-	signal(SIGINT, SIG_IGN);
-	signal(SIGQUIT, SIG_IGN);
-	write(STDOUT_FILENO, NRM, ft_strlen(NRM));
-	shell->heredocctrlc = 0;
-	if (!line)
-		sigterm();
-	tokens = NULL;
-	list_bag = NULL;
-	list_cmd = NULL;
 	paths = NULL;
-	tmp_line = parse_env_var(line, shell);
-	tokens = get_tokens(tmp_line);
-	free(tmp_line);
+	list_cmd = NULL;
+	list_bag = NULL;
 	if (tokens && syntax_check(tokens) == 0)
 	{
 		paths = get_paths(shell->env);
@@ -90,4 +57,22 @@ void	interpret_line(char *line, t_shell *shell)
 			printf("\n");
 	}
 	clean_swag(list_cmd, list_bag, paths, tokens);
+}
+
+void	interpret_line(char *line, t_shell *shell)
+{
+	t_tokens	*tokens;
+	char		*tmp_line;
+
+	signal(SIGINT, SIG_IGN);
+	signal(SIGQUIT, SIG_IGN);
+	write(STDOUT_FILENO, NRM, ft_strlen(NRM));
+	shell->heredocctrlc = 0;
+	if (!line)
+		sigterm();
+	tokens = NULL;
+	tmp_line = parse_env_var(line, shell);
+	tokens = get_tokens(tmp_line);
+	free(tmp_line);
+	interpret_line_helper(tokens, shell);
 }

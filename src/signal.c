@@ -22,12 +22,9 @@ void	signal_handler(int signum)
 		rl_on_new_line();
 		rl_replace_line("", 0);
 		rl_redisplay();
-		// printf("endsigint");
 	}
 	else if (signum == SIGQUIT)
 	{
-		// ft_printf("\n");
-		// rl_replace_line("", 0);
 		rl_on_new_line();
 		rl_redisplay();
 	}
@@ -45,11 +42,6 @@ void	set_signals(void)
 		perror("Error registering SIGINT signal handler");
 		exit(EXIT_FAILURE);
 	}
-	// if (signal(SIGTERM, signal_handler_child) == SIG_ERR)
-	// {
-	// 	perror("Error registering SIGTERM signal handler");
-	// 	exit(EXIT_FAILURE);
-	// }
 }
 
 void	set_signals_child(void)
@@ -64,9 +56,16 @@ void	set_signals_child(void)
 		perror("Error registering SIGINT signal handler");
 		exit(EXIT_FAILURE);
 	}
-	// if (signal(SIGTERM, signal_handler_child) == SIG_ERR)
-	// {
-	// 	perror("Error registering SIGTERM signal handler");
-	// 	exit(EXIT_FAILURE);
-	// }
+}
+
+void	sigterm(void)
+{
+	char	*prompt;
+
+	prompt = get_prompt();
+	printf("\033[F");
+	printf("\033[G");
+	printf("%sexit\n"NRM, prompt);
+	free(prompt);
+	exit(0);
 }

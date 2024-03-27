@@ -5,12 +5,10 @@ void	quotenizor(t_string **token, char *line, t_parse *p)
 	if (line[p->index] == '\'')
 	{
 		p->in_quote = 1;
-		// return ;
 	}
 	if (line[p->index] == '"')
 	{
 		p->in_quote = 2;
-		// return ;
 	}
 	add_char(token, line[p->index]);
 }
@@ -33,7 +31,6 @@ void	in_quotenizor(t_string **token, char *line, t_parse *p)
 		|| (p->in_quote == 2 && line[p->index] == '"'))
 	{
 		p->in_quote = 0;
-		// return ;
 	}
 	add_char(token, line[p->index]);
 }

@@ -129,9 +129,6 @@ t_list					*get_bags_list(t_tokens *tokens);
 t_list_cmd				*get_list_cmds_from_bags(t_list *bags, char **path,
 							t_shell *shell);
 
-t_list_cmd				*get_cmds_from_tokens(t_tokens *tokens, char **path,
-							t_shell *shell);
-
 char					*heredoc(t_tokens **token, t_shell *shell);
 
 t_tokens				*get_tokens(char *line);
@@ -152,7 +149,7 @@ int						ft_pwd(void);
 
 int						ft_exit(int status);
 
-void					exec_builtin(t_cmd *cmd, t_shell *shell);
+int						exec_builtin(t_cmd *cmd, t_shell *shell);
 
 int						ft_env(t_shell *shell);
 

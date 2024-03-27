@@ -86,12 +86,3 @@ t_list_cmd	*get_list_cmds_from_bags(t_list *bags, char **path, t_shell *shell)
 	return (cmds);
 }
 
-// t_list_cmd	*get_cmds_from_tokens(t_tokens *tokens, char **path, t_shell *shell)
-// {
-// 	t_list		*bags;
-// 	t_list_cmd	*cmds;
-
-// 	bags = get_bags_list(tokens);
-// 	cmds = get_list_cmds_from_bags(bags, path, shell);
-// 	return (cmds);
-// }

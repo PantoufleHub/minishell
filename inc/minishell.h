@@ -152,7 +152,7 @@ int						ft_pwd(void);
 
 int						ft_exit(int status);
 
-void					exec_builtin(t_cmd *cmd, t_shell *shell);
+int						exec_builtin(t_cmd *cmd, t_shell *shell);
 
 int						ft_env(t_shell *shell);
 
@@ -216,5 +216,7 @@ void					clean_tokens(t_tokens *tokens);
 
 void					clean_swag(t_list_cmd *list_cmd, t_list *list_bag,
 							char **paths, t_tokens *tokens);
+
+void					signal_handler_child(int signum);
 
 #endif

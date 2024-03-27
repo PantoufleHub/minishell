@@ -69,6 +69,7 @@ void	interpret_line(char *line, t_shell *shell)
 	signal(SIGINT, SIG_IGN);
 	signal(SIGQUIT, SIG_IGN);
 	write(STDOUT_FILENO, NRM, ft_strlen(NRM));
+	shell->heredocctrlc = 0;
 	if (!line)
 		sigterm();
 	tokens = NULL;

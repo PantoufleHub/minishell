@@ -31,7 +31,7 @@ int	chev_utils(t_cmd **cmd_st, t_tokens **token, int a)
 	return (1);
 }
 
-int	chev_utils_bis(t_cmd **cmd_st, t_tokens **token, int a, t_shell *shell)
+int	 chev_utils_bis(t_cmd **cmd_st, t_tokens **token, int a, t_shell *shell)
 {
 	if (a == 1)
 	{

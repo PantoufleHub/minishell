@@ -74,6 +74,7 @@ typedef struct s_shell
 	int				fd_out;
 	struct termios	term_save;
 	int				heredocctrlc;
+	int				heredoc_len;
 }	t_shell;
 
 #endif

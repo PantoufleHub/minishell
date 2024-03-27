@@ -214,4 +214,6 @@ void					clean_tokens(t_tokens *tokens);
 void					clean_swag(t_list_cmd *list_cmd, t_list *list_bag,
 							char **paths, t_tokens *tokens);
 
+void					signal_handler_child(int signum);
+
 #endif

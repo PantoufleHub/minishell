@@ -30,31 +30,46 @@ char	*heredoc_helper2(char *doc, t_shell *shell)
 	return (tmp);
 }
 
+void	signal_heredoc(int signum)
+{
+	signum = 0;
+	exit(80085);
+}
+
 char	*heredoc(t_tokens **token, t_shell *shell)
 {
 	char	*line;
 	char	*doc;
 	char	*tmp;
+	pid_t	pid;
 
-	doc = NULL;
-	while (1)
+	tmp = NULL;
+	pid = fork();
+	if (pid == 0)
 	{
-		line = readline("> ");
-		if (heredoc_helper(token, line))
-			break ;
-		if (!doc)
-			doc = ft_strdup(line);
-		else
+		signal(SIGINT, signal_heredoc);
+		doc = NULL;
+		while (1)
 		{
-			tmp = doc;
-			doc = ft_strjoin(tmp, "\n");
-			free(tmp);
-			tmp = doc;
-			doc = ft_strjoin(tmp, line);
-			free(tmp);
+			line = readline("> ");
+			if (heredoc_helper(token, line))
+				break ;
+			if (!doc)
+				doc = ft_strdup(line);
+			else
+			{
+				tmp = doc;
+				doc = ft_strjoin(tmp, "\n");
+				free(tmp);
+				tmp = doc;
+				doc = ft_strjoin(tmp, line);
+				free(tmp);
+			}
+			free(line);
 		}
-		free(line);
+		tmp = heredoc_helper2(doc, shell);
+		exit(0);
 	}
-	tmp = heredoc_helper2(doc, shell);
+	waitpid(pid, &shell->heredocctrlc, 0);
 	return (tmp);
 }

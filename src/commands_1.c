@@ -59,6 +59,43 @@ void	interpret_line_helper(t_tokens *tokens, t_shell *shell)
 	clean_swag(list_cmd, list_bag, paths, tokens);
 }
 
+char	*unquotor(char *token)
+{
+	int			index;
+	int			in_quote;
+	t_string	*new;
+	char		*ret;
+
+	index = 0;
+	in_quote = 0;
+	new = NULL;
+	while (token[index])
+	{
+		quotexor(&in_quote, token[index]);
+		if ((in_quote == 0 && token[index] != '\'' && token[index] != '"')
+			|| (in_quote == 1 && token[index] != '\'')
+			|| (in_quote == 2 && token[index] != '"'))
+			add_char(&new, token[index]);
+		index++;
+	}
+	ret = get_string(new);
+	free_string(new);
+	return (ret);
+}
+
+void	unquotokenator(t_tokens *tokens)
+{
+	char	*prout;
+
+	while (tokens)
+	{
+		prout = tokens->token;
+		tokens->token = unquotor(tokens->token);
+		free(prout);
+		tokens = tokens->next;
+	}
+}
+
 void	interpret_line(char *line, t_shell *shell)
 {
 	t_tokens	*tokens;
@@ -73,6 +110,10 @@ void	interpret_line(char *line, t_shell *shell)
 	tokens = NULL;
 	tmp_line = parse_env_var(line, shell);
 	tokens = get_tokens(tmp_line);
+	unquotokenator(tokens);
+	// printf(SEP);
+	// print_tokens(tokens);
+	// printf(SEP);
 	free(tmp_line);
 	interpret_line_helper(tokens, shell);
 }

@@ -234,4 +234,6 @@ void					interpret_line_helper(t_tokens *tokens, t_shell *shell);
 void					give_money(t_string *var_name, char *env,
 							t_shell *shell, t_string **str);
 
+void					quotexor(int *in_quote, char c);
+
 #endif

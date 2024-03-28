@@ -11,6 +11,7 @@ typedef struct s_tokens
 {
 	char			*token;
 	struct s_tokens	*next;
+	int				is_meta;
 }	t_tokens;
 
 typedef struct s_string

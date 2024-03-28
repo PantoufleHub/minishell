@@ -19,7 +19,7 @@ void	entry_display(void)
 		"███  █████ █████\n");
 	ft_printf("  ░░░░░     ░░░░░ ░░░░░ ░░░░ ░░░░░ ░░░░░ ░░░░░░  ░░░░ ░░░░░  ░░░"
 		"░░░  ░░░░░ ░░░░░\n"NRM);
-	ft_printf(YEL"  v0.12.1  More like ultra shell!			"GRN"aaaaaand plus cd minus\n\n");
+	ft_printf(YEL"  v0.12.2  More like ultra shell!			"GRN"aaaaaand plus cd minus\n\n");
 	ft_printf(MAG"                This project is brought to you by jbido and a"
 		"péro\n\n\n"NRM);
 }

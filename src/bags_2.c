@@ -2,19 +2,19 @@
 
 int	store_chevron(t_cmd **cmd_st, t_tokens **token, t_shell *shell)
 {
-	if (ft_strncmp((*token)->token, "<<", 2) == 0)
+	if (ft_strncmp((*token)->token, "<<", 2) == 0 && (*token)->is_meta)
 	{
 		return (chev_utils_bis(cmd_st, token, 1, shell));
 	}
-	else if (ft_strncmp((*token)->token, "<", 1) == 0)
+	else if (ft_strncmp((*token)->token, "<", 1) == 0 && (*token)->is_meta)
 	{
 		return (chev_utils_bis(cmd_st, token, 0, shell));
 	}
-	else if (ft_strncmp((*token)->token, ">>", 2) == 0)
+	else if (ft_strncmp((*token)->token, ">>", 2) == 0 && (*token)->is_meta)
 	{
 		return (chev_utils(cmd_st, token, 1));
 	}
-	else if (ft_strncmp((*token)->token, ">", 1) == 0)
+	else if (ft_strncmp((*token)->token, ">", 1) == 0 && (*token)->is_meta)
 	{
 		return (chev_utils(cmd_st, token, 0));
 	}

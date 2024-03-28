@@ -24,7 +24,7 @@ int	check_meta(char *token)
 	return (0);
 }
 
-void	add_token(t_tokens **l_tokens, char *token)
+void	add_token(t_tokens **l_tokens, char *token, int meta)
 {
 	t_tokens	*new;
 	t_tokens	*tmp;
@@ -34,6 +34,10 @@ void	add_token(t_tokens **l_tokens, char *token)
 	new->is_meta = 0;
 	if (check_meta(token))
 		new->is_meta = 1;
+	if (meta == 1)
+		new->is_meta = 1;
+	if (meta == 0)
+		new->is_meta = 0;
 	new->next = NULL;
 	if (!(*l_tokens))
 		*l_tokens = new;

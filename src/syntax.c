@@ -10,7 +10,7 @@ int	last_chevron(t_tokens *token)
 			|| ft_strncmp(token->token, "<", 1) == 0
 			|| ft_strncmp(token->token, ">>", 2) == 0
 			|| ft_strncmp(token->token, "<<", 2) == 0)
-		&& !token->next)
+		&& !token->next && token->is_meta == 1)
 	{
 		printf("parse error\n");
 		return (EXIT_FAILURE);
@@ -32,7 +32,8 @@ int	chevron_meta(t_tokens *token)
 				|| ft_strncmp(token->next->token, "<", 1) == 0
 				|| ft_strncmp(token->next->token, ">>", 2) == 0
 				|| ft_strncmp(token->next->token, "<<", 2) == 0
-				|| ft_strncmp(token->next->token, "|", 1) == 0))
+				|| ft_strncmp(token->next->token, "|", 1) == 0)
+			&& token->is_meta == 1)
 		{
 			printf("parse error\n");
 			return (EXIT_FAILURE);

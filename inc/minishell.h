@@ -51,7 +51,8 @@ char					*parse_env_var(char *line, t_shell *shell);
 
 void					print_tokens(t_tokens *l_tokens);
 
-void					add_token(t_tokens **l_tokens, char *token);
+void					add_token(t_tokens **l_tokens, char *token,
+							int is_meta);
 
 int						string_len(t_string *string);
 
@@ -235,5 +236,9 @@ void					give_money(t_string *var_name, char *env,
 							t_shell *shell, t_string **str);
 
 void					quotexor(int *in_quote, char c);
+
+char					*unquotor(char *token);
+
+void					unquotokenator(t_tokens *tokens);
 
 #endif

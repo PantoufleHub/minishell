@@ -8,7 +8,7 @@ SRCS_BLANK		= prompt signal commands_1 path utils  parsing_1 echo \
 				parsing_2 parsing_3 parsing_main syntax broken_pipe string env_variables \
 				bags_1 bags_2 bags_main terminal commands_2 cd pwd exit commands_builtins \
 				shell export export_utils env unset commands_3 clean clean_2 here_doc \
-				syntax_2 here_doc_2 bags_3
+				syntax_2 here_doc_2 bags_3 bloodyquotes
 				
 
 SRCS_NOMAIN		= $(addsuffix .c, $(addprefix $(SRC_FOLDER), $(SRCS_BLANK)))

@@ -44,14 +44,16 @@ t_list	*get_bags_list(t_tokens *tokens)
 	while (tokens != NULL)
 	{
 		current_tokens = NULL;
-		while (tokens != NULL && !(ft_strncmp(tokens->token, "|", 1) == 0))
+		while ((tokens != NULL && (!(ft_strncmp(tokens->token, "|", 1) == 0)
+					|| tokens->is_meta == 0)))
 		{
-			add_token(&current_tokens, tokens->token);
+			add_token(&current_tokens, tokens->token, tokens->is_meta);
 			tokens = tokens->next;
 		}
 		current_bag = ft_lstnew(current_tokens);
 		ft_lstadd_back(&bags, current_bag);
-		if (tokens != NULL && ft_strncmp(tokens->token, "|", 1) == 0)
+		if (tokens != NULL && ft_strncmp(tokens->token, "|", 1) == 0
+			&& tokens->is_meta == 1)
 			tokens = tokens->next;
 	}
 	return (bags);

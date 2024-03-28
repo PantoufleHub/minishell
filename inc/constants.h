@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   constants.h                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: jbidaux <jbidaux@student.42.fr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/03/28 19:06:02 by jbidaux           #+#    #+#             */
+/*   Updated: 2024/03/28 19:06:02 by jbidaux          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef CONSTANTS_H
 # define CONSTANTS_H
 
@@ -12,6 +24,7 @@
 
 # define SEP "~~~~~~~~~~~~~~~~~~~~~~~~~\n"
 
-# define DEBUG printf("File: "GRN"%s"NRM", Line: "RED"%d"NRM"\n", __FILE__, __LINE__);
+//# define DEBUG printf("File: "GRN"%s"NRM", 
+//Line: "RED"%d"NRM"\n", __FILE__, __LINE__);
 
 #endif

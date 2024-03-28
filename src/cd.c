@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   cd.c                                               :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: jbidaux <jbidaux@student.42.fr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/03/28 19:06:38 by jbidaux           #+#    #+#             */
+/*   Updated: 2024/03/28 19:06:38 by jbidaux          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../inc/minishell.h"
 
 char	*key_path(char **env, int index, int key_len)
@@ -12,13 +24,19 @@ char	*key_path(char **env, int index, int key_len)
 	return (home_path);
 }
 
-int	is_directory(char *path)
+void	change_opwd(t_shell *shell)
 {
-	struct stat	statbuf;
+	char	*opwd;
+	char	*current;
+	int		index;
 
-	if (stat(path, &statbuf) != 0)
-		return (0);
-	return (S_ISDIR(statbuf.st_mode));
+	current = getcwd(NULL, 0);
+	opwd = ft_strdup("OLDPWD=");
+	index = find_var_index("OLDPWD", shell->env);
+	free(shell->env[index]);
+	shell->env[index] = ft_strjoin(opwd, current);
+	free(current);
+	free(opwd);
 }
 
 int	cd_helper(t_shell *shell, int index)
@@ -28,6 +46,7 @@ int	cd_helper(t_shell *shell, int index)
 	home = key_path(shell->env, index, 5);
 	if (is_directory(home))
 	{
+		change_opwd(shell);
 		chdir(home);
 		free(home);
 		return (EXIT_SUCCESS);
@@ -51,6 +70,7 @@ int	cd_minus(t_shell *shell)
 		oldpwd = key_path(shell->env, index, 7);
 	if (is_directory(oldpwd))
 	{
+		change_opwd(shell);
 		chdir(oldpwd);
 		free(oldpwd);
 		ft_pwd();
@@ -82,7 +102,8 @@ int	ft_cd(char **a_arg, t_shell *shell)
 	}
 	else if (ft_strncmp(a_arg[1], "-", 1) == 0)
 		return (cd_minus(shell));
-	else if (chdir(a_arg[1]) == -1)
+	change_opwd(shell);
+	if (chdir(a_arg[1]) == -1)
 	{
 		perror("cd");
 		return (EXIT_FAILURE);

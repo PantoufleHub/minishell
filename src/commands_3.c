@@ -1,24 +1,16 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   commands_3.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: jbidaux <jbidaux@student.42.fr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/03/28 19:06:48 by jbidaux           #+#    #+#             */
+/*   Updated: 2024/03/28 19:06:54 by jbidaux          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../inc/minishell.h"
-
-// void	close_paip(int *paips[], int cmd_nb)
-// {
-// 	int	nb_paipos;
-
-// 	if (!paips)
-// 		return ;
-// 	nb_paipos = 0;
-// 	while (paips[nb_paipos])
-// 		nb_paipos++;
-// 	if (cmd_nb == 0)
-// 		close(paips[cmd_nb][1]);
-// 	else if (cmd_nb == nb_paipos)
-// 		close(paips[cmd_nb - 1][0]);
-// 	else
-// 	{
-// 		close(paips[cmd_nb - 1][0]);
-// 		close(paips[cmd_nb][1]);
-// 	}
-// }
 
 void	patatipatata25lines(int *paips[], t_shell *shell)
 {

@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   minishell.h                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: jbidaux <jbidaux@student.42.fr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/03/28 19:06:06 by jbidaux           #+#    #+#             */
+/*   Updated: 2024/03/28 19:06:06 by jbidaux          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef MINISHELL_H
 # define MINISHELL_H
 
@@ -240,5 +252,7 @@ void					quotexor(int *in_quote, char c);
 char					*unquotor(char *token);
 
 void					unquotokenator(t_tokens *tokens);
+
+int						is_directory(char *path);
 
 #endif

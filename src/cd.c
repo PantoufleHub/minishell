@@ -1,14 +1,14 @@
 #include "../inc/minishell.h"
 
-char	*home_path(char **env, int index)
+char	*key_path(char **env, int index, int key_len)
 {
 	int		i;
 	int		len;
 	char	*home_path;
 
 	i = 0;
-	len = ft_strlen(env[index]) - 5;
-	home_path = ft_substr(env[index], 5, len);
+	len = ft_strlen(env[index]) - key_len;
+	home_path = ft_substr(env[index], key_len, len);
 	return (home_path);
 }
 
@@ -25,7 +25,7 @@ int	cd_helper(t_shell *shell, int index)
 {
 	char	*home;
 
-	home = home_path(shell->env, index);
+	home = key_path(shell->env, index, 5);
 	if (is_directory(home))
 	{
 		chdir(home);
@@ -36,6 +36,29 @@ int	cd_helper(t_shell *shell, int index)
 	{
 		printf("%s: No such file or directory\n", home);
 		free(home);
+		return (EXIT_FAILURE);
+	}
+}
+
+int	cd_minus(t_shell *shell)
+{
+	int		index;
+	char	*oldpwd;
+
+	index = find_var_index("OLDPWD", shell->env);
+	oldpwd = key_path(shell->env, index, 7);
+	if (is_directory(oldpwd))
+	{
+		chdir(oldpwd);
+		free(oldpwd);
+		ft_pwd();
+		return (EXIT_SUCCESS);
+	}
+	else
+	{
+		printf("%s: No such file or directory\n", oldpwd);
+		free(oldpwd);
+		ft_pwd();
 		return (EXIT_FAILURE);
 	}
 }
@@ -56,6 +79,8 @@ int	ft_cd(char **a_arg, t_shell *shell)
 			return (EXIT_FAILURE);
 		}
 	}
+	else if (ft_strncmp(a_arg[1], "-", 1) == 0)
+		return (cd_minus(shell));
 	else if (chdir(a_arg[1]) == -1)
 	{
 		perror("cd");

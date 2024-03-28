@@ -45,8 +45,10 @@ int	cd_minus(t_shell *shell)
 	int		index;
 	char	*oldpwd;
 
+	oldpwd = NULL;
 	index = find_var_index("OLDPWD", shell->env);
-	oldpwd = key_path(shell->env, index, 7);
+	if (index >= 0)
+		oldpwd = key_path(shell->env, index, 7);
 	if (is_directory(oldpwd))
 	{
 		chdir(oldpwd);
@@ -56,9 +58,8 @@ int	cd_minus(t_shell *shell)
 	}
 	else
 	{
-		printf("%s: No such file or directory\n", oldpwd);
+		printf("cd: OLDPWD not set\n");
 		free(oldpwd);
-		ft_pwd();
 		return (EXIT_FAILURE);
 	}
 }

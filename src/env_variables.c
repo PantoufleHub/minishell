@@ -44,18 +44,18 @@ void	give_money(t_string *var_name, char *env,
 		return ;
 	}
 	if (ft_strncmp(var, "?", 1) == 0)
-	{
 		env = ft_itoa(shell->dollar_question_mark);
-	}
 	else
 		env = get_env(shell->env, var);
 	free(var);
 	i = 0;
+	add_char(str, '"');
 	while (env && env[i])
 	{
 		add_char(str, env[i]);
 		i++;
 	}
+	add_char(str, '"');
 	if (env)
 		free(env);
 }

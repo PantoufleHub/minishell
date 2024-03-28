@@ -14,7 +14,7 @@ SRCS_BLANK		= prompt signal commands_1 path utils  parsing_1 echo \
 SRCS_NOMAIN		= $(addsuffix .c, $(addprefix $(SRC_FOLDER), $(SRCS_BLANK)))
 SRCS			= $(SRCS_NOMAIN) $(addsuffix .c, $(addprefix $(SRC_FOLDER), $(MAIN)))
 
-LIBFLAGS		= -L./libft -lft -L$(HOME)/.brew/opt/readline/lib -lreadline -ledit #-fsanitize=address
+LIBFLAGS		= -L./libft -lft -L$(HOME)/.brew/opt/readline/lib -lreadline -ledit -fsanitize=address
 BREWFLAGS		= -I$(HOME)/.brew/opt/readline/include
 FLAGS			= -g -Wall -Wextra -Werror 
 ALLFLAGS		= $(FLAGS) $(LIBFLAGS) $(BREWFLAGS)

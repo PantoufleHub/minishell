@@ -6,7 +6,7 @@
 /*   By: jbidaux <jbidaux@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/28 19:06:44 by jbidaux           #+#    #+#             */
-/*   Updated: 2024/03/28 19:06:44 by jbidaux          ###   ########.fr       */
+/*   Updated: 2024/04/03 14:33:43 by jbidaux          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ char	*get_cmd(char **paths, char *cmd)
 	if (access(cmd, F_OK) == 0 && access(cmd, X_OK) == 0)
 		return (ft_strdup(cmd));
 	index = 0;
-	while (paths[index])
+	while (paths && paths[index])
 	{
 		tmp_path = ft_strjoin(paths[index], "/");
 		tmp_cmd = ft_strjoin(tmp_path, cmd);

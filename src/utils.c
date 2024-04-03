@@ -6,7 +6,7 @@
 /*   By: jbidaux <jbidaux@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/28 19:07:48 by jbidaux           #+#    #+#             */
-/*   Updated: 2024/03/28 19:12:28 by jbidaux          ###   ########.fr       */
+/*   Updated: 2024/04/03 14:45:33 by jbidaux          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ void	entry_display(void)
 		"███  █████ █████\n");
 	ft_printf("  ░░░░░     ░░░░░ ░░░░░ ░░░░ ░░░░░ ░░░░░ ░░░░░░  ░░░░ ░░░░░  ░░░"
 		"░░░  ░░░░░ ░░░░░\n"NRM);
-	ft_printf(RED"  v1.0.0 "YEL"Swagshell, "GRN"crafting "CYN"tomorrow's "BLU"s"
+	ft_printf(RED"  v1.0.1 "YEL"Swagshell, "GRN"crafting "CYN"tomorrow's "BLU"s"
 		"tandards.\n\n");
 	ft_printf(MAG"                This project is brought to you by jbido and a"
 		"péro\n\n\n"NRM);

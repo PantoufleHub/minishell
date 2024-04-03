@@ -6,7 +6,7 @@
 /*   By: jbidaux <jbidaux@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/28 19:07:26 by jbidaux           #+#    #+#             */
-/*   Updated: 2024/03/28 19:07:26 by jbidaux          ###   ########.fr       */
+/*   Updated: 2024/04/03 14:34:07 by jbidaux          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,10 +38,12 @@ char	**get_paths(char *envp[])
 	char	*find_path;
 
 	find_path = NULL;
+	paths = NULL;
 	find_path = get_env(envp, "PATH");
-	paths = ft_split(find_path, ':');
-	free(find_path);
-	if (!paths)
-		error_message("Unable to find paths");
+	if (find_path)
+	{
+		paths = ft_split(find_path, ':');
+		free(find_path);
+	}
 	return (paths);
 }

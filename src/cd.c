@@ -6,7 +6,7 @@
 /*   By: jbidaux <jbidaux@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/28 19:06:38 by jbidaux           #+#    #+#             */
-/*   Updated: 2024/03/28 19:06:38 by jbidaux          ###   ########.fr       */
+/*   Updated: 2024/04/03 14:37:51 by jbidaux          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,8 +33,11 @@ void	change_opwd(t_shell *shell)
 	current = getcwd(NULL, 0);
 	opwd = ft_strdup("OLDPWD=");
 	index = find_var_index("OLDPWD", shell->env);
-	free(shell->env[index]);
-	shell->env[index] = ft_strjoin(opwd, current);
+	if (index >= 0)
+	{
+		free(shell->env[index]);
+		shell->env[index] = ft_strjoin(opwd, current);
+	}
 	free(current);
 	free(opwd);
 }
@@ -78,7 +81,7 @@ int	cd_minus(t_shell *shell)
 	}
 	else
 	{
-		printf("cd: OLDPWD not set\n");
+		printf("cd: OLDPWD not valid\n");
 		free(oldpwd);
 		return (EXIT_FAILURE);
 	}

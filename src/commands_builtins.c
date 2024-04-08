@@ -6,7 +6,7 @@
 /*   By: jbidaux <jbidaux@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/28 19:06:56 by jbidaux           #+#    #+#             */
-/*   Updated: 2024/03/28 19:06:56 by jbidaux          ###   ########.fr       */
+/*   Updated: 2024/04/08 17:36:43 by jbidaux          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,13 +18,13 @@ void	redup(t_cmd *cmd, t_shell *shell)
 	{
 		dup2(shell->fd_out, STDOUT_FILENO);
 		close(cmd->fd_out);
-		close(shell->fd_out);
+		// close(shell->fd_out);
 	}
 	if (cmd->infile && cmd->fd_in != STDIN_FILENO)
 	{
 		dup2(shell->fd_in, STDIN_FILENO);
 		close(cmd->fd_in);
-		close(shell->fd_in);
+		// close(shell->fd_in);
 	}
 }
 

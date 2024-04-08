@@ -31,6 +31,7 @@ TO_CLEAN		= *.dSYM *.o *test .vscode
 all: $(NAME) run
 
 $(NAME): $(SRCS)
+	make -C libft
 	@$(CC) $(ALLFLAGS) $(SRCS) -o $@
 	@echo "Compiling $(NAME)..."
 
@@ -49,9 +50,11 @@ run:
 	@$(CC) $(FLAGS) $< -o $@
 
 clean:
+	make clean -C libft
 	@$(RM_ALL) $(TO_CLEAN)
 
 fclean: clean
+	make fclean -C libft
 	@$(RM) $(NAME)
 
 re: fclean all
